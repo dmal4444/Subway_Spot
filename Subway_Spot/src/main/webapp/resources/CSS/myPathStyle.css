@@ -1,0 +1,306 @@
+
+
+/* myPathStyle.css */
+
+#myPath{
+	font-size: 13px;
+	color: black;
+	margin-left:10px;
+}
+
+.main_div{
+	display:none;
+}
+.searchBtn {
+ background-color: #e7e7e7; /* GREY */
+    border: none;
+    color: black;
+    padding: 7px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+a {
+	text-decoration: none;
+	color: black;
+}
+p{
+	margin-top:10px;
+}
+
+/*길찾기 부분*/
+
+ #from_to{
+ font-size: 13px;
+  }
+
+ .stn_input{
+	width: 250px;
+	height: 30px;
+ }
+
+
+/*최단거리 최소환승 버튼*/
+.button {
+    background-color: #e7e7e7; /* GREY */
+    border: none;
+    color: black;
+    padding: 7px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+	align:center;
+    font-size: 13px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button.minTime:focus {
+    background-color: #555555;
+    color: white;
+	font-weight: bold;
+}
+
+.button.minTrans:focus {
+    background-color: #555555;
+    color: white;
+	font-weight: bold;
+}
+
+#min_name{
+	font-weight: bold;
+	width:200px;
+	}
+
+hr { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-width: 0.3px;
+	width: 250px;
+	float: left;
+	
+}
+hr #divider_time{
+    display: lightgrey;
+    margin-top: 0;
+    margin-bottom: 10px;
+    margin-left: 0;
+    margin-right: 0;
+    border-style: solid;
+    border-width: 0.5px;
+
+}
+
+/*시간설정*/
+.timeSet {
+    padding: 0px 0px;
+    text-align: center;
+    background-color: white;
+    margin-top: 20px;
+	margin-bottom: 0px;
+	display:none;
+	width: 250px;
+	height: 90px;
+}
+
+.arrow_down{
+	border-style: solid;
+	border-width: 1.4px;
+}
+
+/* 시간 select 박스*/
+select {
+	width:122px;
+	float: left;
+	position: relative;
+}
+
+/* 확인 버튼*/
+.confirm_btn{	
+	width:50px; 
+	height:24px; 
+	float:right;
+	margin-top:10px;
+	}
+
+/*전체 요약 버튼*/
+.showBtn {
+  display: block;
+  float:right;
+  padding: 6px 6px;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  text-color: black;
+  outline: none;
+  color: black;
+  background-color: #e7e7e7; /* GREY */
+   border: none;
+  border-width: 1px;
+  border-radius: 0px;
+}
+#show_all:hover{
+	background-color: #999999
+}
+#show_all:focus{
+	background-color: #999999
+}
+
+#show_short:hover{
+	background-color: #999999
+}
+#show_short:focus{
+	background-color: #999999
+}
+
+/*요약 창*/
+dl.short{
+	margin:0px;
+	font-weight:bold;
+	 display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+
+dd{
+	
+}
+
+dd.short_box{
+	display:inline;
+	margin-left:10px;
+	color:red;
+}
+
+dl.sbway_dl_list{
+	display:inline;
+	margin:0px;
+	font-weight:bold;
+    -webkit-margin-start: 40px;
+}
+
+em {
+	font-weight:bold;
+	color:red;
+	font-style:normal;
+}
+
+.inner_box{
+	border-style:solid;
+	border-width:0.5px;
+	text-align:center;
+	background-color: #e7e7e7;
+	width:270px; 
+	height:80px;
+    margin-top: 20px;
+
+}
+
+/*요약 전체 리스트*/
+ul.sbway_list {
+	width: 315px;
+    margin: 0 auto;
+    padding: 19px 0 14px;
+    border-bottom: 1px solid #d0d1d2;
+    line-height: 14px;
+	list-style-type: none;
+}
+
+li{
+    margin: 0;
+    padding: 0;
+	position:relative;
+	min-height:88px;
+	vertical-align:top;
+	display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+#short_div{
+	width:300px;
+}
+#all_div{
+	width:300px;}
+	
+/*요약 전체 리스트 */
+.arrival_line{
+	position:absolute;
+	top: -2px;
+	left: 30px;
+    display: inline-block;
+    overflow: hidden;
+    background: 
+    line-height: 999px;
+    vertical-align: top
+}
+
+.sbway_time {
+    position: absolute;
+    top: 0;
+    left: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: Tahoma,sans-serif;
+	}
+
+.sbway_stn{
+	padding-bottom: 5px;
+    color: #000;
+    font-weight: bold;
+	text-decoration: none;
+    line-height: 17px;
+	}
+.sbway_stn:hover{
+	text-decoration:underline;
+	}
+/*요약 전체 리스트 안의 버튼 */
+.act {
+    position: absolute;
+    top: -4px;
+    right: 0;
+    left:200px;
+	}
+
+.act.exit{
+	left:170px;
+}
+/*호선별 마크 */
+span.sbway_line_wrap{
+    height: 35px;
+    margin-top: -12px;
+    position: absolute;
+    top: 22%;
+    width: 44px;
+    margin-top: -4px;
+    text-align: center;
+}
+
+span.sbway_line_img{
+    background-position: 0 0;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    overflow: hidden;
+    background: url(../icons/line1.jpg) no-repeat;
+    line-height: 999px;
+    vertical-align: top;
+	}
+/*환승 그림*/
+span.sbway_line_img.transfer{
+    background: url(../icons/trasnfer.png) no-repeat;
+	height: 30px;
+
+	}
