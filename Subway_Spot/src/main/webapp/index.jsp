@@ -18,7 +18,7 @@
 <body style="height:900px; width:100%">
 
 <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="http://www.html5andcss3.org/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="http//www.html5andcss3.org/js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="resources/JS/googleMap.js"></script>
 <script type="text/javascript" src="resources/JS/mainJS.js"></script>
 <script type="text/javascript" src="resources/JS/myPathJS.js"></script>
