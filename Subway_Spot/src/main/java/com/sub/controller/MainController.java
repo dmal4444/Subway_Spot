@@ -10,7 +10,11 @@ public class MainController {
 	public String getFinder(){
 		System.out.println("PathFinder");
 		return "PathFinder";
-		
+	}
+	@RequestMapping("/main")
+	public String getMain(){
+		System.out.println("main");
+		return "main";
 	}
 
 }

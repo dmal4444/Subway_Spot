@@ -53,6 +53,13 @@ $(document).ready(function() {
         $('.pathDiv.all').hide();
         $('.pathDiv.short').show();
     });
+    
+    $(".exit").click(function(){
+    	$(location).attr("href","./Detail/Bus.sub");
+    });
+    $(".act").click(function(){
+    	$(location).attr("href","./Detail/DetailForm.sub");
+    });
 });
 
 //ajax

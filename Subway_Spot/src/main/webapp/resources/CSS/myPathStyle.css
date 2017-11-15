@@ -273,10 +273,13 @@ li{
     right: 0;
     left:200px;
 	}
+.exit{
+    position: absolute;
+    top: -4px;
+    right: 0;
+    left:170px;
+	}
 
-.act.exit{
-	left:170px;
-}
 /*호선별 마크 */
 span.sbway_line_wrap{
     height: 35px;

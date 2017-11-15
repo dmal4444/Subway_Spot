@@ -164,7 +164,7 @@
 			</dl>
 			
 			<div id="exit_btn">
-				<input type="button" class="act exit" style="float:right;"id="exit_info" value="출구·연계버스">
+				<input type="button" class="exit" style="float:right;"id="exit_info" value="출구·연계버스">
 			</div>
 			</li>
 			</ul>
@@ -232,7 +232,7 @@
 			</dl>
 			
 			<div id="exit_btn">
-				<input type="button" class="act exit" style="float:right;"id="exit_info" value="출구·연계버스">
+				<input type="button" class="exit" style="float:right;"id="exit_info" value="출구·연계버스">
 			</div>
 			</li>
 			</ul>
@@ -322,7 +322,7 @@
 				</dd>
 			</dl>
 			<div id="exit_btn">
-				<input type="button" class="act exit" style="float:right;"id="exit_info" value="출구·연계버스">
+				<input type="button" class="exit" style="float:right;"id="exit_info" value="출구·연계버스">
 			</div>
 			</li>
 			</ul>
@@ -387,7 +387,7 @@
 				</dd>
 			</dl>
 			<div id="exit_btn">
-				<input type="button" class="act exit" style="float:right;"id="exit_info" value="출구·연계버스">
+				<input type="button" class="exit" style="float:right;"id="exit_info" value="출구·연계버스">
 			</div>
 			</li>
 			</ul>
