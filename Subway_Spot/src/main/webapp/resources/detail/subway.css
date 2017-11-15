@@ -1,0 +1,187 @@
+/* 
+=========================
+      CSS RESET
+=========================
+*/
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video { margin:0; padding:0; border:0; outline:0; font-size:100%; vertical-align:baseline;}
+body {line-height:1;}
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {display:block;}
+ul li{list-style:none;}
+a {margin: 0; padding: 0; border: 0; vertical-align: baseline; background: transparent; text-decoration: none; color: inherit; display: inline-block;}
+
+.clearfix:after {content: ""; display: block; clear: both;}
+
+/* 
+=========================
+    GRID SYSTEM RESET
+=========================
+*/
+
+.layout-wrapper {max-width: 1200px; margin: 0 auto;}
+.layout-row {margin: 0 -10px;}
+.layout-row:after{content: ""; display: block; clear: both;}
+
+[class*="col-"] {
+    width: 100%;
+    float: left;    
+    padding: 10px;
+    box-sizing: border-box;
+}
+.col-right{float: right;}
+.col-fit  {padding: 0;}
+
+[class*="product-"] {
+	height: 247px;
+	margin: 38px 0 0 0;
+}
+/* 
+=========================
+    GRID SYSTEM RESET
+=========================
+*/
+
+
+/* 
+=========================
+    css style
+=========================
+*/
+
+.subway_detail {
+	border: 1px solid #4b4d59;
+}
+.Title,
+.local_tab {
+	max-width: 1000px; margin: 0 auto;
+}
+
+.local_tab {
+	padding: 20px 0;
+}
+
+.bus_bt {
+	background-color: #4b4d59;
+	display:inline-block;
+	position:absolute;
+	margin: -71px 0px 0px 201px;
+}
+
+.bus_bt:hover {
+	background-size: 200px 51px;	
+	background-color: #c5c5c5;
+}
+
+.time_bt {
+	background-color: #4b4d59;
+	display:inline-block;
+	position:absolute;
+	margin: -71px 0px 0px 402px;
+}
+
+.time_bt:hover {
+	background-size: 200px 51px;	
+	background-color: #c5c5c5;
+}
+
+
+.map {
+	max-width: 1000px; margin: 0 auto;
+}
+
+.article {
+	clear:both;
+	margin:0 auto;
+	padding-bottom: 50px;
+	max-width: 1000px;
+}
+
+.section_sway_time_tb {
+	margin-top :29px;
+}
+
+.tbs2 {
+	margin-bottom: 25px;
+}
+
+.tbs1 {
+	width: 100%;
+	table-layout: fixed;
+	border: 0;
+	border-bottom: 1px solid #d0d0d1;
+	border-collapse: collapse;
+	line-height: 18px;
+}
+
+.cap1 {
+	display: table-caption;
+	padding-bottom: 10px;
+	color: #000;
+	font-weight: bold;
+	text-align: left;
+}
+
+thead {
+	display: table-header-group;
+	vertical-align: middle;
+	border-color: inherit;
+}
+
+tr {
+	display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+.tbs2 .sat {
+	color: #0072bc;
+}
+
+.tbs1 th{
+	padding: 10px 5px 7px;
+    border-top: 2px solid #d0d0d1;
+    border-bottom: 1px solid #d0d0d1;
+    background: #fcfcfc;
+    font-weight: normal;
+}
+
+.tbs2 .sun {
+	color: #e96166;
+}
+
+.tbs2 th {
+	padding: 8px 5px 9px;
+    border: 1px solid #ececec;
+    border-right: 0;
+    border-bottom: 0;
+    font-size: 11px;
+    font-family: tahoma;
+}
+
+.tbs1 td {
+	padding: 10px 5px 7px;
+    border-top: 1px solid #ececec;
+    text-align: center;
+}
+
+.tbs2 td {
+	padding: 8px 5px 9px;
+    border: 1px solid #ececec;
+    border-right: 0;
+    border-bottom: 0;
+    font-size: 11px;
+    font-family: tahoma;
+}
+
