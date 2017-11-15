@@ -1,0 +1,277 @@
+/* 
+=========================
+      CSS RESET
+=========================
+*/
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video { margin:0; padding:0; border:0; outline:0; font-size:100%; vertical-align:baseline;}
+body {line-height:1;}
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {display:block;}
+ul li{list-style:none;}
+a {margin: 0; padding: 0; border: 0; vertical-align: baseline; background: transparent; text-decoration: none; color: inherit; display: inline-block;}
+
+.clearfix:after {content: ""; display: block; clear: both;}
+
+/* 
+=========================
+    GRID SYSTEM RESET
+=========================
+*/
+.layout-wrapper {max-width: 1200px; margin: 0 auto;}
+.layout-row {margin: 0 -10px;}
+.layout-row:after{content: ""; display: block; clear: both;}
+
+[class*="col-"] {
+    width: 100%;
+    float: left;    
+    padding: 10px;
+    box-sizing: border-box;
+}
+.col-right{float: right;}
+.col-fit  {padding: 0;}
+
+[class*="product-"] {
+	height: 247px;
+	margin: 38px 0 0 0;
+}
+
+
+.subway_detail {
+	border: 1px solid #4b4d59;
+}
+.Title,
+.local_tab {
+	max-width: 1000px; margin: 0 auto;
+}
+
+.local_tab {
+	padding: 20px 0;
+}
+.Title a{
+	position:absolute;
+	margin: 87px 20px 61px 257px;
+	display: inline-block;
+    overflow: hidden;
+    max-width: 40px;
+    color: #fff;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: top
+}
+
+
+.tbs3 th {
+	border-top: 1px solid #ececec;
+    padding: 11px 20px 8px;
+    text-align: left;
+    vertical-align: middle;
+}
+.table{
+	display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+}
+
+.last{
+	padding: 11px 20px 8px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.article {
+	clear:both;
+	margin:0 auto;
+	padding-bottom: 50px;
+	max-width: 1000px;
+}
+.section_sway_exitbus_tb {
+	border-top: 2px solid #d0d0d1;
+	margin-top: 20px;
+	max-width: 1000px;
+}
+.tbs3 tr:first-child th, .tbs3 tr:first-child td {
+    border-top: 0;
+}
+.tbs3 .tbs3_top th, .tbs3 .tbs3_top td {
+    border-top: 1px solid #d0d0d1;
+    border-bottom: 1px solid #d0d0d1;
+    background: #fcfcfc;
+}
+.tbs3 td {
+    padding: 11px 20px 8px;
+    border-top: 1px solid #f5f5f5;
+    border-left: 1px solid #f5f5f5;
+    color: #333;
+    vertical-align: middle;
+}
+body, p, h1, h2, h3, h4, h5, h6, menu, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, button {
+    margin: 0;
+    padding: 0;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+.tbs3 {
+    width: 100%;
+    border: 0;
+    margin-bottom: 50px;
+    border-collapse: collapse;
+    line-height: 18px;
+}
+body, input, textarea, select, button, table, pre {
+    font-family: '�룍��',Dotum,Helvetica,'Apple SD Gothic Neo',Sans-serif;
+    font-size: 12px;
+}
+table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+}
+body, input, textarea, select, button, table, pre {
+    font-family: '�룍��',Dotum,Helvetica,'Apple SD Gothic Neo',Sans-serif;
+    font-size: 12px;
+}
+th {
+    font-weight: bold;
+    text-align: center;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+.section_sway_exitbus_tb {
+    border-top: 2px solid #d0d0d1;
+}
+.container_inner {
+    position: relative;
+    padding: 48px 36px 38px 37px;
+}
+
+
+
+
+.tbs3_top {
+	padding: 11px 20px 8px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+
+.tbs3 .sub_exit_n {
+    margin: 0 4px 0 0;
+	
+}
+.sub_exit_n1 {
+    background-position: 0 0;
+}
+.sub_exit_n {
+    display: inline-block;
+    overflow: hidden;
+    width: 16px;
+    height: 16px;
+    background: url(http://static.naver.net/maps/ux2013/sp_subway_exit.png) no-repeat 0 0;
+    line-height: 999px;
+    vertical-align: top;
+}
+
+.spbi_d11 {
+	width:24px;
+	height:14px;
+	background-position: -202px 0;
+	background-color:blue;
+	color:white;
+	font-weight:200;
+}
+
+.spbi_d12,
+.spbi_d1,
+.spbi_d3 {
+	width:24px;
+	height:14px;
+	background-position: -202px 0;
+	background-color:green;
+	color:white;
+	font-weight:200;
+}
+
+.spbi_d14 {
+	width:24px;
+	height:14px;
+	background-position: -202px 0;
+	background-color:red;
+	color:white;
+	font-weight:200;
+}
+
+.spbi_d5 {
+	width:24px;
+	height:14px;
+	background-position: -202px 0;
+	background-color:skyblue;
+	color:white;
+	font-weight:200;
+}
+42006123601013
+
+.spbi {
+	display:inline-block;
+	overflow:hidden;
+	vertical-align: top;
+}
+
+.bus_lst dt {
+	float: left;
+	margin-right: 5px;
+}
+.bus_lst {
+	display: block;
+    list-style-type: disc;
+}
+
+.bus_lst dd{
+	overflow: hidden;
+    zoom: 1;
+}
+
+.dd {
+	margin: 0;
+	padding:0;
+}
+.bus_bt {
+	background-color: #4b4d59;
+	display:inline-block;
+	position:absolute;
+	margin: -71px 0px 0px 201px;
+}
+
+.bus_bt:hover {
+	background-size: 200px 51px;	
+	background-color: #c5c5c5;
+}
+
+.time_bt {
+	background-color: #4b4d59;
+	display:inline-block;
+	position:absolute;
+	margin: -71px 0px 0px 402px;
+}
+
+.time_bt:hover {
+	background-size: 200px 51px;	
+	background-color: #c5c5c5;
+}
