@@ -87,18 +87,18 @@
 		<div id="short_inner" class="inner_box" >
 			<dl class="short" id="short_info1"  >
 				<dd class="short_box">소요시간</dd>
-					<em><a id="travelTime">6</a>분</em>
+					<em><a class="travelTime" id="travelTime1">0</a>분</em>
 				<dd class="short_box">정차역</dd>
-					<em><a id="travelDistance">2</a>개</em>
+					<em><a class="travelDistance" id="travelDistance1">0</a>개</em>
 				<dd class="short_box">환승</dd>
-					<em><a id="exchangeCount">0</a>회</em>
+					<em><a class="exchangeCount" id="exchangeCount1">0</a>회</em>
 			</dl>
 			
 			<dl class="short" id="short_info2">
 				<dd class="short_box">카드요금</dd>
-					<em><a id="cardFare">1002</a>원</em>
+					<em><a class="cardFare" id="cardFare1">1234</a>원</em>
 				<dd class="short_box">현금</dd>
-					<em><a id="cashFare">1234</a>원</em>
+					<em><a class="cashFare" id="cashFare1">1234</a>원</em>
 			</dl>
 		</div>
 		<!-- 요약 리스트-->
@@ -116,10 +116,11 @@
 					15:16
 				</dt>
 				<dd>
-					<a href="#" class="sbway_stn" id="departure_stn">구로역(1호선)</a>
+					<a href="#" class="sbway_stn dept" id="departure_stn1">땡땡</a>역(<a class="sbway_line"id="departure_line1">0</a>호선)
 				</dd>
 				<dd class="departure_info">
-					금정역 방면 2개역 이동
+					<a class="wayname" id="wayname1">땡땡</a>행 방면<br>
+					<p class="fastExch" id="fastExch1">빠른 환승 <a class="fastTrain first"id="fastTrain1">0</a>-<a class="fastDoor first" id="fastDoor1">0</a>번 문</p>
 				</dd>
 			</dl>
 			<div id="timetable_btn">
@@ -128,24 +129,25 @@
 			</li>
 			
 			<!-- 환승역 -->
-			<li class="sbway_transfer">
-			<span class="sbway_line_wrap">
-				<span class="sbway_line_img transfer"></span>
-			</span>
-			<dl class="sbway_dl_list"id="list_departure">
-				<dt class="sbway_time" id="departure_time">
-					15:00
-				</dt>
-				<dd>
-					<a href="#" class="sbway_stn" id="departure_stn">사당역(4호선)</a>
-				</dd>
-				<dd class="departure_info">
-					도보 1분<br>
-					빠른 환승 5-1번 문
-				</dd>
-			</dl>
-			</li>
-			
+			<div class="exchangeBox">
+				<li class="sbway_transfer">
+					<span class="sbway_line_wrap">
+						<span class="sbway_line_img transfer"></span>
+					</span>
+					<dl class="sbway_dl_list"id="list_exchange">
+						<dt class="sbway_time" id="departure_time">
+							15:00
+						</dt>
+						<dd>
+							<a href="#" class="sbway_stn exch" id="exchange_stn2">땡땡</a>역(<a class="ex_line" id="ex_line2">0</a>호선)
+						</dd>
+						<dd class="departure_info">
+							도보<a class="exWalkTime" id="exWalkTime1">0</a>분<br>
+							<p class="fastExch2" id="fastExch2">빠른 환승 <a class="fastTrain2" id="fastTrain2">0</a>-<a class="fastDoor2" id="fastDoor2">0</a>번 문</p>
+						</dd>
+					</dl>
+				</li>
+			</div>
 			<!--도착역 -->
 			<li class="sbway_arrival">
 				<span class="sbway_line_wrap">
@@ -156,10 +158,10 @@
 					15:25
 				</dt>
 				<dd>
-					<a href="#" class="sbway_stn" id="arrival_stn">금정역(1호선)</a>
+					<a href="#" class="sbway_stn arrival" id="arrival_stn">땡땡</a>역(<a class="arrival_line"id="arrival_line2">0</a>호선)
 				</dd>
 				<dd class="arrival_info">
-					내리는문-오른쪽
+					
 				</dd>
 			</dl>
 			
@@ -188,10 +190,11 @@
 					15:16
 				</dt>
 				<dd>
-					<a href="#" class="sbway_stn" id="departure_stn">구로역(1호선)</a>
+					<a href="#" class="sbway_stn dept" id="departure_stn3">땡땡</a>역(<a class="sbway_line"id="departure_line3">0</a>호선)
 				</dd>
 				<dd class="departure_info">
-					금정역 방면 2개역 이동
+					<a class="wayname" id="wayname3">땡땡</a>행 방면<br>
+					<p class="fastExch" id="fastExch3">빠른 환승 <a class="fastTrain first"id="fastTrain1">0</a>-<a class="fastDoor first" id="fastDoor3">0</a>번 문</p>
 				</dd>
 			</dl>
 			
@@ -201,20 +204,44 @@
 			</li>
 			
 			<!--지나는 역-->
-			<li class="sbway_departure">
-			<span class="sbway_line_wrap">
-				<span class="sbway_line_img"></span>
-			</span>
-			<dl class="sbway_dl_list"id="list_departure">
-				<dt class="sbway_time" id="departure_time">
-					15:17
-				</dt>
-				<dd>
-					<a href="#" class="sbway_stn" id="departure_stn">구로역(1호선)</a>
-				</dd>
-			</dl>
-			</li>
-
+			<div class="detail_list">
+				<li class="sbway_departure">
+				<span class="sbway_line_wrap">
+					<span class="sbway_line_img"></span>
+				</span>
+				<dl class="sbway_dl_list" id="list_departure">
+					<dt class="sbway_time" id="departure_time">
+						15:17
+					</dt>
+					<dd>
+						<a href="#" class="sbway_stn detail" id="detail_stn">땡땡</a>역(<a class="sbway_stn detail_line" id="detail_line">0</a>호선)
+					</dd>
+				</dl>
+				</li>
+			</div>
+			
+			<!-- 환승역 -->
+			<div class="exchangeBox">
+				<li class="sbway_transfer">
+					<span class="sbway_line_wrap">
+						<span class="sbway_line_img transfer"></span>
+					</span>
+					<dl class="sbway_dl_list"id="list_exchange">
+						<dt class="sbway_time" id="departure_time3">
+							15:00
+						</dt>
+						<dd>
+							<a href="#" class="sbway_stn exch" id="exchange_stn3">땡땡</a>역(<a class="ex_line" id="ex_line3">0</a>호선)
+						</dd>
+						<dd class="departure_info">
+							도보<a class="exWalkTime" id="exWalkTime3">0</a>분<br>
+							<p class="fastExch2" id="fastExch3">빠른 환승 <a class="fastTrain2" id="fastTrain2">0</a>-<a class="fastDoor3" id="fastDoor3">0</a>번 문</p>
+						</dd>
+					</dl>
+				</li>
+			</div>
+			
+			<!-- 도착역 -->
 			<li class="sbway_arrival">
 				<span class="sbway_line_wrap">
 				<span class="sbway_line_img"></span>
@@ -224,10 +251,10 @@
 					15:25
 				</dt>
 				<dd>
-					<a href="#" class="sbway_stn" id="arrival_stn">금정역(1호선)</a>
+					<a href="#" class="sbway_stn arrival" id="arrival_stn3">땡땡</a>역(<a class="arrival_line" id="arrival_line3">1</a>호선)
 				</dd>
 				<dd class="arrival_info">
-					내리는문-오른쪽
+					
 				</dd>
 			</dl>
 			
@@ -246,17 +273,17 @@
 	<div id="short_inner" class="inner_box" >
 			<dl class="short" id="short_info2"  >
 				<dd class="short_box">소요시간</dd>
-					<em><a id="travelTime">1234</a>분</em>
+					<em><a class="travelTime" 2id="travelTime2">1234</a>분</em>
 				<dd class="short_box">정차역</dd>
-					<em><a id="travelDistance">2</a>개</em>
+					<em><a class="travelDistance" id="travelDistance2">0</a>개</em>
 				<dd class="short_box">환승</dd>
-					<em><a id="exchangeCount">0</a>회</em>
+					<em><a class="exchangeCount" id="exchangeCount2">0</a>회</em>
 			</dl>
 			<dl class="short" id="short_info2">
 				<dd class="short_box">카드요금</dd>
-					<em><a id="cardFare">1002</a>원</em>
+					<em><a class="cardFare" id="cardFare2">1234</a>원</em>
 				<dd class="short_box">현금</dd>
-					<em><a id="cashFare">1234</a>원</em>
+					<em><a class="cashFare" id="cashFare2">1234</a>원</em>
 			</dl>
 	</div>
 
@@ -275,10 +302,11 @@
 					15:16
 				</dt>
 				<dd>
-					<a href="#" class="sbway_stn" id="departure_stn">구로역(1호선)</a>
+					<a href="#" class="sbway_stn dept" id="departure_stn2">땡땡</a>역(<a class="sbway_line" id="departure_line2">0</a>호선)
 				</dd>
 				<dd class="departure_info">
-					금정역 방면 2개역 이동
+					<a class="wayname" id="wayname2">땡땡</a>행 방면<br>
+					<p class="fastExch" id="fastExch1">빠른 환승 <a class="fastTrain first"id="fastTrain1">0</a>-<a class="fastDoor first" id="fastDoor1">0</a>번 문</p>
 				</dd>
 			</dl>
 			<div id="timetable_btn">
@@ -287,24 +315,25 @@
 			</li>
 			
 			<!-- 환승역 -->
-			<li class="sbway_transfer">
-			<span class="sbway_line_wrap">
-				<span class="sbway_line_img transfer"></span>
-			</span>
-			<dl class="sbway_dl_list"id="list_departure">
-				<dt class="sbway_time" id="departure_time">
-					15:00
-				</dt>
-				<dd>
-					<a href="#" class="sbway_stn" id="departure_stn">사당역(4호선)</a>
-				</dd>
-				<dd class="departure_info">
-					도보 1분<br>
-					빠른 환승 5-1번 문
-				</dd>
-			</dl>
-			</li>
-			
+			<div class="exchangeBox">
+				<li class="sbway_transfer">
+					<span class="sbway_line_wrap">
+						<span class="sbway_line_img transfer"></span>
+					</span>
+					<dl class="sbway_dl_list"id="list_departure">
+						<dt class="sbway_time" id="departure_time">
+							15:00
+						</dt>
+						<dd>
+							<a href="#" class="sbway_stn exch" id="exchange_stn2">땡땡</a>역(<a class="ex_line" id="ex_line2">0</a>호선)
+						</dd>
+						<dd class="departure_info">
+							도보<a class="exWalkTime" id="exWalkTime2">0</a>분<br>
+							<p class="fastExch2" id="fastExch3">빠른 환승 <a class="fastTrain2" id="fastTrain3">0</a>-<a class="fastDoor2" id="fastDoor3">0</a>번 문</p>
+						</dd>
+					</dl>
+				</li>
+			</div>
 			<!--도착역 -->
 			<li class="sbway_arrival">
 				<span class="sbway_line_wrap">
@@ -315,10 +344,10 @@
 					15:25
 				</dt>
 				<dd>
-					<a href="#" class="sbway_stn" id="arrival_stn">금정역(1호선)</a>
+					<a href="#" class="sbway_stn arrival" id="arrival_stn">땡땡</a>역(<a class="arrival_line"id="arrival_line2">0</a>호선)
 				</dd>
 				<dd class="arrival_info">
-					내리는문-오른쪽
+
 				</dd>
 			</dl>
 			<div id="exit_btn">
@@ -345,10 +374,11 @@
 					15:16
 				</dt>
 				<dd>
-					<a href="#" class="sbway_stn" id="departure_stn">구로역(1호선)</a>
+					<a href="#" class="sbway_stn dept" id="departure_stn4">땡땡</a>역(<a class="sbway_line"id="departure_line4">0</a>호선)
 				</dd>
 				<dd class="departure_info">
-					금정역 방면 2개역 이동
+					<a class="wayname" id="wayname4">땡땡</a>행 방면<br>
+					<p class="fastExch" id="fastExch4">빠른 환승 <a class="fastTrain first"id="fastTrain1">0</a>-<a class="fastDoor first" id="fastDoor4">0</a>번 문</p>
 				</dd>
 			</dl>
 			<div id="timetable_btn">
@@ -356,21 +386,43 @@
 			</div>
 			</li>
 			<!--지나는 역-->
-
-			<li class="sbway_departure">
-			<span class="sbway_line_wrap">
-				<span class="sbway_line_img"></span>
-			</span>
-			<dl class="sbway_dl_list"id="list_departure">
-				<dt class="sbway_time" id="departure_time">
-					15:17
-				</dt>
-				<dd>
-					<a href="#" class="sbway_stn" id="departure_stn">구로역(1호선)</a>
-				</dd>
-			</dl>
-			</li>
-
+			<div class="detail_list">
+				
+				<li class="sbway_departure">
+				<span class="sbway_line_wrap">
+					<span class="sbway_line_img"></span>
+				</span>
+				<dl class="sbway_dl_list"id="list_departure">
+					<dt class="sbway_time" id="departure_time">
+						15:17
+					</dt>
+					<dd>
+						<a href="#" class="sbway_stn detail" id="detail_stn2">땡땡</a>역(<a class="sbway_stn detail_line" id="detail_line2">0</a>호선)
+					</dd>
+				</dl>
+				</li>
+			</div>
+			<!-- 환승역 -->
+			<div class="exchangeBox">
+				<li class="sbway_transfer">
+					<span class="sbway_line_wrap">
+						<span class="sbway_line_img transfer"></span>
+					</span>
+					<dl class="sbway_dl_list"id="list_exchange">
+						<dt class="sbway_time" id="departure_time3">
+							15:00
+						</dt>
+						<dd>
+							<a href="#" class="sbway_stn exch" id="exchange_stn4">땡땡</a>역(<a class="ex_line" id="ex_line4">0</a>호선)
+						</dd>
+						<dd class="departure_info">
+							도보<a class="exWalkTime" id="exWalkTime4">0</a>분<br>
+							<p class="fastExch2" id="fastExch4">빠른 환승 <a class="fastTrain2" id="fastTrain4">5</a>-<a class="fastDoor3" id="fastDoor4">0</a>번 문</p>
+						</dd>
+					</dl>
+				</li>
+			</div>
+			<!-- 도착역 -->
 			<li class="sbway_arrival">
 				<span class="sbway_line_wrap">
 				<span class="sbway_line_img"></span>
@@ -380,10 +432,10 @@
 					15:25
 				</dt>
 				<dd>
-					<a href="#" class="sbway_stn" id="arrival_stn">금정역(1호선)</a>
+					<a href="#" class="sbway_stn arrival" id="arrival_stn4">땡땡</a>역(<a class="arrival_line"id="arrival_line4">0</a>호선)
 				</dd>
 				<dd class="arrival_info">
-					내리는문-오른쪽
+					
 				</dd>
 			</dl>
 			<div id="exit_btn">

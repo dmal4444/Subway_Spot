@@ -236,7 +236,7 @@ li{
 	width:300px;}
 	
 /*요약 전체 리스트 */
-.arrival_line{
+/* .arrival_line{
 	position:absolute;
 	top: -2px;
 	left: 30px;
@@ -245,7 +245,7 @@ li{
     background: 
     line-height: 999px;
     vertical-align: top
-}
+} */
 
 .sbway_time {
     position: absolute;
