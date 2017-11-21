@@ -8,7 +8,6 @@
 	<span data-name="2">Street View</span>
 	<span data-name="3">Mini Map</span>
 	
-	
 	</div>
 	
 	<div id="firstCard1" class="cardContent">
@@ -51,6 +50,3 @@
 	
 	</div>
 	</div>
-
-</body>
-</html>

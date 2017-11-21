@@ -9,6 +9,7 @@ var map;
 
 //tab Window를 위한 변수들
 var infowindow, player;
+var iw_content = document.getElementById("wrapper1");
 
 //지도 연동 시작
 function initMap() {
@@ -19,7 +20,7 @@ function initMap() {
        disableDefaultUI: true //지도 스타일변경 버튼 안만들기
 });
    //tab기능 실행
-   var iw_content = document.getElementById("wrapper1");
+  
    infowindow = new google.maps.InfoWindow();
    var tabs = new TabCard("firstTabs", "firstCard");
 
@@ -50,6 +51,15 @@ function initMap() {
 	     map: map,
 	     clickable: true, draggable: false
 	   });
+	   
+	   google.maps.event.addListener(marker, "click", function(){
+		   //List 펼침
+		   document.getElementById("mySideList").style.width = "350px";
+		   
+		   //Center
+		   moveCenter(value.xpoint, value.ypoint);
+		   
+	   });
 	});	 
    
    /**
@@ -60,7 +70,8 @@ function initMap() {
     * @returns
 	*/   
     hlist.forEach(function(value, index) {
- 	
+    	var iw_content = document.getElementById("wrapper1");
+
        var g = google.maps;
 	   var marker = new google.maps.Marker({		 
 	     position: new google.maps.LatLng(value.xpoint, value.ypoint),
@@ -70,11 +81,18 @@ function initMap() {
 	   });
 	   
 	   g.event.addListener(marker, "click", function(){
-		   
-		   var iw_content=document.getElementById("wrapper1");
+		   //tab 펼침
+		   getTabId();
 		   infowindow.setContent(iw_content);
 		   iw_content.style.display = "block";
 		   infowindow.open(map, this); 
+		   
+		   //List 펼침
+		   document.getElementById("mySideList").style.width = "350px";
+		   
+		   //Center
+		   moveCenter(value.xpoint, value.ypoint);
+		   
 	   });
 	});	
    
@@ -85,6 +103,10 @@ function initMap() {
    var input = document.getElementById('pac-input');
    var searchBox = new google.maps.places.SearchBox(input);
    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+   
+   input.style.zIndex = "100";
+
+
    
    // Bias the SearchBox results towards current map's viewport.
    map.addListener('bounds_changed', function() {
@@ -258,8 +280,8 @@ function handleTabs(num){
 
 	      // Stop possibly running video
 	      if (tabnum != 3) {
-	        if (msie) removeVideo();
-	        else if (player) player.pauseVideo();
+	        //if (msie) removeVideo();
+	        //else if (player) player.pauseVideo();
 	      }
 	      return false;
 	     };
@@ -291,4 +313,24 @@ function seeMiniMap(div, point) {
     }
   });*/
 }
+
+function getTabId(){
+	   var iw_content = document.getElementById("wrapper1");
+	   return iw_content;
+	}
+
+window.onload = getTabId();
+
+//가운데 놓기
+function moveCenter(newLat, newLng){
+	map.setCenter({
+		lat: newLat,
+		lng: newLng
+			
+	});
+//	map.setZoom(18);
+		
+}
+
+
 

@@ -45,5 +45,10 @@ public class MainController {
 	public String getTab(){
 		return "List/TabWindow";
 	}
+	
+	@RequestMapping("/List")
+	public String getList(){
+		return "List/List";
+	}
 
 }
