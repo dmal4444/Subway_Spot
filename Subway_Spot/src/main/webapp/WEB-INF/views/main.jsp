@@ -16,9 +16,15 @@
 <link rel = "stylesheet" type = "text/css" href = "./resources/CSS/myPathStyle.css" />
 
 <body style="height:900px; width:100%">
+<script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+	var voList = ${MLIST};
+	var hvoList = ${HLIST};
+</script>
 
 <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="http://www.html5andcss3.org/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="./resources/JS/mainJS.js"></script>
 <script type="text/javascript" src="./resources/JS/googleMap.js"></script>
 <script type="text/javascript" src="./resources/JS/mainJS.js"></script>
 <script type="text/javascript" src="./resources/JS/myPathJS.js"></script>
@@ -30,16 +36,8 @@
 	
 </div>
 
-<!-- Use any element to open the sidenav -->
+<!-- Use any element to open the sidenav -->  
 <span onclick="openNav()"></span>
-
-<!-- list side bar -->
-<div id="ListSidenav" class="sidenav" style="background-color:white;">
-	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>	
-	<a href="#" class="w3-bar-item w3-button">Link 1</a>
-  	<a href="#" class="w3-bar-item w3-button">Link 2</a>
-  	<a href="#" class="w3-bar-item w3-button">Link 3</a>
-</div>
 
  <!-- Googld Map -->
 <div id="main_div" style="height:100%; width:100%;">

@@ -3,41 +3,57 @@
  /*
  	GoogleMap 연동
  */
- var map;
- function initMap() {
+var list = voList;
+var hlist = hvoList;
+var map;
+function initMap() {
    map = new google.maps.Map(document.getElementById('map'), {
 	   center: {lat: 37.5608381, lng: 126.9859019},
-       zoom: 13,
+       zoom: 14,
        mapTypeId: 'roadmap',
        disableDefaultUI: true //지도 스타일변경 버튼 안만들기
+});     
 
-   });
+   var styles = {
+   default: null,
+   hide: [
+     {
+       featureType: 'poi.business',
+       stylers: [{visibility: 'off'}]
+     },
+     {
+       featureType: 'transit',
+       elementType: 'labels.icon',
+       stylers: [{visibility: 'off'}]
+     }
+   ]
+ };
+   map.setOptions({styles: styles['hide']});
+   /**
+    * 일반역 마커 생성  
+      */ 
+   list.forEach(function(value, index) {
+	   var marker = new google.maps.Marker({
+	     position: new google.maps.LatLng(value.xpoint, value.ypoint),
+	     icon: value.iconpath,
+	     map: map
+	   });
+	});	 
    
    /**
-    * 마커 생성
-    */
-   var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-   var icons = {
-     station: {
-       icon: 'resources/icons/circle1.png'
-     },
-     station_1: {
-         icon: 'resources/icons/circle_r.png'
-       }
-   };
-
-   var features = [
-     {
-       position: new google.maps.LatLng(37.561517, 126.993974),
-       type: 'station_1'
-     }, {
-       position: new google.maps.LatLng(37.560831, 126.986424),
-       type: 'station'
-     }, {
-       position: new google.maps.LatLng(37.544613, 126.971985),
-       type: 'station'
-     }
-   ];
+    * 핫플레이스 마커 생성
+    * 
+    * @param value
+    * @param index
+    * @returns
+	*/   
+    hlist.forEach(function(value, index) {	   
+	   var marker = new google.maps.Marker({		 
+	     position: new google.maps.LatLng(value.xpoint, value.ypoint),
+	     icon: 'resources/icons/line/hot.png',
+	     map: map
+	   });
+	});	
 
    // Create markers.
    features.forEach(function(feature) {
@@ -48,12 +64,6 @@
        title: 'Click me.' 
      });
    });
-   
-/*   //마커 클릭시 일어나는 이벤트 
-   marker.addListener('click', function() {
-	   document.getElementById("mySidenav").style.width = "300px";
-//	 map.setCenter(marker.getPosition());
-	  });*/
    
    /**
     * SerachBox
@@ -66,8 +76,9 @@
    // Bias t  he SearchBox results towards current map's viewport.
    map.addListener('bounds_changed', function() {
      searchBox.setBounds(map.getBounds());
-   });
-
+   });	
+   
+   // Create markers.
    var markers = [];
    // Listen for the event fired when the user selects a prediction and retrieve
    // more details for that place.
@@ -93,12 +104,11 @@
        }
        var icon = {
          url: place.icon,
-         size: new google.maps.Size(1, 1),
-         origin: new google.maps.Point(0, 0),
-         anchor: new google.maps.Point(0, 0),
-         scaledSize: new google.maps.Size(0, 1)
+         size: new google.maps.Size(10, 10),
+         scaledSize: new google.maps.Size(25, 25)
        };
-
+       thisStateMarker.setIcon(icon)
+       
        // Create a marker for each place.
        markers.push(new google.maps.Marker({
          map: map,
@@ -114,8 +124,9 @@
          bounds.extend(place.geometry.location);
        }
      });
-     map.fitBounds(bounds);
+     map.fitBounds(bounds);     
    });
+   
    /**
     * 길찾기 버튼
     */
@@ -167,6 +178,3 @@
 	   });
 	 }
  }
-
-
- 
