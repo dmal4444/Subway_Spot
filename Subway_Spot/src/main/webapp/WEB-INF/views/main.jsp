@@ -33,6 +33,14 @@
 <!-- Use any element to open the sidenav -->
 <span onclick="openNav()"></span>
 
+<!-- list side bar -->
+<div id="ListSidenav" class="sidenav" style="background-color:white;">
+	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>	
+	<a href="#" class="w3-bar-item w3-button">Link 1</a>
+  	<a href="#" class="w3-bar-item w3-button">Link 2</a>
+  	<a href="#" class="w3-bar-item w3-button">Link 3</a>
+</div>
+
  <!-- Googld Map -->
 <div id="main_div" style="height:100%; width:100%;">
 	<input id="pac-input" class="controls" type="text" placeholder="Search Box">

@@ -44,9 +44,16 @@
      var marker = new google.maps.Marker({
        position: feature.position,
        icon: icons[feature.type].icon,
-       map: map
+       map: map,
+       title: 'Click me.' 
      });
    });
+   
+/*   //마커 클릭시 일어나는 이벤트 
+   marker.addListener('click', function() {
+	   document.getElementById("mySidenav").style.width = "300px";
+//	 map.setCenter(marker.getPosition());
+	  });*/
    
    /**
     * SerachBox
@@ -86,10 +93,10 @@
        }
        var icon = {
          url: place.icon,
-         size: new google.maps.Size(71, 71),
+         size: new google.maps.Size(1, 1),
          origin: new google.maps.Point(0, 0),
-         anchor: new google.maps.Point(17, 34),
-         scaledSize: new google.maps.Size(25, 25)
+         anchor: new google.maps.Point(0, 0),
+         scaledSize: new google.maps.Size(0, 1)
        };
 
        // Create a marker for each place.

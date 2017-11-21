@@ -40,8 +40,8 @@
 
 		<p style="height:6px;"></p>
 			<div id="min_name" align='center' >
-			<img src="./resources/icons/line1.jpg"/>&nbsp;<a class="stn start">구로</a>역&nbsp;<img src="./resources/icons/path_arr.png"/>&nbsp;
-			<img src="./resources/icons/line1.jpg"/>&nbsp;<a class="stn end">금정</a>역
+			<img src="./resources/icons/line1.jpg" class="line" id="startLine"/>&nbsp;<a class="stn start">구로</a>역&nbsp;<img src="./resources/icons/path_arr.png"/>&nbsp;
+			<img src="./resources/icons/line1.jpg" class="line" id="endLine"/>&nbsp;<a class="stn end">금정</a>역
 			</div>
 			
 			<p style="height:4px;"></p>
@@ -109,7 +109,7 @@
 			<!-- 출발역 -->
 			<li class="sbway_departure">
 			<span class="sbway_line_wrap">
-				<span class="sbway_line_img"></span>
+				<span class="sbway_line_img start"></span>
 			</span>
 			<dl class="sbway_dl_list"id="list_departure">
 				<dt class="sbway_time" id="departure_time">
@@ -132,7 +132,7 @@
 			<div class="exchangeBox">
 				<li class="sbway_transfer">
 					<span class="sbway_line_wrap">
-						<span class="sbway_line_img transfer"></span>
+						<span class="sbway_line_img_transfer"></span>
 					</span>
 					<dl class="sbway_dl_list"id="list_exchange">
 						<dt class="sbway_time" id="departure_time">
@@ -151,7 +151,7 @@
 			<!--도착역 -->
 			<li class="sbway_arrival">
 				<span class="sbway_line_wrap">
-				<span class="sbway_line_img"></span>
+				<span class="sbway_line_img arrival"></span>
 			</span>			
 			<dl class="sbway_dl_list" id="list_arrival">
 				<dt class="sbway_time" id="arrival_time">
@@ -180,11 +180,12 @@
 		<!-- 전체 리스트-->
 		<div id="short_list">
 		<ul class="sbway_list">
+		<!-- 출발역 -->
 			<li class="sbway_departure">
 			<span class="sbway_line_wrap">
-				<span class="sbway_line_img"></span>
+				<span class="sbway_line_img start"></span>
 			</span>
-			
+
 			<dl class="sbway_dl_list"id="list_departure">
 				<dt class="sbway_time" id="departure_time">
 					15:16
@@ -205,26 +206,14 @@
 			
 			<!--지나는 역-->
 			<div class="detail_list">
-				<li class="sbway_departure">
-				<span class="sbway_line_wrap">
-					<span class="sbway_line_img"></span>
-				</span>
-				<dl class="sbway_dl_list" id="list_departure">
-					<dt class="sbway_time" id="departure_time">
-						15:17
-					</dt>
-					<dd>
-						<a href="#" class="sbway_stn detail" id="detail_stn">땡땡</a>역(<a class="sbway_stn detail_line" id="detail_line">0</a>호선)
-					</dd>
-				</dl>
-				</li>
+			
 			</div>
 			
 			<!-- 환승역 -->
 			<div class="exchangeBox">
 				<li class="sbway_transfer">
 					<span class="sbway_line_wrap">
-						<span class="sbway_line_img transfer"></span>
+						<span class="sbway_line_img_transfer"></span>
 					</span>
 					<dl class="sbway_dl_list"id="list_exchange">
 						<dt class="sbway_time" id="departure_time3">
@@ -240,11 +229,25 @@
 					</dl>
 				</li>
 			</div>
+			<!-- 환승 사이 지나는 역 -->
+			<div class="detail_list_between">
+			
+			</div>
+			
+			<!-- 두번째 환승 -->
+			<div class="exchangeBox2">
+			
+			</div>
+			
+			<!--지나는 역2-->
+			<div class="detail_list_after">
+				
+			</div>
 			
 			<!-- 도착역 -->
 			<li class="sbway_arrival">
 				<span class="sbway_line_wrap">
-				<span class="sbway_line_img"></span>
+				<span class="sbway_line_img arrival"></span>
 			</span>			
 			<dl class="sbway_dl_list" id="list_arrival">
 				<dt class="sbway_time" id="arrival_time">
@@ -295,7 +298,7 @@
 			<!-- 출발역 -->
 			<li class="sbway_departure">
 			<span class="sbway_line_wrap">
-				<span class="sbway_line_img"></span>
+				<span class="sbway_line_img start"></span>
 			</span>
 			<dl class="sbway_dl_list"id="list_departure">
 				<dt class="sbway_time" id="departure_time">
@@ -318,7 +321,7 @@
 			<div class="exchangeBox">
 				<li class="sbway_transfer">
 					<span class="sbway_line_wrap">
-						<span class="sbway_line_img transfer"></span>
+						<span class="sbway_line_img_transfer"></span>
 					</span>
 					<dl class="sbway_dl_list"id="list_departure">
 						<dt class="sbway_time" id="departure_time">
@@ -337,7 +340,7 @@
 			<!--도착역 -->
 			<li class="sbway_arrival">
 				<span class="sbway_line_wrap">
-				<span class="sbway_line_img"></span>
+				<span class="sbway_line_img arrival"></span>
 			</span>			
 			<dl class="sbway_dl_list" id="list_arrival">
 				<dt class="sbway_time" id="arrival_time">
@@ -365,10 +368,12 @@
 		<!-- 전체 리스트-->
 		<div id="short_list">
 		<ul class="sbway_list">
+		<!-- 출발역 -->
 			<li class="sbway_departure">
 			<span class="sbway_line_wrap">
-				<span class="sbway_line_img"></span>
+				<span class="sbway_line_img start"></span>
 			</span>
+			
 			<dl class="sbway_dl_list"id="list_departure">
 				<dt class="sbway_time" id="departure_time">
 					15:16
@@ -385,28 +390,17 @@
 				<input type="button" class="act" style="float:right;"id="timetable" value="운행시간">
 			</div>
 			</li>
+			
 			<!--지나는 역-->
 			<div class="detail_list">
 				
-				<li class="sbway_departure">
-				<span class="sbway_line_wrap">
-					<span class="sbway_line_img"></span>
-				</span>
-				<dl class="sbway_dl_list"id="list_departure">
-					<dt class="sbway_time" id="departure_time">
-						15:17
-					</dt>
-					<dd>
-						<a href="#" class="sbway_stn detail" id="detail_stn2">땡땡</a>역(<a class="sbway_stn detail_line" id="detail_line2">0</a>호선)
-					</dd>
-				</dl>
-				</li>
 			</div>
+			
 			<!-- 환승역 -->
 			<div class="exchangeBox">
 				<li class="sbway_transfer">
 					<span class="sbway_line_wrap">
-						<span class="sbway_line_img transfer"></span>
+						<span class="sbway_line_img_transfer"></span>
 					</span>
 					<dl class="sbway_dl_list"id="list_exchange">
 						<dt class="sbway_time" id="departure_time3">
@@ -422,10 +416,25 @@
 					</dl>
 				</li>
 			</div>
+			
+			<!-- 환승 사이 지나는 역 -->
+			<div class="detail_list_between">
+
+			</div>
+			
+			<!-- 두번째 환승 -->
+			<div class="exchangeBox2">
+			
+			</div>
+			
+			<!--지나는 역2-->
+			<div class="detail_list_after">
+				
+			</div>
 			<!-- 도착역 -->
 			<li class="sbway_arrival">
 				<span class="sbway_line_wrap">
-				<span class="sbway_line_img"></span>
+				<span class="sbway_line_img arrival"></span>
 			</span>			
 			<dl class="sbway_dl_list" id="list_arrival">
 				<dt class="sbway_time" id="arrival_time">

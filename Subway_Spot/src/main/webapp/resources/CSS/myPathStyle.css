@@ -229,6 +229,10 @@ li{
     text-align: -webkit-match-parent;
 }
 
+.append {
+	margin-bottom: 0.01cm;
+}
+
 #short_div{
 	width:300px;
 }
@@ -250,7 +254,7 @@ li{
 .sbway_time {
     position: absolute;
     top: 0;
-    left: 5px;
+    left: 17px;
     font-size: 12px;
     font-weight: bold;
     font-family: Tahoma,sans-serif;
@@ -281,7 +285,7 @@ li{
 	}
 
 /*호선별 마크 */
-span.sbway_line_wrap{
+span.sbway_line_wrap .sbway_line_img_transfer{
     height: 35px;
     margin-top: -12px;
     position: absolute;
@@ -302,7 +306,8 @@ span.sbway_line_img{
     vertical-align: top;
 	}
 /*환승 그림*/
-span.sbway_line_img.transfer{
+span.sbway_line_img_transfer
+{
     background: url(../icons/trasnfer.png) no-repeat;
 	height: 30px;
 
