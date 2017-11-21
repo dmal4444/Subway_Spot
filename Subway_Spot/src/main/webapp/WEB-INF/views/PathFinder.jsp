@@ -40,8 +40,8 @@
 
 		<p style="height:6px;"></p>
 			<div id="min_name" align='center' >
-			<img src="./resources/icons/line1.jpg" class="line" id="startLine"/>&nbsp;<a class="stn start">구로</a>역&nbsp;<img src="./resources/icons/path_arr.png"/>&nbsp;
-			<img src="./resources/icons/line1.jpg" class="line" id="endLine"/>&nbsp;<a class="stn end">금정</a>역
+			<img src="./resources/icons/linenumber/line1.jpg" class="line" id="startLine"/>&nbsp;<a class="stn start">구로</a>역&nbsp;<img src="./resources/icons/path_arr.png"/>&nbsp;
+			<img src="./resources/icons/linenumber/line1.jpg" class="line" id="endLine"/>&nbsp;<a class="stn end">금정</a>역
 			</div>
 			
 			<p style="height:4px;"></p>

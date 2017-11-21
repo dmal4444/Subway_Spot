@@ -23,11 +23,6 @@ public class MainController {
 		System.out.println("PathFinder");
 		return "PathFinder";
 	}
-//	@RequestMapping("/main")
-//	public String getMain(){
-//		System.out.println("main");
-//		return "main";
-//	}
 	
 	@RequestMapping("/main")	
 	public ModelAndView getMain() throws Exception {	
@@ -46,11 +41,9 @@ public class MainController {
 		return mv;		
 	}
 	
-//	@RequestMapping("/getPoint")
-//	@ResponseBody
-//	public List getPoint() {
-//		System.out.println("getPoint() »£√‚µ ");
-//		return mainS.setMarker();
-//	}
-	
+	@RequestMapping("/TabWindow")
+	public String getTab(){
+		return "List/TabWindow";
+	}
+
 }
