@@ -28,10 +28,10 @@
              <property name="password" value="1234"/>
       </bean> -->
       
-	<!-- MyBatis(Maria DB)와 Spring 연결 : 컨넥션 풀 설정 작업-->
+	<!-- MyBatis(Maria DB)와 Spring 연결 : 컨넥션풀 설정 작업-->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.mariadb.jdbc.Driver"/>
-        <property name="url" value="jdbc:mariadb://192.168.137.221:3306/subwayspot"/>
+        <property name="url" value="jdbc:mariadb://127.0.0.1:3306/subwayspot"/>
         <property name="username" value="root"/>
         <property name="password" value="1234"/>
 	</bean>
@@ -54,5 +54,14 @@
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
+	
+	<!-- DAO를 빈처리하여 간단한 이름으로 사용할 수 있도록 처리 -->
+  	<bean class="com.sub.DAO.SubwaySpotDAO" id="ssDAO">
+		<property name="sqlSessionTemplate" ref="sqlSession"/>
+	</bean>
+	
+	<!--  만들어진 서비스 클래스를 자동 주입하기 위한 bean 선언   --> 
+	<bean class="com.sub.Service.MainService" id="mainS"/>
+	
 	
 </beans>

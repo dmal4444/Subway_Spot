@@ -16,11 +16,14 @@
 <link rel = "stylesheet" type = "text/css" href = "./resources/CSS/myPathStyle.css" />
 
 <body style="height:900px; width:100%">
-
 <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="http//www.html5andcss3.org/js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="./resources/JS/googleMap.js"></script>
+<script>
+	var voList = ${MLIST};
+	var hvoList = ${HLIST};
+</script>
+
 <script type="text/javascript" src="./resources/JS/mainJS.js"></script>
+<script type="text/javascript" src="./resources/JS/googleMap.js"></script>
 <script type="text/javascript" src="./resources/JS/myPathJS.js"></script>
 
 <!-- side bar(길찾기) -->
@@ -30,7 +33,7 @@
 	
 </div>
 
-<!-- Use any element to open the sidenav -->
+<!-- Use any element to open the sidenav -->  
 <span onclick="openNav()"></span>
 
  <!-- Googld Map -->
@@ -41,7 +44,6 @@
 </div> 
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhoF35DeeyJ6MerXtYAZhRNvq2vr2rcP0&libraries=places&callback=initMap" async defer></script>
-
 
 </body>
 </html>
