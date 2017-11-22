@@ -15,7 +15,7 @@
 <link rel = "stylesheet" type = "text/css" href = "./resources/CSS/main.css" />
 <link rel = "stylesheet" type = "text/css" href = "./resources/CSS/myPathStyle.css" />
 <link rel = "stylesheet" type = "text/css" href = "./resources/CSS/TabWindow.css" />
-<link rel = "stylesheet" type = "text/css" href = "./resources/CSS/List.css" />
+<link rel = "stylesheet" type = "text/css" href = "./resources/CSS/listStyle.css" />
 
 <body style="height:100%; width:100%">
 <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -29,6 +29,7 @@
 <script type="text/javascript" src="./resources/JS/mainJS.js"></script>
 <script type="text/javascript" src="./resources/JS/googleMap.js"></script>
 <script type="text/javascript" src="./resources/JS/myPathJS.js"></script>
+<script type="text/javascript" src="./resources/JS/list.js"></script>
 
 <!-- side bar(길찾기) -->
 <div id="mySidenav" class="sidenav" style="background-color:white;">

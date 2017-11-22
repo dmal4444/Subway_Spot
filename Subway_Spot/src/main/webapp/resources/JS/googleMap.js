@@ -11,6 +11,9 @@ var map;
 var infowindow, player;
 var iw_content = document.getElementById("wrapper1");
 
+//List를 위한 변수
+var smallwindow;
+
 //지도 연동 시작
 function initMap() {
    map = new google.maps.Map(document.getElementById('map'), {
@@ -105,8 +108,6 @@ function initMap() {
    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
    
    input.style.zIndex = "100";
-
-
    
    // Bias the SearchBox results towards current map's viewport.
    map.addListener('bounds_changed', function() {
@@ -174,10 +175,23 @@ function initMap() {
    centerControlDiv.index = 1;
    map.controls[google.maps.ControlPosition.TOP_LEFT].push(centerControlDiv);
    
- 
- /**
-  * 길찾기 버튼 
-  */
+   // 리스트 부분
+   var hongdae={lat:37.557192, lng: 126.925381};
+   
+   smallwindow = new google.maps.InfoWindow();
+   var service = new google.maps.places.PlacesService(map);
+	var results=service.nearbySearch({
+     location: hongdae,
+     radius: 500,
+     type: ['restaurant']
+   }, callback);
+   
+ }
+
+
+/**
+ * 길찾기 버튼 
+ */
 /* var map;
 */ function CenterControl(controlDiv, map) {
 
@@ -213,9 +227,13 @@ function initMap() {
 	 
 	   });
 	 }
- }
 
-//Tab window 
+/**
+ * TabWindow
+ * @param tabid
+ * @param cardid
+ * @returns
+ */
 function TabCard(tabid, cardid){
 	 this.tabid = tabid;
 	 this.cardid = cardid;
@@ -321,16 +339,82 @@ function getTabId(){
 
 window.onload = getTabId();
 
-//가운데 놓기
+/**
+ * 가운데 놓기
+ * @param newLat
+ * @param newLng
+ * @returns
+ */
+
 function moveCenter(newLat, newLng){
 	map.setCenter({
 		lat: newLat,
 		lng: newLng
 			
 	});
-//	map.setZoom(18);
+	map.setZoom(18);
 		
 }
 
+//===================================================
 
+function callback(results, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {		
+      for (var i = 0; i < results.length; i++) {
+        createListMarker(results[i]);
+      }
+    }
+  }
+
+  function createListMarker(place) {
+    var placeLoc = place.geometry.location;
+    var placesList=document.getElementById('section');
+	var photos = place.photos;
+	if(!photos){
+		return;
+	}
+
+    var marker = new google.maps.Marker({
+      map: map,
+      position: place.geometry.location,
+	  title:place.name,
+	  icon:'./resources/icons/category/restaurant_marker_icon.png'
+	  //icon:photos[0].getUrl({'maxWidth':35, 'maxHeight':35})
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+      smallwindow.setContent(place.name);
+      smallwindow.open(map, this);
+    });
+  /*  var i=0;
+    for(i; i<placesList.length; i++){*/
+    	placesList.innerHTML = 
+        	"<div class='section-result-text-content'>" +
+        	"<div class='section-result-header'>" +
+        	"<div class='section-result-name'>" +
+        		place.name
+        	+"</div>" +
+        	"<span class='section-result-rating'>" +
+        	"<a class='rating'>"+place.rating+"★★★★★</a>(5)"+
+        	"</span>" +
+        	"</div>" +
+        	"<div class='section-result-details-container'>"+
+        	"<div class='section-result-address'>"+
+        		place.vicinity +
+        	"</div>" +
+        	"<div class='section-result-phone'>"+
+        	"010-2222-5555 </div></div></div>";
+    /*}*/
+ 		   
+ 	   
+ 	
+    
+	console.log("NAME: "+place.name);
+	console.log("vincnity: "+place.vicinity);
+	console.log("rating: "+place.rating);
+  //console.log("icon: "+place.icon);
+	console.log("photos: "+place.photos);
+	console.log("photosURL: "+place.photos[0].getUrl);
+//	console.log("opening_hours: "+place.opening_hours);
+  }
 

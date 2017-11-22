@@ -50,5 +50,10 @@ public class MainController {
 	public String getList(){
 		return "List/List";
 	}
+	
+	@RequestMapping("/test")
+	public String getTest(){
+		return "List/test";
+	}
 
 }
