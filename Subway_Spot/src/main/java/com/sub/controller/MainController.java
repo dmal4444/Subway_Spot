@@ -17,7 +17,7 @@ import com.sub.VO.SubwaySpotVO;
 public class MainController {
 	@Autowired
 	private MainService mainS;
-	
+		
 	@RequestMapping("/PathFinder")
 	public String getFinder(){
 		System.out.println("PathFinder");
@@ -29,14 +29,18 @@ public class MainController {
 		//	set Marker
 		ArrayList list = mainS.setMarker(); 
 		ArrayList hlist = mainS.setHotMarker();
+		ArrayList hplist = mainS.hotplaceInfo();		
 		
 		ObjectMapper mapper = new ObjectMapper();
 		String result = mapper.writeValueAsString(list);	
 		String hresult = mapper.writeValueAsString(hlist);
+		String hpresult = mapper.writeValueAsString(hplist);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("MLIST",result);
 		mv.addObject("HLIST",hresult);
+		mv.addObject("HPLIST",hpresult);
+		
 		mv.setViewName("/main");		
 		return mv;		
 	}

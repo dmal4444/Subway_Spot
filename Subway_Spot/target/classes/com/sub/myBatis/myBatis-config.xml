@@ -11,6 +11,7 @@
 	<typeAliases>
 		<typeAlias alias="int"		type="java.lang.Integer" />
 		<typeAlias alias="ssVO"		type="com.sub.VO.SubwaySpotVO" />
+		<typeAlias alias="hpVO"		type="com.sub.VO.HotplaceVO" />		
 	</typeAliases>
 	<mappers>
 		<mapper resource="/com/sub/SQL/SubwaySpotSQL.xml"/>	  		
