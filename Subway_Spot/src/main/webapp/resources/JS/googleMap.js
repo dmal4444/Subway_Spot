@@ -5,6 +5,7 @@
  */
 var list = voList; //일반 마커 변수
 var hlist = hvoList; //핫플레이스 마커 변수
+var hotplace = hpList;
 var map;
 
 //tab Window를 위한 변수들
@@ -75,21 +76,40 @@ function initMap() {
     hlist.forEach(function(value, index) {
     	var iw_content = document.getElementById("wrapper1");
 
-       var g = google.maps;
-	   var marker = new google.maps.Marker({		 
-	     position: new google.maps.LatLng(value.xpoint, value.ypoint),
-	     icon: 'resources/icons/line/hot.png',
-	     map: map,
-	     clickable: true, draggable: false	     
+    	var g = google.maps;
+    	var marker = new google.maps.Marker({		 
+    		position: new google.maps.LatLng(value.xpoint, value.ypoint),
+    		icon: 'resources/icons/line/hot.png',
+    		map: map,
+    		clickable: true, draggable: false	     
 	   });
 	   
 	   g.event.addListener(marker, "click", function(){
 		   //tab 펼침
-		   getTabId();
+/*		   getTabId();
 		   infowindow.setContent(iw_content);
 		   iw_content.style.display = "block";
-		   infowindow.open(map, this); 
+		   infowindow.open(map, this); */
 		   
+		   hotplace.forEach(function(value, index){
+			   console.log(hotplace);
+			   var marker = new google.maps.Marker({
+				  position : new google.maps.LatLng(value.xpoint, value.ypoint),
+				  icon : 'resources/icons/hotplace/hotplace_restaurant.png',
+				  map : map,
+				  clickable : true, draggable : false					  	
+			   });
+			   g.event.addListener(marker, "click", function(){
+				   //tab 펼침
+				   getTabId();
+				   infowindow.setContent(iw_content);
+				   iw_content.style.display = "block";
+				   infowindow.open(map, this); 
+			   });
+			   
+		   });
+		   
+		  		   
 		   //List 펼침
 		   document.getElementById("mySideList").style.width = "350px";
 		   
