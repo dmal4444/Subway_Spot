@@ -301,7 +301,7 @@ span.sbway_line_img{
     height: 14px;
     display: inline-block;
     overflow: hidden;
-    background: url(../icons/line1.jpg) no-repeat;
+    background: url(../icons/linenumber/line1.jpg) no-repeat;
     line-height: 999px;
     vertical-align: top;
 	}

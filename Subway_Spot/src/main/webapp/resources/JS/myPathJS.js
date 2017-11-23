@@ -469,39 +469,39 @@ $(document).ready(function(){*/
 	
 	function changeImg(line, start){
 		if(line == "1" ){
-			  $(start).css("background","url(./resources/icons/line/line1.jpg) no-repeat");
+			  $(start).css("background","url(./resources/icons/linenumber/line1.jpg) no-repeat");
 			  
 		   }
 		  else if(line == "2"){
-			  $(start).css("background","url(./resources/icons/line/line2.jpg) no-repeat");
+			  $(start).css("background","url(./resources/icons/linenumber/line2.jpg) no-repeat");
 			  
 		 }
 		  else if(line == "3"){
-			  $(start).css("background","url(./resources/icons/line/line3.jpg) no-repeat");
+			  $(start).css("background","url(./resources/icons/linenumber/line3.jpg) no-repeat");
 			  
 		 }
 		  else if(line == "4"){
-			  $(start).css("background","url(./resources/icons/line/line4.jpg) no-repeat");
+			  $(start).css("background","url(./resources/icons/linenumber/line4.jpg) no-repeat");
 			  
 		 }
 		  else if(line == "5"){
-			  $(start).css("background","url(./resources/icons/line/line5.jpg) no-repeat");
+			  $(start).css("background","url(./resources/icons/linenumber/line5.jpg) no-repeat");
 			  
 		 }
 		  else if(line == "6"){
-			  $(start).css("background","url(./resources/icons/line/line6.jpg) no-repeat");
+			  $(start).css("background","url(./resources/icons/linenumber/line6.jpg) no-repeat");
 			  
 		 }
 		  else if(line == "7"){
-			  $(start).css("background","url(./resources/icons/line/line7.jpg) no-repeat");
+			  $(start).css("background","url(./resources/icons/linenumber/line7.jpg) no-repeat");
 			  
 		 }
 		  else if(line == "8"){
-			  $(start).css("background","url(./resources/icons/line/line8.jpg) no-repeat");
+			  $(start).css("background","url(./resources/icons/linenumber/line8.jpg) no-repeat");
 			  
 		 }
 		  else if(line == "9"){
-			  $(start).css("background","url(./resources/icons/line/line9.jpg) no-repeat");
+			  $(start).css("background","url(./resources/icons/linenumber/line9.jpg) no-repeat");
 			  
 		 }
 
@@ -509,31 +509,31 @@ $(document).ready(function(){*/
 	
 	function changeImg2(line, start){
 		if(line == "1" ){
-			  $(start).attr("src","./resources/icons/line/line1.jpg");
+			  $(start).attr("src","./resources/icons/linenumber/line1.jpg");
 		   }
 		  else if(line == "2"){
-			  $(start).attr("src","./resources/icons/line/line1.jpg");
+			  $(start).attr("src","./resources/icons/linenumber/line1.jpg");
 		 }
 		  else if(line == "3"){
-			  $(start).attr("src","./resources/icons/line/line1.jpg");
+			  $(start).attr("src","./resources/icons/linenumber/line1.jpg");
 		 }
 		  else if(line == "4"){
-			  $(start).attr("src","./resources/icons/line/line1.jpg");
+			  $(start).attr("src","./resources/icons/linenumber/line1.jpg");
 		 }
 		  else if(line == "5"){
-			  $(start).attr("src","./resources/icons/line/line1.jpg");
+			  $(start).attr("src","./resources/icons/linenumber/line1.jpg");
 		 }
 		  else if(line == "6"){
-			  $(start).attr("src","./resources/icons/line/line1.jpg");
+			  $(start).attr("src","./resources/icons/linenumber/line1.jpg");
 		 }
 		  else if(line == "7"){
-			  $(start).attr("src","./resources/icons/line/line1.jpg");
+			  $(start).attr("src","./resources/icons/linenumber/line1.jpg");
 		 }
 		  else if(line == "8"){
-			  $(start).attr("src","./resources/icons/line/line1.jpg");
+			  $(start).attr("src","./resources/icons/linenumber/line1.jpg");
 		 }
 		  else if(line == "9"){
-			  $(start).attr("src","./resources/icons/line/line1.jpg");
+			  $(start).attr("src","./resources/icons/linenumber/line1.jpg");
 		 }
 
 	}
