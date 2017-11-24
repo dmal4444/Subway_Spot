@@ -321,8 +321,7 @@ $(document).ready(function(){*/
 					//line 그림 바꾸기
 					var line= firstLine.substr(0,1); //출발역 호선
 					var line3=stringLen.substr(0,1);
-					console.log(line+" line");
-					console.log(line3+" line3");
+
 					
 					/*
 					if(line == "1" || line3 == "1"){
