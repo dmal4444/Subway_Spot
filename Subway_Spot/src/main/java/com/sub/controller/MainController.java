@@ -37,6 +37,7 @@ public class MainController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("MLIST",result);
 		mv.addObject("HLIST",hresult);
+
 		mv.setViewName("/main");		
 		return mv;		
 	}
