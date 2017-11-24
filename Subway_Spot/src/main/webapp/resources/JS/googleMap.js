@@ -55,6 +55,7 @@ function initMap(type, icon) {
 	     position: new google.maps.LatLng(value.xpoint, value.ypoint),
 	     icon: value.iconpath,
 	     map: map,
+	     title: value.ename,
 	     clickable: true, draggable: false
 	   });
 	   
@@ -72,7 +73,7 @@ function initMap(type, icon) {
 		   
 		// 리스트 부분
 		   
-		   var myLocation={lat: value.xpoint, lng: value.ypoint};
+		   myLocation={lat: value.xpoint, lng: value.ypoint};
 		   var typeText= $("#restaurant_icon").attr("alt");
 		   var funcName = typeText + "_callback";
 		   smallwindow = new google.maps.InfoWindow();
@@ -82,6 +83,7 @@ function initMap(type, icon) {
 		     radius: 500,
 		     type: ["restaurant"]
 		   }, restaurant_callback);
+			
 					   
 	   });
 	});	 
@@ -101,8 +103,10 @@ function initMap(type, icon) {
 	     position: new google.maps.LatLng(value.xpoint, value.ypoint),
 	     icon: 'resources/icons/line/hot.png',
 	     map: map,
+	     title: value.Name,
 	     clickable: true, draggable: false	     
 	   });
+	   console.log(value.Name+"   ename");
 	   
 	   g.event.addListener(marker, "click", function(){
 		   var len = markerList.length;
@@ -198,12 +202,7 @@ function initMap(type, icon) {
      });
      map.fitBounds(bounds);     
    });
-
-   
-
-   
-   
-   
+  
    
    /**
     * 길찾기 버튼
@@ -217,39 +216,6 @@ function initMap(type, icon) {
    map.controls[google.maps.ControlPosition.TOP_LEFT].push(centerControlDiv);
       
  }
-
-
-/**
- * 
- **/
-function typeView(type, typeCallback) {
-   list.forEach(function(value, index) {
-	   var marker = new google.maps.Marker({
-	     position: new google.maps.LatLng(value.xpoint, value.ypoint),
-	     icon: value.iconpath,
-	     map: map,
-	     clickable: true, draggable: false
-	   });
-		   var len = markerList.length;
-		   for(i=0;i<len;i++){
-			   markerList[i].setMap(null);
-		   }
-		   markerList = [];
-		   
-		// 리스트 부분
-		   
-		   var myLocation={lat: value.xpoint, lng: value.ypoint};
-
-		   smallwindow = new google.maps.InfoWindow();
-		   var service = new google.maps.places.PlacesService(map);
-			var results=service.nearbySearch({
-		     location: myLocation,
-		     radius: 500,
-		     type: [type]
-		   }, typeCallback);
-					   
-	   });
-}
 
 
 /**

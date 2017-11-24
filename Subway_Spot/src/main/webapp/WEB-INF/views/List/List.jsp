@@ -63,12 +63,14 @@ function closeNav2() {
 						 		
 		</div>
 		<div class="section-result" id="pub_result">
+		
 		</div>
 		<div class="section-result" id="tourism_result">
-
+		
 		</div>
+		<div class="section-result" id="park_result">
 		
-		
+		</div>
 
 		</div>
 		
