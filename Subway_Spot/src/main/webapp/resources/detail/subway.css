@@ -59,10 +59,6 @@ a {margin: 0; padding: 0; border: 0; vertical-align: baseline; background: trans
     css style
 =========================
 */
-
-.subway_detail {
-	border: 1px solid #4b4d59;
-}
 .Title,
 .local_tab {
 	max-width: 1000px; margin: 0 auto;
@@ -96,7 +92,6 @@ a {margin: 0; padding: 0; border: 0; vertical-align: baseline; background: trans
 	background-color: #c5c5c5;
 }
 
-
 .map {
 	max-width: 1000px; margin: 0 auto;
 }
@@ -112,76 +107,48 @@ a {margin: 0; padding: 0; border: 0; vertical-align: baseline; background: trans
 	margin-top :29px;
 }
 
-.tbs2 {
-	margin-bottom: 25px;
+td{
+	height:50px;
 }
 
 .tbs1 {
 	width: 100%;
 	table-layout: fixed;
-	border: 0;
 	border-bottom: 1px solid #d0d0d1;
 	border-collapse: collapse;
 	line-height: 18px;
 }
 
-.cap1 {
-	display: table-caption;
-	padding-bottom: 10px;
-	color: #000;
-	font-weight: bold;
-	text-align: left;
-}
-
-thead {
-	display: table-header-group;
-	vertical-align: middle;
-	border-color: inherit;
-}
-
-tr {
-	display: table-row;
-    vertical-align: inherit;
-    border-color: inherit;
-}
-
-.tbs2 .sat {
-	color: #0072bc;
-}
-
 .tbs1 th{
-	padding: 10px 5px 7px;
-    border-top: 2px solid #d0d0d1;
-    border-bottom: 1px solid #d0d0d1;
-    background: #fcfcfc;
     font-weight: normal;
 }
 
-.tbs2 .sun {
-	color: #e96166;
+.tbs2 {
+	margin-bottom: 25px;
 }
 
 .tbs2 th {
 	padding: 8px 5px 9px;
     border: 1px solid #ececec;
-    border-right: 0;
-    border-bottom: 0;
+    border-right: 1;
+    border-bottom: 1;
     font-size: 11px;
     font-family: tahoma;
-}
-
-.tbs1 td {
-	padding: 10px 5px 7px;
-    border-top: 1px solid #ececec;
-    text-align: center;
 }
 
 .tbs2 td {
+	text-align: center;
 	padding: 8px 5px 9px;
-    border: 1px solid #ececec;
     border-right: 0;
     border-bottom: 0;
     font-size: 11px;
     font-family: tahoma;
 }
 
+dd{
+	padding: 8px 5px 9px;
+    border: 1px solid #ececec;
+    border-right: 1;
+    font-size: 11px;
+    font-family: tahoma;
+}
