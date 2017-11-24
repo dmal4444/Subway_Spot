@@ -13,15 +13,17 @@ var iw_content = document.getElementById("wrapper1");
 
 //List를 위한 변수
 var smallwindow;
+var markerList=[];
+
 
 //지도 연동 시작
-function initMap() {
+function initMap(type, icon) {
    map = new google.maps.Map(document.getElementById('map'), {
 	   center: {lat: 37.5608381, lng: 126.9859019},
        zoom: 14,
        mapTypeId: 'roadmap',
        disableDefaultUI: true //지도 스타일변경 버튼 안만들기
-});
+   });
    //tab기능 실행
   
    infowindow = new google.maps.InfoWindow();
@@ -30,17 +32,17 @@ function initMap() {
    var styles = {
    default: null,
    hide: [
-     {
-       featureType: 'poi.business',
-       stylers: [{visibility: 'off'}]
-     },
-     {
-       featureType: 'transit',
-       elementType: 'labels.icon',
-       stylers: [{visibility: 'off'}]
-     }
-   ]
- };
+	     {
+	       featureType: 'poi.business',
+	       stylers: [{visibility: 'off'}]
+	     },
+	     {
+	       featureType: 'transit',
+	       elementType: 'labels.icon',
+	       stylers: [{visibility: 'off'}]
+	     }
+	   ]
+   };
    map.setOptions({styles: styles['hide']});
    
    /**
@@ -56,12 +58,30 @@ function initMap() {
 	   });
 	   
 	   google.maps.event.addListener(marker, "click", function(){
+		   var len = markerList.length;
+		   for(i=0;i<len;i++){
+			   markerList[i].setMap(null);
+		   }
+		   markerList = [];
 		   //List 펼침
 		   document.getElementById("mySideList").style.width = "350px";
 		   
 		   //Center
 		   moveCenter(value.xpoint, value.ypoint);
 		   
+		// 리스트 부분
+		   
+		   var myLocation={lat: value.xpoint, lng: value.ypoint};
+		   var typeText= $("#restaurant_icon").attr("alt");
+		   var funcName = typeText + "_callback";
+		   smallwindow = new google.maps.InfoWindow();
+		   var service = new google.maps.places.PlacesService(map);
+			var results=service.nearbySearch({
+		     location: myLocation,
+		     radius: 500,
+		     type: ["restaurant"]
+		   }, restaurant_callback);
+					   
 	   });
 	});	 
    
@@ -84,6 +104,12 @@ function initMap() {
 	   });
 	   
 	   g.event.addListener(marker, "click", function(){
+		   var len = markerList.length;
+		   console.log("실행 = " + len);
+		   for(i=0;i<len;i++){
+			   markerList[i].setMap(null);
+		   }
+		   markerList = [];
 		   //tab 펼침
 		   getTabId();
 		   infowindow.setContent(iw_content);
@@ -96,6 +122,17 @@ function initMap() {
 		   //Center
 		   moveCenter(value.xpoint, value.ypoint);
 		   
+		   // 리스트 부분
+		   var myLocation={lat: value.xpoint, lng: value.ypoint};
+		   //var type= $("#restaurant_icon").attr("alt"); //document.getElementById("restaurant_icon").getAttribute("alt");
+		   //console.log(type+"    :type");
+		   smallwindow = new google.maps.InfoWindow();
+		   var service = new google.maps.places.PlacesService(map);
+			var results=service.nearbySearch({
+		     location: myLocation,
+		     radius: 500,
+		     type: ["restaurant"]
+		   }, restaurant_callback);
 	   });
 	});	
    
@@ -163,6 +200,12 @@ function initMap() {
      });
      map.fitBounds(bounds);     
    });
+
+   
+
+   
+   
+   
    
    /**
     * 길찾기 버튼
@@ -176,7 +219,7 @@ function initMap() {
    map.controls[google.maps.ControlPosition.TOP_LEFT].push(centerControlDiv);
    
    // 리스트 부분
-   var hongdae={lat:37.557192, lng: 126.925381};
+/*   var hongdae={lat:37.557192, lng: 126.925381};
    
    smallwindow = new google.maps.InfoWindow();
    var service = new google.maps.places.PlacesService(map);
@@ -184,9 +227,52 @@ function initMap() {
      location: hongdae,
      radius: 500,
      type: ['restaurant']
-   }, callback);
+   }, callback);*/
    
  }
+
+
+/**
+ * 
+ **/
+function typeView(type, typeCallback) {
+	console.log(list);
+	console.log(typeCallback);
+   list.forEach(function(value, index) {
+	   var marker = new google.maps.Marker({
+	     position: new google.maps.LatLng(value.xpoint, value.ypoint),
+	     icon: value.iconpath,
+	     map: map,
+	     clickable: true, draggable: false
+	   });
+	   
+	   google.maps.event.addListener(marker, "click", function(){
+		   var len = markerList.length;
+		   for(i=0;i<len;i++){
+			   markerList[i].setMap(null);
+		   }
+		   markerList = [];
+		   //List 펼침
+		   document.getElementById("mySideList").style.width = "350px";
+		   
+		   //Center
+		   moveCenter(value.xpoint, value.ypoint);
+		   
+		// 리스트 부분
+		   
+		   var myLocation={lat: value.xpoint, lng: value.ypoint};
+		   
+		   smallwindow = new google.maps.InfoWindow();
+		   var service = new google.maps.places.PlacesService(map);
+			var results=service.nearbySearch({
+		     location: myLocation,
+		     radius: 500,
+		     type: [type]
+		   }, typeCallback);
+					   
+	   });
+	});
+}
 
 
 /**
@@ -339,6 +425,7 @@ function getTabId(){
 
 window.onload = getTabId();
 
+
 /**
  * 가운데 놓기
  * @param newLat
@@ -358,63 +445,101 @@ function moveCenter(newLat, newLng){
 
 //===================================================
 
-function callback(results, status) {
-    if (status === google.maps.places.PlacesServiceStatus.OK) {		
+function restaurant_callback(results, status) {	
+	console.log("restaurant_callback 호출됨");
+	if (status === google.maps.places.PlacesServiceStatus.OK) {
+    	
+    var placesList=document.getElementById('restaurant_result');
+    	$(".section").remove();	
       for (var i = 0; i < results.length; i++) {
         createListMarker(results[i]);
+        appendPlacesList(placesList, results[i]);
       }
     }
-  }
+ }
 
-  function createListMarker(place) {
+function hotel_callback(results, status) {
+	console.log("hotel_callback 호출됨");
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+    	
+    var placesList=document.getElementById('hotel_result');
+    	$(".section").remove();	
+      for (var i = 0; i < results.length; i++) {
+        createListMarker(results[i]);
+        appendPlacesList(placesList, results[i]);
+      }
+    }
+ }
+
+	
+function createListMarker(place) {
+	
     var placeLoc = place.geometry.location;
-    var placesList=document.getElementById('section');
+    //var placesList=document.getElementById('restaurant_result');
 	var photos = place.photos;
 	if(!photos){
 		return;
 	}
-
-    var marker = new google.maps.Marker({
-      map: map,
-      position: place.geometry.location,
-	  title:place.name,
-	  icon:'./resources/icons/category/restaurant_marker_icon.png'
+	
+    markerList.push(new google.maps.Marker({
+    	map: map,
+    	position: place.geometry.location,
+    	title:place.name,
+    	icon:'./resources/icons/category/restaurant_marker_icon.png'
 	  //icon:photos[0].getUrl({'maxWidth':35, 'maxHeight':35})
-    });
+    }));
 
-    google.maps.event.addListener(marker, 'click', function() {
+    google.maps.event.addListener(markerList[markerList.length-1], 'click', function() {
       smallwindow.setContent(place.name);
       smallwindow.open(map, this);
     });
-  /*  var i=0;
-    for(i; i<placesList.length; i++){*/
-    	placesList.innerHTML = 
-        	"<div class='section-result-text-content'>" +
-        	"<div class='section-result-header'>" +
-        	"<div class='section-result-name'>" +
-        		place.name
-        	+"</div>" +
-        	"<span class='section-result-rating'>" +
-        	"<a class='rating'>"+place.rating+"★★★★★</a>(5)"+
-        	"</span>" +
-        	"</div>" +
-        	"<div class='section-result-details-container'>"+
-        	"<div class='section-result-address'>"+
-        		place.vicinity +
-        	"</div>" +
-        	"<div class='section-result-phone'>"+
-        	"010-2222-5555 </div></div></div>";
-    /*}*/
- 		   
- 	   
- 	
-    
-	console.log("NAME: "+place.name);
-	console.log("vincnity: "+place.vicinity);
-	console.log("rating: "+place.rating);
-  //console.log("icon: "+place.icon);
-	console.log("photos: "+place.photos);
-	console.log("photosURL: "+place.photos[0].getUrl);
-//	console.log("opening_hours: "+place.opening_hours);
   }
 
+  
+	function appendPlacesList(placesList, place){
+		var i=0;
+ 		placesList.innerHTML+=
+    		"<div class='section'>"+
+        		"<div class='section-result-text-content'>" +
+        			"<div class='section-result-header'>" +
+        				"<div class='section-result-name'>" +
+        					place.name+
+        				"</div>" +
+        				"<span class='section-result-rating'>" +
+        					"<a class='rating'>"+place.rating+"★★★★★</a>(5)"+
+        				"</span>" +
+        			"</div>" +
+        			"<div class='section-result-details-container'>"+
+        				"<div class='section-result-address'>"+
+        					place.vicinity +
+        				"</div>" +
+        				"<div class='section-result-phone'>"+
+        				"010-2222-5555"+
+        				"</div>" +
+        			"</div>" +
+        			"<div class='section-imgage-container'>" +
+        				//"<img id='hardy' src='"+place.photos[0].getUrl({'maxWidth':35, 'maxHeight':35})+"'>" +
+        			"<img id='hardy' src='./resources/icons/white-image.png'>" +
+        			"</div>"+
+        		"</div>"+
+        		"<span><hr></span>" +
+        	"</div>"   	
+        		;
+ 	}
+	/*
+    // Deletes all markers in the array by removing references to them.
+    function deleteMarkers() {
+      clearMarkers();
+      markers = [];
+    }
+    
+    */
+	
+	function callList(myLocation, type){
+		var service = new google.maps.places.PlacesService(map);
+		var results=service.nearbySearch({
+		     location: myLocation,
+		     radius: 500,
+		     type: [type]
+		   }, type + "_callback");
+	}
