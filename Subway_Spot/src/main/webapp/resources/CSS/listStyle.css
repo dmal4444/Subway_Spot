@@ -12,6 +12,7 @@
     padding-top: 60px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
     margin-top:50px;
+    padding-bottom: 60px;
 }
 
 /* The navigation menu links */
@@ -80,61 +81,65 @@ body{
 	height:57px;
 	width:100%;
 	display:inline-block;
-}
-
-.img-top {
-	display:none;
-	z-index:99;
-}
-
-
-#restaurant:hover .img-top{
-	display: inline;
-}
-
-#restaurant:hover .img-bottom{
-	display:none;
-}
 	
-#hotel:hover .img-top{
-	display: inline;
 }
 
-#hotel:hover .img-bottom{
-	display:none;
-}
-
-#pub:hover .img-top{
-	display: inline;
-}
-
-#pub:hover .img-bottom{
-	display:none;
-}
-
-#park:hover .img-top{
-	display: inline;
-}
-
-#park:hover .img-bottom{
-	display:none;
-}
-
-#tourism:hover .img-top{
-	display: inline;
-}
-
-#tourism:hover .img-bottom{
-	display:none;
-}
-
+/*아이콘클릭 효과*/
+	.clickme:hover .btn_icon{display: inline;}
+	.clickme:hover .btn_selected{display: none;}
+	.clickme > .btn_icon{display:none;}
+	.clickme > .btn_selected{display:inline;}	
+	.btn_selected > .btn_icon{display: inline;}
+	.btn_selected > .btn_selected{display: none;}	
 	
-#restaurant.img-top:focus {
-	display: inline;
-}
-#restaurant.img-bottom:focus {
-	display: none;
-} 
+	/*
+	.clickme1:hover #r_icon{display: inline;}
+	.clickme1:hover #r_selected{display: none;}
+	.clickme1 #r_icon{display:none;}
+	.clickme1 #r_selected{display:inline;}
+	.selected1 #r_icon{display:inline;}
+	.selected1 #r_selected{display:none;}
+
+	.clickme2:hover #h_icon{display: inline;}
+	.clickme2:hover #h_selected{display: none;}
+	.clickme2 #h_icon{display:none;}
+	.clickme2 #h_selected{display:inline;}
+	.selected2 #h_icon{display:inline;}
+	.selected2 #h_selected{display:none;}
+
+	.clickme3:hover #p_icon{display: inline;}
+	.clickme3:hover #p_selected{display: none;}
+	.clickme3 #p_icon{display:none;}
+	.clickme3 #p_selected{display:inline;}
+	.selected3 #p_icon{display:inline;}
+	.selected3 #p_selected{display:none;}
+
+	.clickme4:hover #t_icon{display: inline;}
+	.clickme4:hover #t_selected{display: none;}
+	.clickme4 #t_icon{display:none;}
+	.clickme4 #t_selected{display:inline;}
+	.selected4 #t_icon{display:inline;}
+	.selected4 #t_selected{display:none;}
+
+	.clickme5:hover #pr_icon{display: inline;}
+	.clickme5:hover #pr_selected{display: none;}
+	.clickme5 #pr_icon{display:none;}
+	.clickme5 #pr_selected{display:inline;}
+	.selected5 #pr_icon{display:inline;}
+	.selected5 #pr_selected{display:none;}
+	*/
+	#pub_result{
+	display:none;}
+
+	#hotel_result{
+	display:none;}
+
+	#tourism_result{
+		display:none;}
+
+	#park_result{
+	display:none;}
+
 
 /* 결과 리스트 관련 CSS*/
 .section-result{
@@ -142,6 +147,9 @@ body{
 	margin-top:0px;
 	margin-left:15px;
 	margin-right:15px;
+	margin-bottom:30px;
+	display:inline-block;
+	
 }
 
 /*Text 부분 CSS*/
@@ -153,6 +161,8 @@ body{
 	display:inline-block;
 	line-height:16px;
 	min-width:1px;
+	width:300px;
+	clear: left;
 }
 .section-result-name{
 	color:#000;
@@ -171,5 +181,13 @@ color: #ff8000; /*orange*/
 
 .listView hr{
 	width:100%;
+}
+
+.section-imgage-container {
+	float:right;
+	vertical-align:top;
+	height:92px;
+	width:80px;
+	display: inline-block;
 }
 	
