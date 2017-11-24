@@ -37,9 +37,9 @@
 	</bean>
 	
 	
-	<!--  위의 컨넥션 풀 작업의 결과를 우리는 앞으로 myBatis라는 프레임워크를 이용해서 처리할 예정이다.  -
+	<!--  위의 컨넥션 풀 작업의 결과를 우리는 앞으로 myBatis라는 프레임워크를 이용해서 처리할 예정이다.  
 	
-		myBatis 설정 -->
+		  myBatis 설정 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 	<property name="configLocation" >
 		<!--  myBatis 환경 설정 파일을 무엇을 할지를 등록한다. -->
@@ -59,9 +59,13 @@
   	<bean class="com.sub.DAO.SubwaySpotDAO" id="ssDAO">
 		<property name="sqlSessionTemplate" ref="sqlSession"/>
 	</bean>
+	<!-- <bean class="com.sub.DAO.HotplaceDAO" id="hpDAO">
+		<property name="sqlSessionTemplate" ref="sqlSession"/>
+	</bean> -->
 	
-	<!--  만들어진 서비스 클래스를 자동 주입하기 위한 bean 선언   --> 
-	<bean class="com.sub.Service.MainService" id="mainS"/>
-	
+	<!-- 만들어진 서비스 클래스를 자동 주입하기 위한 bean 선언   
+			==> 이 bean 선언은 해당 MainService class에 @Service 어노테이션을 통해서 간단하게 사용할 수 있다.		
+	-->	
+	<!-- <bean class="com.sub.Service.MainService" id="mainS"/> -->	
 	
 </beans>
