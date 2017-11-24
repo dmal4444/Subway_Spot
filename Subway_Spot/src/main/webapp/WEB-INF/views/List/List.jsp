@@ -56,89 +56,22 @@ function closeNav2() {
 		<hr></hr>
 		
 		<div class="section-result" id="restaurant_result">
-	<!-- 		<div class="section1">
-				<div class="section-result-text-content">
-					<div class="section-result-header">
-						<div class="section-result-name">
-							STARBUCKS
-						</div>
-						<span class="section-result-rating">
-							<a class="rating">3.4 ¡Ú¡Ú¡Ú¡Ú¡Ú</a>(5)
-						</span>
-					</div>			
-					<div class="section-result-details-container">
-							<div class="section-result-address">
-								°æ±âµµ ¾È¾Ó½Ã ¾È¾Óµ¿ ¾È¾ÓÈ£ ¾È¾Ó¾ÆÆÄÆ®
-							</div>
-							<div class="section-result-phone">
-								010-2222-5555
-							</div>
-						</div>
-					</div>
-					<div class="section-imgage-container">
-					<img id="hardy" src="./resources/icons/category/hardy.png">
-				</div>
-			</div>
-			
-			-->		
+
 		</div>
 		
-		<div class="section-result" id="hotel_result">	 		
+		<div class="section-result" id="hotel_result">
+						 		
 		</div>
-		<div class="section-result" id="pub_result">	 		
+		<div class="section-result" id="pub_result">
 		</div>
 		<div class="section-result" id="tourism_result">
-	 		<div class="section1">
-				<div class="section-result-text-content">
-					<div class="section-result-header">
-						<div class="section-result-name">
-							³²»êÅ¸¿ö
-						</div>
-						<span class="section-result-rating">
-							<a class="rating">3.4 ¡Ú¡Ú¡Ú¡Ú¡Ú</a>(5)
-						</span>
-					</div>			
-					<div class="section-result-details-container">
-							<div class="section-result-address">
-								°æ±âµµ ¾È¾Ó½Ã ¾È¾Óµ¿ ¾È¾ÓÈ£ ¾È¾Ó¾ÆÆÄÆ®
-							</div>
-							<div class="section-result-phone">
-								010-2222-5555
-							</div>
-						</div>
-					</div>
-					<div class="section-imgage-container">
-					<img id="hardy" src="./resources/icons/category/hardy.png">
-				</div>
-			</div>	
+
 		</div>
 		
 		
-		<div class="section-result" id="park_result">
-	 		<div class="section1">
-				<div class="section-result-text-content">
-					<div class="section-result-header">
-						<div class="section-result-name">
-							¿¬Æ®·² ÆÄÅ©
-						</div>
-						<span class="section-result-rating">
-							<a class="rating">3.4 ¡Ú¡Ú¡Ú¡Ú¡Ú</a>(5)
-						</span>
-					</div>			
-					<div class="section-result-details-container">
-							<div class="section-result-address">
-								°æ±âµµ ¾È¾Ó½Ã ¾È¾Óµ¿ ¾È¾ÓÈ£ ¾È¾Ó¾ÆÆÄÆ®
-							</div>
-							<div class="section-result-phone">
-								010-2222-5555
-							</div>
-						</div>
-					</div>
-					<div class="section-imgage-container">
-					<img id="hardy" src="./resources/icons/category/hardy.png">
-				</div>
-			</div>	
+
 		</div>
 		
 	</div>
 </div>
+

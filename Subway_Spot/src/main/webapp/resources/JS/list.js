@@ -7,17 +7,19 @@ $(document).ready(function(){
 	  e.preventDefault();
 
 	  if($(this).attr("data-type") == 'restaurant') {
-		  typeView("restaurant", restaurant_callback);
+		//  typeView("restaurant", restaurant_callback);
 		  $("#restaurant_result").show();
 		  console.log("restaurant 선택");
 	  } else if($(this).attr("data-type") == 'hotel') {
-		  typeView("hotel", hotel_callback);
+		  typeView('hotel', hotel_callback);
 		  $("#hotel_result").show();
 		  console.log("hotel 선택");
 	  }
 	  $('.clickme').removeClass('btn_selected');
 	  $(this).addClass('btn_selected');
-	  $('.section-result').hide();
+//	  $('.section-result').hide();
+	  $("#restaurant_result").hide();
+	  //$(".section-result").not($(this).toggleClass('open').next('.section-result').fadeToggle("fast")).fadeOut('fast');
 	  
   });
 	  	
