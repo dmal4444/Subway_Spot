@@ -117,11 +117,11 @@ function initMap(type, icon) {
 			   markerList[i].setMap(null);
 		   }
 		   markerList = [];
-		   //tab 펼침
+		 /*  //tab 펼침
 		   getTabId();
 		   infowindow.setContent(iw_content);
 		   iw_content.style.display = "block";
-		   infowindow.open(map, this); 
+		   infowindow.open(map, this); */
 		   
 		   //List 펼침
 		   document.getElementById("mySideList").style.width = "350px";
@@ -139,7 +139,8 @@ function initMap(type, icon) {
 		     type: ["restaurant"]
 		   }, restaurant_callback);
 			getHotMarker(value.xpoint, value.ypoint);
-			getHotplaceInfo(value.xpoint, value.ypoint);
+			var category="1";
+			getHotplaceInfo(value.xpoint, value.ypoint, category);
 			
 			
 			

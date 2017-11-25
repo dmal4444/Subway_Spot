@@ -5,7 +5,8 @@ function getHotMarker(valuelat, valuelng){
           type: "get",
           dataType: "json",
           success: function(data) {
-        	  console.log(valuelat+" marker:value");
+        	  var iw_content = document.getElementById("wrapper1");
+              var g = google.maps;
              for(var i = 0; i < data.length; i++){
                  var marker = new google.maps.Marker({   
                   position: new google.maps.LatLng(data[i].xpoint, data[i].ypoint),
@@ -13,7 +14,17 @@ function getHotMarker(valuelat, valuelng){
                   map: map,
                   clickable: true, draggable: false        
                });
+
+          	   g.event.addListener(marker, "click", function(){
+        		   //tab 펼침
+        		   getTabId();
+        		   infowindow.setContent(iw_content);
+        		   console.log(iw_content);
+        		   iw_content.style.display = "block";
+        		   infowindow.open(map, this);
+          	   });
              }
+             
               console.log(data);
             
           },

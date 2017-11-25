@@ -7,12 +7,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sub.Service.MainService;
+import com.sub.UTIL.PageUtil;
 import com.sub.VO.HotplaceVO;
 import com.sub.VO.StationVO;
 import com.sub.VO.SubwaySpotVO;
@@ -86,22 +88,23 @@ public class MainController {
 	
 	//핫플레이스 정보 얻어오는 함수 
 	@RequestMapping("/hotPlaceList")
-	public @ResponseBody ArrayList getHotPlaceList(double lat, double lng){
-		System.out.println(lat +" " + lng);
+	public @ResponseBody ArrayList getHotPlaceList(HotplaceVO vo/*, @RequestParam(value="nowPage", defaultValue="1") int nowPage*/){
 		System.out.println("List 호출");
-		//파라메터 받고(double로 받고)
+		//파라메터 받고
 		//DB에서 불러오고
-		HashMap map= new HashMap();
-		map.put("lat", lat);
-		map.put("lng", lng);
-
-		ArrayList list=mainS.getHotInfo(map);
+//		int total = mainS.getTotal(vo);
+		System.out.println("vo 호출");
+		System.out.println(vo.getStart()+" start page");
+		/*PageUtil pInfo = new PageUtil(nowPage, total);*/
+		
+		ArrayList list=mainS.getHotInfo(vo/*, pInfo, nowPage*/);
 
 		return list;
 		
 		
 	}
 	
+	//핫플레이스 마커 얻어오는 함수
 	 @RequestMapping("/Hotplace")
 	   //   ★★★ResponseBody는 View를 필요로 하지 않는다.
 	   public @ResponseBody ArrayList getHotplace(double lat, double lng){

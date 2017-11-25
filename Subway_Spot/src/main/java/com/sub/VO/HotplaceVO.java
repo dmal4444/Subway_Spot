@@ -11,9 +11,40 @@ public class HotplaceVO {
    private double ypoint;
    private String info;
    private String imagepath;
+   private double lat;
+   private double lng;
    
-   public String getStation() {
-      return station;
+   //페이징 처리에 필요한 
+   private int start;
+   private int end;
+   
+   
+   public int getStart() {
+	return start;
+}
+public void setStart(int start) {
+	this.start = start;
+}
+public int getEnd() {
+	return end;
+}
+public void setEnd(int end) {
+	this.end = end;
+}
+public double getLat() {
+	return lat;
+	}
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
+	public double getLng() {
+		return lng;
+	}
+	public void setLng(double lng) {
+		this.lng = lng;
+	}
+	public String getStation() {
+	      return station;
    }
    public void setStation(String station) {
       this.station = station;

@@ -9,11 +9,13 @@ $(document).ready(function(){
 	  if($(this).attr("data-type") == 'restaurant') {
 		  typeView('restaurant', restaurant_callback);
 		  
-		  $("#restaurant_all").show();
+		  $("#restaurant_result").show();
 		  $("#hotel_result").hide();
 		  $("#pub_result").hide();
 		  $("#tourism_result").hide();
 		  $("#park_result").hide();
+		  
+		  getHotplaceInfo(myLocation.lat, myLocation.lng, '1');
 
 		  
 		  console.log("restaurant 선택");
@@ -22,11 +24,12 @@ $(document).ready(function(){
 		  typeView('lodging', hotel_callback);
 		  
 		  $("#hotel_result").show();
-		  $("#restaurant_all").hide();
+		  $("#restaurant_result").hide();
 		  $("#pub_result").hide();
 		  $("#tourism_result").hide();
 		  $("#park_result").hide();
 
+		  getHotplaceInfo(myLocation.lat, myLocation.lng, '2');
 		  
 		  console.log("hotel 선택");
 		  
@@ -34,33 +37,41 @@ $(document).ready(function(){
 		  typeView('bar', pub_callback);
 
 		  $("#pub_result").show();
-		  $("#restaurant_all").hide();
+		  $("#restaurant_result").hide();
 		  $("#hotel_result").hide();
 		  $("#tourism_result").hide();
 		  $("#park_result").hide();
 
+		  getHotplaceInfo(myLocation.lat, myLocation.lng, '3');
+
 		  console.log("pub 선택");
 		  
 	  } else if($(this).attr("data-type") == 'tourism'){
-		  typeView('point_of_interest', tourism_callback);
+		  typeView('museum', tourism_callback);
 		  
 		  $("#tourism_result").show();
-		  $("#restaurant_all").hide();
+		  $("#restaurant_result").hide();
 		  $("#hotel_result").hide();
 		  $("#pub_result").hide();
 		  $("#park_result").hide();
 
+		  getHotplaceInfo(myLocation.lat, myLocation.lng, '4');
+	
+		  
 		  console.log("tourism 선택");
 		  
 	  } else if($(this).attr("data-type") == 'park'){
 		  typeView('park', park_callback);
 		  
 		  $("#park_result").show();
-		  $("#restaurant_all").hide();
+		  $("#restaurant_result").hide();
 		  $("#hotel_result").hide();
 		  $("#pub_result").hide();
 		  $("#tourism_result").hide();
 
+		  getHotplaceInfo(myLocation.lat, myLocation.lng, '5');
+
+		  
 		  console.log("park 선택");
 
 	  }

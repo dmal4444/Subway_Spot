@@ -38,25 +38,37 @@
 	</select>
 	
 	<!-- 핫플레이스 정보 출력을 위한 sQL -->
-	<select id="getHotInfo" resultType="hpVO" parameterType="hMap">
-	   SELECT
-	      distinct hi_stname AS station,
-	      hi_Category AS category,
-	      hi_Name AS name,
-	      hi_EName AS ename,
-	      hi_Address AS address,
-	      hi_Xpoint AS xpoint,
-	      hi_Ypoint AS ypoint,
-	      hi_info AS info,
-	      hi_image AS imagepath
-	  FROM
-	     subwayinfo i JOIN hotplaceinfo h
-	  on
-	     i.si_Name = h.hi_stname
-	  WHERE
-	     h.hi_stname = 
-	     (SELECT distinct si_name FROM subwayinfo 
-	     WHERE si_xpoint= #{lat} AND si_ypoint= #{lng})
+	<select id="getHotInfo" resultType="hpVO" parameterType="hpVO">	    
+   		SELECT 
+        	T2.* 
+      	FROM
+			(SELECT
+				@rownum:=@rownum+1 AS rno,
+				T1.*
+			FROM (SELECT @rownum:= 0) R,
+				(SELECT
+			      distinct hi_stname AS station,
+	   		   hi_Category AS category,
+			      hi_Name AS name,
+		   	   hi_EName AS ename,
+			      hi_Address AS address,
+			      hi_Xpoint AS xpoint,
+			      hi_Ypoint AS ypoint,
+			      hi_info AS info,
+			      hi_image AS imagepath
+			  FROM
+			     subwayinfo i JOIN hotplaceinfo h
+			  on
+			     i.si_Name = h.hi_stname
+			  WHERE
+			  	h.hi_category=#{category} 
+			  	AND h.hi_stname = 
+			     (SELECT distinct si_name FROM subwayinfo 
+			     WHERE si_xpoint= #{lat} AND si_ypoint= #{lng}) 
+				ORDER BY hi_stname) T1) T2
+			WHERE 
+         	rno BETWEEN 1 AND 3;
+         	
 	</select>
 	
 	<!-- 핫플레이스 마커 클릭 후 주변 검색 클릭시 탭노출을 위한 SQL -->
@@ -83,6 +95,26 @@
       (SELECT distinct si_name FROM subwayinfo 
       WHERE si_xpoint= #{lat} AND si_ypoint= #{lng})
    </select>
+   
+   <!--  핫플레이스 추천 리스트 페이지 정보를 구하기 위한 총 데이터 개수 구하기 질의 -->
+	<select id="getTotal" resultType="int" parameterType="hpVO">
+		SELECT 
+			COUNT(*) 
+		FROM(
+			SELECT 
+				distinct h.hi_stname, 
+				h.hi_Name 
+			FROM 
+				subwayinfo i JOIN hotplaceinfo h
+			ON
+			    i.si_Name = h.hi_stname
+			WHERE
+			    h.hi_stname = 
+			     (SELECT distinct si_name FROM subwayinfo 
+				     WHERE si_xpoint= #{lat} AND si_ypoint= #{lng})
+					  and h.hi_category=#{category}) t1;
+		
+	</select>
 	
 	
 </mapper>

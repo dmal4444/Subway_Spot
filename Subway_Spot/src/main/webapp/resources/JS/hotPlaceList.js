@@ -1,7 +1,7 @@
-function getHotplaceInfo(valuelat, valuelng){
+function getHotplaceInfo(valuelat, valuelng, category){
 	$.ajax({	
 		url:'./hotPlaceList.sub',
-		data: {lat: valuelat, lng: valuelng},
+		data: {lat: valuelat, lng: valuelng, category: category},
        /* contentType: "application/json; charset=UTF-8", */ 
         dataType:'json',
 		type:'get',
@@ -11,22 +11,15 @@ function getHotplaceInfo(valuelat, valuelng){
 				console.log("no data");
 				console.log(data.length+"  :length");
 				$(".hotple").remove();
-				$('#restaurant_hotpl').hide();
+				$('.hotpl-result').hide();
 				
 				
 			}else{
-				for(var i=0; i<3/*data.length*/; i++){
-				/*	console.log(data[i].xpoint+"   :lat");
-					console.log(data[i].ypoint+"   :lng");
-					console.log(data[i].station+"   :station");
-					console.log(data[i].category+"   :category");
-					console.log(data[i].name+"   :name");
-					console.log(data[i].ename+"   :ename");
-					console.log(data[i].address+"   :address");
-					console.log(data[i].info+"   :info");
-					console.log("=================================");*/
-					$('.hotple').remove();
-					$('#restaurant_hotpl').show();
+				$('#restaurant_hotpl').show();
+				$('.hotple').remove();
+				$('.paging').remove();
+				for(var i=0; i<data.length; i++){
+					
 				    var hotPlaces=document.getElementById('restaurant_hotpl');
 					var info=data[i];
 					appendHotPlaces(hotPlaces, info);
@@ -43,13 +36,16 @@ function getHotplaceInfo(valuelat, valuelng){
 }
 
 function appendHotPlaces(hotPlaces, info){
+	var newlat=info.xpoint;
+	var newlng=info.ypoint;
+	
 	hotPlaces.innerHTML+=
 		"<div class='hotple'>"+
 			"<div class='section-result-text-content'>" +
 				"<div class='section-result-header'>" +
 					"<div class='section-result-name'>" +
 						"<img src='./resources/icons/hotplace/star.png'>" +
-						"<a href='#' onclick=''>" +
+						"<a href='#' onclick='moveTo("+newlat+","+newlng+");'>" +
 							info.name+"("+info.ename+")"+
 						"</a>" +
 					"</div>" +
