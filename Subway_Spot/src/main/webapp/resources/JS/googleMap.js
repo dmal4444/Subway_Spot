@@ -1,11 +1,10 @@
 /* Google Map JavaScript*/
 
  /*
- 	GoogleMap 연동
+    GoogleMap 연동
  */
 var list = voList; //일반 마커 변수
 var hlist = hvoList; //핫플레이스 마커 변수
-var hotplace = hpList;
 var map;
 
 //tab Window를 위한 변수들
@@ -21,7 +20,7 @@ var myLocation;
 //지도 연동 시작
 function initMap(type, icon) {
    map = new google.maps.Map(document.getElementById('map'), {
-	   center: {lat: 37.5608381, lng: 126.9859019},
+      center: {lat: 37.5608381, lng: 126.9859019},
        zoom: 14,
        mapTypeId: 'roadmap',
        disableDefaultUI: true //지도 스타일변경 버튼 안만들기
@@ -34,16 +33,16 @@ function initMap(type, icon) {
    var styles = {
    default: null,
    hide: [
-	     {
-	       featureType: 'poi.business',
-	       stylers: [{visibility: 'off'}]
-	     },
-	     {
-	       featureType: 'transit',
-	       elementType: 'labels.icon',
-	       stylers: [{visibility: 'off'}]
-	     }
-	   ]
+        {
+          featureType: 'poi.business',
+          stylers: [{visibility: 'off'}]
+        },
+        {
+          featureType: 'transit',
+          elementType: 'labels.icon',
+          stylers: [{visibility: 'off'}]
+        }
+      ]
    };
    map.setOptions({styles: styles['hide']});
    
@@ -52,40 +51,40 @@ function initMap(type, icon) {
       */
    
    list.forEach(function(value, index) {
-	   var marker = new google.maps.Marker({
-	     position: new google.maps.LatLng(value.xpoint, value.ypoint),
-	     icon: value.iconpath,
-	     map: map,
-	     clickable: true, draggable: false
-	   });
-	   
-	   google.maps.event.addListener(marker, "click", function(){
-		   var len = markerList.length;
-		   for(i=0;i<len;i++){
-			   markerList[i].setMap(null);
-		   }
-		   markerList = [];
-		   //List 펼침
-		   document.getElementById("mySideList").style.width = "350px";
-		   
-		   //Center
-		   moveCenter(value.xpoint, value.ypoint);
-		   
-		// 리스트 부분
-		   
-		   var myLocation={lat: value.xpoint, lng: value.ypoint};
-		   var typeText= $("#restaurant_icon").attr("alt");
-		   var funcName = typeText + "_callback";
-		   smallwindow = new google.maps.InfoWindow();
-		   var service = new google.maps.places.PlacesService(map);
-			var results=service.nearbySearch({
-		     location: myLocation,
-		     radius: 500,
-		     type: ["restaurant"]
-		   }, restaurant_callback);
-					   
-	   });
-	});	 
+      var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(value.xpoint, value.ypoint),
+        icon: value.iconpath,
+        map: map,
+        clickable: true, draggable: false
+      });
+      
+      google.maps.event.addListener(marker, "click", function(){
+         var len = markerList.length;
+         for(i=0;i<len;i++){
+            markerList[i].setMap(null);
+         }
+         markerList = [];
+         //List 펼침
+         document.getElementById("mySideList").style.width = "350px";
+         
+         //Center
+         moveCenter(value.xpoint, value.ypoint);
+         
+      // 리스트 부분
+         
+         myLocation={lat: value.xpoint, lng: value.ypoint};
+         var typeText= $("#restaurant_icon").attr("alt");
+         var funcName = typeText + "_callback";
+         smallwindow = new google.maps.InfoWindow();
+         var service = new google.maps.places.PlacesService(map);
+         var results=service.nearbySearch({
+           location: myLocation,
+           radius: 500,
+           type: ["restaurant"]
+         }, restaurant_callback);
+                  
+      });
+   });    
    
    /**
     * 핫플레이스 마커 생성
@@ -93,66 +92,77 @@ function initMap(type, icon) {
     * @param value
     * @param index
     * @returns
-	*/   
+   */   
     hlist.forEach(function(value, index) {
-    	var iw_content = document.getElementById("wrapper1");
+      var iw_content = document.getElementById("wrapper1");
 
-    	var g = google.maps;
-    	var marker = new google.maps.Marker({		 
-    		position: new google.maps.LatLng(value.xpoint, value.ypoint),
-    		icon: 'resources/icons/line/hot.png',
-    		map: map,
-    		clickable: true, draggable: false	     
-	   });
-	   
-	   g.event.addListener(marker, "click", function(){
-		   var len = markerList.length;
-		   for(i=0;i<len;i++){
-			   markerList[i].setMap(null);
-		   }
-		   markerList = [];
-		   //tab 펼침
-/*		   getTabId();
-		   infowindow.setContent(iw_content);
-		   iw_content.style.display = "block";
-		   infowindow.open(map, this); */
-		   
-		   hotplace.forEach(function(value, index){
-			   console.log(hotplace);
-			   var marker = new google.maps.Marker({
-				  position : new google.maps.LatLng(value.xpoint, value.ypoint),
-				  icon : 'resources/icons/hotplace/hotplace_restaurant.png',
-				  map : map,
-				  clickable : true, draggable : false					  	
-			   });
-			   g.event.addListener(marker, "click", function(){
-				   //tab 펼침
-				   getTabId();
-				   infowindow.setContent(iw_content);
-				   iw_content.style.display = "block";
-				   infowindow.open(map, this); 
-			   });
-			   
-		   });
-		   
-		  		   
-		   //List 펼침
-		   document.getElementById("mySideList").style.width = "350px";
-		   
-		   //Center
-		   moveCenter(value.xpoint, value.ypoint);
-		   
-		   // 리스트 부분
-		   myLocation={lat: value.xpoint, lng: value.ypoint};
-		   smallwindow = new google.maps.InfoWindow();
-		   var service = new google.maps.places.PlacesService(map);
-			var results=service.nearbySearch({
-		     location: myLocation,
-		     radius: 500,
-		     type: ["restaurant"]
-		   }, restaurant_callback);
-	   });
-	});	
+      var g = google.maps;
+      var marker = new google.maps.Marker({       
+        position: new google.maps.LatLng(value.xpoint, value.ypoint),
+        icon: 'resources/icons/line/hot.png',
+        map: map,
+        clickable: true, draggable: false        
+      });
+      //var station = value.name;
+      //console.log(station);
+      g.event.addListener(marker, "click", function(){    	  
+    	  $.ajax({
+    		  url: "Hotplace.sub",
+    		  data: {lat: value.xpoint, lng: value.ypoint},
+    		  type: "get",
+    		  dataType: "json",
+    		  success: function(data) {
+    			    /*data.forEach(function(value, index) {
+    			        var marker = new google.maps.Marker({       
+    			        	position: new google.maps.LatLng(value.xpoint, value.ypoint),
+    			        	icon: 'resources/icons/line/line_1.png',
+    			        	map: map,
+    			        	clickable: true, draggable: false        
+    			        });*/
+    			  for(var i = 0; i < data.length; i++){
+  			        var marker = new google.maps.Marker({   
+			        	position: new google.maps.LatLng(data[i].xpoint, data[i].ypoint),
+			        	icon: data[i].category,
+			        	map: map,
+			        	clickable: true, draggable: false        
+			        });
+    			  }
+    		      console.log(data);
+    			 
+    		  },
+    		  error: function(xhr, statusText, err) {
+    			  console.log(statusText)
+    		  }
+    	  });
+    	  
+        var len = markerList.length;
+         for(i=0;i<len;i++){
+            markerList[i].setMap(null);
+         }
+         markerList = [];
+         //tab 펼침
+         getTabId();
+         infowindow.setContent(iw_content);
+         iw_content.style.display = "block";
+         infowindow.open(map, this); 
+         
+         //List 펼침
+         document.getElementById("mySideList").style.width = "350px";
+         
+         //Center
+         moveCenter(value.xpoint, value.ypoint);
+         
+         // 리스트 부분
+         myLocation={lat: value.xpoint, lng: value.ypoint};
+         smallwindow = new google.maps.InfoWindow();
+         var service = new google.maps.places.PlacesService(map);
+         var results=service.nearbySearch({
+        	 		location: myLocation,
+        	 		radius: 500,
+        	 		type: ["restaurant"] }, 
+        	 		restaurant_callback);
+      });
+   });   
    
    /**
     * SerachBox
@@ -164,13 +174,14 @@ function initMap(type, icon) {
    
    input.style.zIndex = "100";
    
-   // Bias the SearchBox results towards current map's viewport.
+   /*// Bias the SearchBox results towards current map's viewport.
    map.addListener('bounds_changed', function() {
      searchBox.setBounds(map.getBounds());
-   });	
+   });   
    
    // Create markers.
    var markers = [];
+   
    // Listen for the event fired when the user selects a prediction and retrieve
    // more details for that place.
    searchBox.addListener('places_changed', function() {
@@ -217,12 +228,7 @@ function initMap(type, icon) {
        }
      });
      map.fitBounds(bounds);     
-   });
-
-   
-
-   
-   
+   });*/  
    
    
    /**
@@ -240,39 +246,6 @@ function initMap(type, icon) {
 
 
 /**
- * 
- **/
-function typeView(type, typeCallback) {
-   list.forEach(function(value, index) {
-	   var marker = new google.maps.Marker({
-	     position: new google.maps.LatLng(value.xpoint, value.ypoint),
-	     icon: value.iconpath,
-	     map: map,
-	     clickable: true, draggable: false
-	   });
-		   var len = markerList.length;
-		   for(i=0;i<len;i++){
-			   markerList[i].setMap(null);
-		   }
-		   markerList = [];
-		   
-		// 리스트 부분
-		   
-		   var myLocation={lat: value.xpoint, lng: value.ypoint};
-
-		   smallwindow = new google.maps.InfoWindow();
-		   var service = new google.maps.places.PlacesService(map);
-			var results=service.nearbySearch({
-		     location: myLocation,
-		     radius: 500,
-		     type: [type]
-		   }, typeCallback);
-					   
-	   });
-}
-
-
-/**
  * 가운데 놓기
  * @param newLat
  * @param newLng
@@ -280,12 +253,11 @@ function typeView(type, typeCallback) {
  */
 
 function moveCenter(newLat, newLng){
-	map.setCenter({
-		lat: newLat,
-		lng: newLng
-			
-	});
-	map.setZoom(18);
-		
+   map.setCenter({
+      lat: newLat,
+      lng: newLng
+         
+   });
+   map.setZoom(18);
+      
 }
-

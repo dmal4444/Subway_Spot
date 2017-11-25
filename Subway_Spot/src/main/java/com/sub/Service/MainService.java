@@ -1,6 +1,7 @@
 package com.sub.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,6 @@ public class MainService {
 
 	@Autowired
 	private SubwaySpotDAO ssDAO;
-//	private HotplaceDAO hpDAO;
 	
 	/**
 	 * 마커를 찍을 함수를 만든다.
@@ -30,7 +30,7 @@ public class MainService {
 	/**
 	 * 역근처 SubwaySpot 지정 핫플레이스를 노출할 함수를 만든다.
 	 */
-	public ArrayList hotplaceInfo() {
-		return ssDAO.hotPlaceinfo();
+	public ArrayList getHotInfo(HashMap map) {
+		return ssDAO.getHotInfo(map);
 	}
 }

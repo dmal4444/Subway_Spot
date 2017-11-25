@@ -38,20 +38,27 @@
 	</select>
 	
 	<!-- 핫플레이스 마커 클릭 후 주변 검색 클릭시 탭노출을 위한 SQL -->
-	<select id="hotPlaceinfo" resultType="hpVO">
+	<select id="getHotInfo" resultType="hpVO" parameterType="hMap">
 	SELECT
-		distinct hi_stname AS station,
-		hi_Category AS category,
-		hi_Name AS name,
-		hi_EName AS ename,
-		hi_Address AS address,
-		hi_Xpoint AS xpoint,
-		hi_Ypoint AS ypoint,
-		hi_info AS info,
-		hi_image AS imagepath
+		distinct h.hi_stname AS station,
+		c.hic_iconpath AS category,
+		h.hi_Name AS name,
+		h.hi_EName AS ename,
+		h.hi_Address AS address,
+		h.hi_Xpoint AS xpoint,
+		h.hi_Ypoint AS ypoint,
+		h.hi_info AS info,
+		h.hi_image AS imagepath
 	FROM
 		subwayinfo i JOIN hotplaceinfo h
 	on
 		i.si_Name = h.hi_stname
+	JOIN hotplaceicon c
+	on
+		h.hi_Category = c.hic_code
+	WHERE
+		h.hi_stname = 
+		(SELECT distinct si_name FROM subwayinfo 
+		WHERE si_xpoint= #{lat} AND si_ypoint= #{lng})
 	</select>
 </mapper>

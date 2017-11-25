@@ -1,11 +1,11 @@
 package com.sub.DAO;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 
 public class SubwaySpotDAO extends SqlSessionDaoSupport {
@@ -19,7 +19,7 @@ public class SubwaySpotDAO extends SqlSessionDaoSupport {
 	public ArrayList setHotMarker() {
 		return (ArrayList) sqlSession.selectList("subwaySpot.setHotMarker");
 	}
-	public ArrayList hotPlaceinfo() {		
-		return (ArrayList) sqlSession.selectList("subwaySpot.hotPlaceinfo");
+	public ArrayList getHotInfo(HashMap map) {		
+		return (ArrayList) sqlSession.selectList("subwaySpot.getHotInfo", map);
 	}
 }

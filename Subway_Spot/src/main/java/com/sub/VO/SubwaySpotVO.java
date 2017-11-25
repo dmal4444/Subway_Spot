@@ -47,7 +47,7 @@ public class SubwaySpotVO {
 	}
 	public void setAddress(String address) {
 		this.address = address;
-	}
+	}	
 	public double getXpoint() {
 		return xpoint;
 	}

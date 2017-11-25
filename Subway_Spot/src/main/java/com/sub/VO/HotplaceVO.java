@@ -41,7 +41,7 @@ public class HotplaceVO {
 	}
 	public void setAddress(String address) {
 		this.address = address;
-	}
+	}	
 	public double getXpoint() {
 		return xpoint;
 	}

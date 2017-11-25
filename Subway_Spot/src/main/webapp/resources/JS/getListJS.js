@@ -1,6 +1,5 @@
 
 function restaurant_callback(results, status) {	
-	console.log("restaurant_callback 호출됨");
 	if (status === google.maps.places.PlacesServiceStatus.OK) {
     	
     var placesList=document.getElementById('restaurant_result');

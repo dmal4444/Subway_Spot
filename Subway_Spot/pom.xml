@@ -206,6 +206,11 @@
         <artifactId>spring-boot-starter-jdbc</artifactId>
           <version>1.5.8.RELEASE</version>
     </dependency> -->
+   	<dependency>
+    	<groupId>org.codehaus.jackson</groupId>
+    	<artifactId>jackson-mapper-asl</artifactId>
+   		<version>1.9.13</version>
+	</dependency>
    		
 		<!--	컨넥션 풀에 관련된 라이브러리	-->
 		<dependency>

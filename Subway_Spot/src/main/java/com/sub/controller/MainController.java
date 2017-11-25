@@ -1,7 +1,7 @@
 package com.sub.controller;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sub.Service.MainService;
-import com.sub.VO.SubwaySpotVO;
 
 @Controller
 public class MainController {
@@ -29,17 +28,14 @@ public class MainController {
 		//	set Marker
 		ArrayList list = mainS.setMarker(); 
 		ArrayList hlist = mainS.setHotMarker();
-		ArrayList hplist = mainS.hotplaceInfo();		
 		
 		ObjectMapper mapper = new ObjectMapper();
 		String result = mapper.writeValueAsString(list);	
 		String hresult = mapper.writeValueAsString(hlist);
-		String hpresult = mapper.writeValueAsString(hplist);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("MLIST",result);
 		mv.addObject("HLIST",hresult);
-		mv.addObject("HPLIST",hpresult);
 		
 		mv.setViewName("/main");		
 		return mv;		
@@ -48,6 +44,20 @@ public class MainController {
 	@RequestMapping("/TabWindow")
 	public String getTab(){
 		return "List/TabWindow";
+	}
+	
+	@RequestMapping("/Hotplace")
+	//	★★★ResponseBody는 View를 필요로 하지 않는다.
+	public @ResponseBody ArrayList getHotplace(double lat, double lng){
+
+		HashMap map = new HashMap();
+
+		map.put("lat", lat);
+		map.put("lng", lng);
+		System.out.println(map);
+		ArrayList hotlist = mainS.getHotInfo(map);
+		
+		return hotlist;
 	}
 	
 	@RequestMapping("/List")

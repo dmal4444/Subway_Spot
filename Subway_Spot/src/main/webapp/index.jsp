@@ -10,7 +10,7 @@
 
 <body style="height:900px; width:100%">
 
-	<c:redirect url="http://192.168.137.44:8080/sub/main.sub">
+	<c:redirect url="http://127.0.0.1:8080/sub/main.sub">
 	</c:redirect>
 </body>
 </html>
