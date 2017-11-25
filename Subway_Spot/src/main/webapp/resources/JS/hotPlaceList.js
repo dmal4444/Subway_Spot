@@ -1,6 +1,6 @@
 function getHotplaceInfo(valuelat, valuelng){
 	$.ajax({	
-		url:'./hotPlace.sub',
+		url:'./hotPlaceList.sub',
 		data: {lat: valuelat, lng: valuelng},
        /* contentType: "application/json; charset=UTF-8", */ 
         dataType:'json',
@@ -16,7 +16,7 @@ function getHotplaceInfo(valuelat, valuelng){
 				
 			}else{
 				for(var i=0; i<3/*data.length*/; i++){
-					console.log(data[i].xpoint+"   :lat");
+				/*	console.log(data[i].xpoint+"   :lat");
 					console.log(data[i].ypoint+"   :lng");
 					console.log(data[i].station+"   :station");
 					console.log(data[i].category+"   :category");
@@ -24,12 +24,11 @@ function getHotplaceInfo(valuelat, valuelng){
 					console.log(data[i].ename+"   :ename");
 					console.log(data[i].address+"   :address");
 					console.log(data[i].info+"   :info");
-					console.log("=================================");
+					console.log("=================================");*/
 					$('.hotple').remove();
 					$('#restaurant_hotpl').show();
 				    var hotPlaces=document.getElementById('restaurant_hotpl');
 					var info=data[i];
-					$('.hotple').remove();
 					appendHotPlaces(hotPlaces, info);
 				}
 			}

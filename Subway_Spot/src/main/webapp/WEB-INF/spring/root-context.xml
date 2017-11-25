@@ -13,21 +13,10 @@
 	<!--  자동주입이 가능하도록 선언  -->
 	<context:annotation-config />
 	
-	<!-- 컨넥션 풀 설정작업 
-	<bean id="BaseBDDataSource" class="org.apache.commons.dbcp.BasicDataSource">
-	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-	<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" />
-	<property name="username" value="scott" />
-	<property name="password" value="tiger" />
-	</bean> -->
-	
-     <!--  <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-             <property name="driverClass" value="org.mariadb.jdbc.Driver"/>
-             <property name="url" value="jdbc:mariadb://192.168.137.221:3306/subwayspot"/>
-             <property name="username" value="root"/>
-             <property name="password" value="1234"/>
-      </bean> -->
-      
+	<!--  JSON 문서 변환 라이브러리 등록 -->
+	<bean id="jacksonMessageConverter" 
+	class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
+	  
 	<!-- MyBatis(Maria DB)와 Spring 연결 : 컨넥션풀 설정 작업-->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.mariadb.jdbc.Driver"/>

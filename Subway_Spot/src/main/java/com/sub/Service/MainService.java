@@ -27,9 +27,15 @@ public class MainService {
 	
 	//Hotplace의 info를 얻어오는함수
 	public ArrayList getHotInfo(HashMap map){
-		System.out.println(ssDAO.getHotInfo(map)+" Service");
 		ArrayList list = ssDAO.getHotInfo(map);
-		System.out.println(list.size());
+
+		return list;
+		
+	}
+	
+	//Hotplace의 marker를 얻어오는함수
+	public ArrayList getHotMarker(HashMap map){
+		ArrayList list = ssDAO.getHotMarker(map);
 		
 		return list;
 		

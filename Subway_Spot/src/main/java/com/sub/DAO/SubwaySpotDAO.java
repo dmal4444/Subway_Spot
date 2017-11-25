@@ -24,4 +24,10 @@ public class SubwaySpotDAO extends SqlSessionDaoSupport {
 		
 	}
 	
+	public ArrayList getHotMarker(HashMap map){
+		System.out.println(map+" DAO");
+		return (ArrayList) sqlSession.selectList("subwaySpot.getHotMarker", map);
+		
+	}
+	
 }

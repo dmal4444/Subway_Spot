@@ -138,8 +138,13 @@ function initMap(type, icon) {
 		     radius: 500,
 		     type: ["restaurant"]
 		   }, restaurant_callback);
-			
+			getHotMarker(value.xpoint, value.ypoint);
 			getHotplaceInfo(value.xpoint, value.ypoint);
+			
+			
+			
+			
+			
 	   });
 	});	
    
