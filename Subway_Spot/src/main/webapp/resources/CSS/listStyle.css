@@ -92,42 +92,7 @@ body{
 	.btn_selected > .btn_icon{display: inline;}
 	.btn_selected > .btn_selected{display: none;}	
 	
-	/*
-	.clickme1:hover #r_icon{display: inline;}
-	.clickme1:hover #r_selected{display: none;}
-	.clickme1 #r_icon{display:none;}
-	.clickme1 #r_selected{display:inline;}
-	.selected1 #r_icon{display:inline;}
-	.selected1 #r_selected{display:none;}
-
-	.clickme2:hover #h_icon{display: inline;}
-	.clickme2:hover #h_selected{display: none;}
-	.clickme2 #h_icon{display:none;}
-	.clickme2 #h_selected{display:inline;}
-	.selected2 #h_icon{display:inline;}
-	.selected2 #h_selected{display:none;}
-
-	.clickme3:hover #p_icon{display: inline;}
-	.clickme3:hover #p_selected{display: none;}
-	.clickme3 #p_icon{display:none;}
-	.clickme3 #p_selected{display:inline;}
-	.selected3 #p_icon{display:inline;}
-	.selected3 #p_selected{display:none;}
-
-	.clickme4:hover #t_icon{display: inline;}
-	.clickme4:hover #t_selected{display: none;}
-	.clickme4 #t_icon{display:none;}
-	.clickme4 #t_selected{display:inline;}
-	.selected4 #t_icon{display:inline;}
-	.selected4 #t_selected{display:none;}
-
-	.clickme5:hover #pr_icon{display: inline;}
-	.clickme5:hover #pr_selected{display: none;}
-	.clickme5 #pr_icon{display:none;}
-	.clickme5 #pr_selected{display:inline;}
-	.selected5 #pr_icon{display:inline;}
-	.selected5 #pr_selected{display:none;}
-	*/
+	
 	#pub_result{
 	display:none;}
 
@@ -142,7 +107,7 @@ body{
 
 
 /* 결과 리스트 관련 CSS*/
-.section-result{
+.section-all{
 	cursor:pointer;
 	margin-top:0px;
 	margin-left:15px;
@@ -163,6 +128,10 @@ body{
 	min-width:1px;
 	width:300px;
 	clear: left;
+}
+
+.hotpl-result {
+	background-color: lightgrey;
 }
 .section-result-name{
 	color:#000;
@@ -190,4 +159,28 @@ color: #ff8000; /*orange*/
 	width:80px;
 	display: inline-block;
 }
+
+.list_hr{
+	width:100%;
+}
+
+/*hotplace result 부분*/
+#restaurant_hotpl{
+	border-style:solid;
+	border-width:0.5px;
+	text-align:left;
+	background-color:#e3efef;
+	width:310px;
+	height:86px;
+	margin-bottom:20px;
+	margin-top:20px;
+	
+}
+
+.hotpl-result img{
+	height:20px;
+	width:15px;
+}
+
+
 	

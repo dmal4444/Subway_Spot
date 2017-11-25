@@ -32,6 +32,7 @@
 <script type="text/javascript" src="./resources/JS/list.js"></script>
 <script type="text/javascript" src="./resources/JS/tabWinJS.js"></script>
 <script type="text/javascript" src="./resources/JS/getListJS.js"></script>
+<script type="text/javascript" src="./resources/JS/hotPlaceList.js"></script>
 
 
 

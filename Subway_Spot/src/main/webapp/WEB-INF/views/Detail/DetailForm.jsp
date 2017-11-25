@@ -3,10 +3,146 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link href="<c:url value="/resources/detail/subway.css" />" rel="stylesheet">
+
+<link rel = "stylesheet" type = "text/css" href = "../resources/detail/subway.css" />
+
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+	var good = ${from};
+			$.ajax({
+				url:"https://api.odsay.com/api/subwayTimeTable",
+				data:'apiKey=EP6opbh6Snt8fsH6J/Gb3dxsmCmTj3APxjd/oTeK8o0&lang=0&stationID='+good,
+				dataType:'json',
+				type:'POST',
+				success:function(data){
+					console.log(data);
+					$(".time1").find("tr").remove();
+					$(".minute1_1").find("tr").remove();
+					$(".minute1_2").find("tr").remove();
+					var str = [];
+					str=data.result.OrdList.down.time;
+					str1=data.result.OrdList.up.time;
+					
+					$.each(str, function(index, obj) {
+						console.log(obj.Idx);
+						//$(".time1").append("<tr><td>"+obj.Idx+"</td></tr>");
+						$(".time1").append("<tr><td>"+obj.Idx+"</td></tr>");
+						$(".minute1_2").append("<tr><td>"+obj.list+"</td></tr>");
+					});
+					
+					$.each(str1, function(index, obj){
+						$(".minute1_1").append("<tr><td>"+obj.list+"</td></tr>");
+					});
+				},
+				error : function(){
+					alert("???");
+				}
+		});
+	$(document).ready(function(){
+		$("#Ord").change(function(){
+			$.ajax({
+				url:"https://api.odsay.com/api/subwayTimeTable",
+				data:'apiKey=EP6opbh6Snt8fsH6J/Gb3dxsmCmTj3APxjd/oTeK8o0&lang=0&stationID='+good,
+				dataType:'json',
+				type:'POST',
+				success:function(data){
+					console.log(data);
+					$(".time1").find("tr").remove();
+					$(".minute1_1").find("tr").remove();
+					$(".minute1_2").find("tr").remove();
+					var str = [];
+					str=data.result.OrdList.down.time;
+					str1=data.result.OrdList.up.time;
+					
+					$.each(str, function(index, obj) {
+						console.log(obj.Idx);
+						$(".time1").append("<tr><td>"+obj.Idx+"</td></tr>");
+						$(".minute1_2").append("<tr><td>"+obj.list+"</td></tr>");
+					});
+					
+					$.each(str1, function(index, obj){
+						$(".minute1_1").append("<tr><td>"+obj.list+"</td></tr>");
+					});
+				},
+				error : function(){
+					alert("???");
+				}
+		});
+	
+	});
+
+		
+		// 토요일
+		$("#Sat").change(function(){
+			$.ajax({
+				url:"https://api.odsay.com/api/subwayTimeTable",
+				data:'apiKey=EP6opbh6Snt8fsH6J/Gb3dxsmCmTj3APxjd/oTeK8o0&lang=0&stationID='+good,
+				dataType:'json',
+				type:'POST',
+				success:function(data){
+					$(".time1").find("tr").remove();
+					$(".minute1_1").find("tr").remove();
+					$(".minute1_2").find("tr").remove();
+					console.log(data);
+					var str = [];
+					str=data.result.SatList.down.time;
+					str1=data.result.SatList.up.time;
+					
+					$.each(str, function(index, obj) {
+						console.log(obj.Idx);
+						$(".time1").append("<tr><td>"+obj.Idx+"</td></tr>");
+						$(".minute1_2").append("<tr><td>"+obj.list+"</td></tr>");
+					});
+					
+					$.each(str1, function(index, obj){
+						$(".minute1_1").append("<tr><td>"+obj.list+"</td></tr>");
+					});
+				},
+				error : function(){
+					alert("???");
+				}
+		});
+	
+	});
+		
+		// 일요일
+		$("#Sun").change(function(){
+			$.ajax({
+				url:"https://api.odsay.com/api/subwayTimeTable",
+				data:'apiKey=EP6opbh6Snt8fsH6J/Gb3dxsmCmTj3APxjd/oTeK8o0&lang=0&stationID='+good,
+				dataType:'json',
+				type:'POST',
+				success:function(data){
+					$(".time1").find("tr").remove();
+					$(".minute1_1").find("tr").remove();
+					$(".minute1_2").find("tr").remove();
+					console.log(data);
+					var str = [];
+					str=data.result.SunList.down.time;
+					str1=data.result.SunList.up.time;
+					
+					$.each(str, function(index, obj) {
+						console.log(obj.Idx);
+						$(".time1").append("<tr><td>"+obj.Idx+"</td></tr>");
+						$(".minute1_2").append("<tr><td>"+obj.list+"</td></tr>");
+					});
+					
+					$.each(str1, function(index, obj){
+						$(".minute1_1").append("<tr><td>"+obj.list+"</td></tr>");
+					});
+				},
+				error : function(){
+					alert("???");
+				}
+		});
+	
+	});
+		
+});
+</script>
 <body>
 <!--타이틀-->
 <div class="subway_detail">
@@ -37,343 +173,26 @@
 <!--//타이틀-->
 	
 <!--첫차/막차시간 테이블-->
-<div class="article">
+<div class="article" >
 	<div class="section_sway_time_tb">
 		<table cellspacing="0" cellpadding="0" summary="첫차막차시간표" class="tbs1 tbs2">
-			<caption class="cap1">상행 - 소요산방면</caption>
-			<colgroup>
-				<col class="tbs2_col1">
-				<col class="tbs2_col1">
-				<col class="tbs2_col1">
-				<col class="tbs2_col1">
-				<col>
-			</colgroup>
-		<!-- 테이블 헤드 -->
-		<thead>
-			<tr>
-				<th scope="col">첫/막차</th>
-				<th scope="col">종착역</th>
-				<th scope="col">평일</th>
-				<th scope="col" class="sat">토요일</th>
-				<th scope="col" class="sun">일.공휴일</th>
-			</tr>
-		</thead>
-		<!-- 테이블 바디-->	
 			<tbody>
 				<tr>
-					<th rowspan="11" class="thf">첫차</th>
-					<td calss="t">의정부</td>
-					<td>05:00</td>
-					<td>05:34</td>
-					<td>05:34</td>
+					<th>상행</th>
+					<th width="30">시간</th>
+					<th>하행</th>
 				</tr>
-				<tr>
-					<td calss="t">소요산</td>
-					<td>05:11</td>
-					<td>05:13</td>
-					<td>05:13</td>
-				</tr>
-				<tr>
-					<td calss="t">동두천</td>
-					<td>05:28</td>
-					<td>05:00</td>
-					<td>05:00</td>
-				</tr>
-				<tr>
-					<td calss="t">광운대</td>
-					<td>05:52</td>
-					<td>05:52</td>
-					<td>05:52</td>
-				</tr>
-				<tr>
-					<td calss="t">동두천(급)</td>
-					<td>05:58</td>
-					<td>-</td>
-					<td>-</td>
-				</tr>
-				<tr>
-					<td calss="t">청량리</td>
-					<td>06:02</td>
-					<td>06:16</td>
-					<td>06:16</td>
-				</tr>
-				<tr>
-					<td calss="t">양주</td>
-					<td>06:25</td>
-					<td>06:44</td>
-					<td>06:44</td>
-				</tr>
-				<tr>
-					<td calss="t">영등포</td>
-					<td>06:37</td>
-					<td>06:37</td>
-					<td>06:37</td>
-				</tr>
-				<tr>
-					<td calss="t">동묘앞</td>
-					<td>08:23</td>
-					<td>09:23</td>
-					<td>09:23</td>
-				</tr>
-				<tr>
-					<td calss="t">창동</td>
-					<td>09:29</td>
-					<td>09:11</td>
-					<td>09:11</td>
-				</tr>
-				<tr>
-					<td calss="t">용산(급)</td>
-					<td>10:02</td>
-					<td>09:53</td>
-					<td>09:53</td>
-				</tr>
-				<tr>
-					<td calss="t">용산(급)</td>
-					<td>10:02</td>
-					<td>09:53</td>
-					<td>09:53</td>
-				</tr>
-				<tr>
-					<th rowspan="11" class="thf">막차</th>
-					<td calss="t">동두천</td>
-					<td>21:52</td>
-					<td>20:43</td>
-					<td>20:43</td>
-				</tr>
-				<tr>
-					<td calss="t">소요산</td>
-					<td>22:41</td>
-					<td>22:49</td>
-					<td>22:49</td>
-				</tr>
-				<tr>
-					<td calss="t">양주</td>
-					<td>22:55</td>
-					<td>22:31</td>
-					<td>22:31</td>
-				</tr>
-				<tr>
-					<td calss="t">영등포</td>
-					<td>23:06</td>
-					<td>23:06</td>
-					<td>23:06</td>
-				</tr>
-				<tr>
-					<td calss="t">용산(급)</td>
-					<td>23:10</td>
-					<td>23:21</td>
-					<td>23:21</td>
-				</tr>
-				<tr>
-					<td calss="t">의정부</td>
-					<td>23:18</td>
-					<td>23:18</td>
-					<td>23:18</td>
-				</tr>
-				<tr>
-					<td calss="t">창동</td>
-					<td>23:28</td>
-					<td>23:02</td>
-					<td>23:02</td>
-				</tr>
-				<tr>
-					<td calss="t">광운대</td>
-					<td>23:40</td>
-					<td>23:49</td>
-					<td>23:49</td>
-				</tr>
-				<tr>
-					<td calss="t">청량리</td>
-					<td>23:55</td>
-					<td>22:46</td>
-					<td>22:46</td>
-				</tr>
-				<tr>
-					<td calss="t">동묘앞</td>
-					<td>00:00</td>
-					<td>23:36</td>
-					<td>23:36</td>
-				</tr>
-				<tr>
-					<td calss="t">서울역</td>
-					<td>-</td>
-					<td>00:00</td>
-					<td>00:00</td>
-				</tr>
-			</tbody>
-		</table>
-		<table cellspacing="0" cellpadding="0" summary="첫차막차시간표" class="tbs1 tbs2">
-			<caption class="cap1">하행 - 인천,신창방면</caption>
-			<colgroup>
-				<col class="tbs2_col1">
-				<col class="tbs2_col1">
-				<col class="tbs2_col1">
-				<col class="tbs2_col1">
-				<col>
-			</colgroup>
-		<!-- 테이블 헤드 -->
-		<thead>
-			<tr>
-				<th scope="col">첫/막차</th>
-				<th scope="col">종착역</th>
-				<th scope="col">평일</th>
-				<th scope="col" class="sat">토요일</th>
-				<th scope="col" class="sun">일.공휴일</th>
-			</tr>
-		</thead>
-		<!-- 테이블 바디-->	
-			<tbody>
-				<tr>
-					<th rowspan="11" class="thf">첫차</th>
-					<td calss="t">인천</td>
-					<td>05:00</td>
-					<td>05:00</td>
-					<td>05:00</td>
-				</tr>
-				<tr>
-					<td calss="t">신창</td>
-					<td>05:00</td>
-					<td>05:00</td>
-					<td>05:00</td>
-				</tr>
-				<tr>
-					<td calss="t">신창</td>
-					<td>05:00</td>
-					<td>05:00</td>
-					<td>05:00</td>
-				</tr>
-				<tr>
-					<td calss="t">천안</td>
-					<td>05:32</td>
-					<td>07:08</td>
-					<td>07:08</td>
-				</tr>
-				<tr>
-					<td calss="t">광명</td>
-					<td>05:35</td>
-					<td>05:35</td>
-					<td>05:35</td>
-				</tr>
-				<tr>
-					<td calss="t">서동탄</td>
-					<td>05:41</td>
-					<td>05:15</td>
-					<td>05:15</td>
-				</tr>
-				<tr>
-					<td calss="t">신창(급)</td>
-					<td>06:19</td>
-					<td>13:59</td>
-					<td>13:59</td>
-				</tr>
-				<tr>
-					<td calss="t">부평(급)</td>
-					<td>06:28</td>
-					<td>-</td>
-					<td>-</td>
-				</tr>
-				<tr>
-					<td calss="t">인천(급)</td>
-					<td>08:23</td>
-					<td>-</td>
-					<td>-</td>
-				</tr>
-				<tr>
-					<td calss="t">병점</td>
-					<td>08:32</td>
-					<td>09:01</td>
-					<td>09:01</td>
-				</tr>
-				<tr>
-					<td calss="t">천안(급)</td>
-					<td>09:15</td>
-					<td>06:22</td>
-					<td>06:22</td>
-				</tr>
-				<tr>
-					<td calss="t">동인천(급)</td>
-					<td>09:26</td>
-					<td>09:53</td>
-					<td>09:53</td>
-				</tr>
-				<tr>
-					<td calss="t">병점(급)</td>
-					<td>10:56</td>
-					<td>-</td>
-					<td>-</td>
-				</tr>
-				<tr>
-					<td calss="t">병점(급)</td>
-					<td>10:56</td>
-					<td>-</td>
-					<td>-</td>
-				</tr>	
-				<tr>
-					<th rowspan="11" class="thf">막차</th>
-					<td calss="t">병점(급)</td>
-					<td>15:38</td>
-					<td>-</td>
-					<td>-</td>
-				</tr>
-				<tr>
-					<td calss="t">신창(급)</td>
-					<td>17:10</td>
-					<td>19:13</td>
-					<td>19:13</td>
-				</tr>
-				<tr>
-					<td calss="t">천안(급)</td>
-					<td>21:56</td>
-					<td>21:56</td>
-					<td>21:56</td>
-				</tr>
-				<tr>
-					<td calss="t">광명</td>
-					<td>22:06</td>
-					<td>22:06</td>
-					<td>22:06</td>
-				</tr>
-				<tr>
-					<td calss="t">신창</td>
-					<td>22:27</td>
-					<td>22:27</td>
-					<td>22:27</td>
-				</tr>
-				<tr>
-					<td calss="t">천안</td>
-					<td>22:46</td>
-					<td>22:48</td>
-					<td>22:48</td>
-				</tr>
-				<tr>
-					<td calss="t">동인천(급)</td>
-					<td>23:18</td>
-					<td>23:27</td>
-					<td>23:27</td>
-				</tr>
-				<tr>
-					<td calss="t">서동탄</td>
-					<td>23:21</td>
-					<td>23:26</td>
-					<td>23:26</td>
-				</tr>
-				<tr>
-					<td calss="t">부평(급)</td>
-					<td>23:31</td>
-					<td>23:44</td>
-					<td>23:44</td>
-				</tr>
-				<tr>
-					<td calss="t">병점</td>
-					<td>23:42</td>
-					<td>23:41</td>
-					<td>23:41</td>
-				</tr>
-				<tr>
-					<td calss="t">인천</td>
-					<td>00:01</td>
-					<td>23:48</td>
-					<td>23:48</td>
+				<dl>
+					<dd align="center" colspan="3" border="1">
+						<input type="radio" id="Ord" name="Only" checked="checked">평일
+						<input type="radio" id="Sat" name="Only">토요일
+						<input type="radio" id="Sun" name="Only">일요일				
+					</dd>
+				</dl>
+				<tr id="trid">
+					<th class="minute1_1"></th>
+					<th class="time1" width="30"></th>
+					<th class="minute1_2"></th>
 				</tr>
 			</tbody>
 		</table>

@@ -3,31 +3,32 @@
   <div id="myPath" style="width:250px;">
   	<img src="resources/icons/train.png">&nbsp&nbsp<a style="color:darkgrey; font-weight:bold; font-size:28px;">SUBWAY SPOT</a>
   	<p></p>
-	<div id="from_to">
- 		<!--  출발역 -->
-		FROM <br>
-		<input type="text" class="stn_input" id="from" name="from" placeholder="출발역을 입력해주세요.">
-		<!-- 공백 주기 -->
-		<p></p>
-		<!-- 스위치 버튼 -->
-		<div  align="left" id="div_switch" >
-		<img src="./resources/icons/switch.png"/>&nbsp
-		<input type="button" class="searchBtn" id="swtichBtn" value="SWITCH" style="font-size: 10px;">
+  	<form method="POST" id="stn_frm" action="">
+		<div id="from_to">
+	 		<!--  출발역 -->
+			FROM <br>
+			<input type="text" class="stn_input" id="from" name="from" placeholder="출발역을 입력해주세요.">
+			<!-- 공백 주기 -->
+			<p></p>
+			<!-- 스위치 버튼 -->
+			<div  align="left" id="div_switch" >
+			<img src="./resources/icons/switch.png"/>&nbsp
+			<input type="button" class="searchBtn" id="swtichBtn" value="SWITCH" style="font-size: 10px;">
+			</div>
+			<!-- 도착역 -->	
+			TO <br>
+			<input type="text" class="stn_input" id="to" name="to" placeholder="도착역을 입력해주세요.">
+			<div align="left" id="btn_combo" style="font-size: 10px;">
+			<p></p>
+		
+				<input type="button"  class="searchBtn" id="clearBtn" value="CLEAR">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="button" class="searchBtn" id="findBtn" value="FIND">
+			</div>
 		</div>
-		<!-- 도착역 -->	
-		TO <br>
-		<input type="text" class="stn_input" id="to" name="to" placeholder="도착역을 입력해주세요.">
-		<div align="left" id="btn_combo" style="font-size: 10px;">
-		<p></p>
-			<input type="button"  class="searchBtn" id="clearBtn" value="CLEAR">
-	<!--		<%for(int i=0; i<10; i++){
-				%>&nbsp
-			<%}%> -->
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="button" class="searchBtn" id="findBtn" value="FIND">
-		</div>
-	</div>
-	<hr style="color:black;display:block;">
+	</form>
+	</form>
+	<hr id="pathline" style="color:black;display:block;">
 	<img src="resources/icons/line.png" style="width:275px;">
 	<br><br> <!-- 나눔선 -->
 	<div class="main_div" >

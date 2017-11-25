@@ -1,6 +1,7 @@
 package com.sub.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,5 +23,15 @@ public class MainService {
 	 */
 	public ArrayList setHotMarker() {
 		return ssDAO.setHotMarker();		
+	}
+	
+	//Hotplace의 info를 얻어오는함수
+	public ArrayList getHotInfo(HashMap map){
+		System.out.println(ssDAO.getHotInfo(map)+" Service");
+		ArrayList list = ssDAO.getHotInfo(map);
+		System.out.println(list.size());
+		
+		return list;
+		
 	}
 }

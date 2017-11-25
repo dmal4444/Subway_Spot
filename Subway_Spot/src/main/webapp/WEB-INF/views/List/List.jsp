@@ -55,25 +55,50 @@ function closeNav2() {
 			</div>			
 		<hr></hr>
 		
-		<div class="section-result" id="restaurant_result">
+		<div class="section-all" id="restaurant_all" >
+			<!--restaurant 관련 결과 -->
+			<div class="hotpl-result" id="restaurant_hotpl"> 
 
-		</div>
-		
-		<div class="section-result" id="hotel_result">
-						 		
-		</div>
-		<div class="section-result" id="pub_result">
-		
-		</div>
-		<div class="section-result" id="tourism_result">
-		
-		</div>
-		<div class="section-result" id="park_result">
-		
-		</div>
+          		<a href="#" id="paging" style="float:right;font-size:10px;">◀이전/다음▶</a>
+        	</div>
+        	
+        	<div class="section-result" id="restaurant_result">
+			</div> 
+        	 	   	
+			<!-- hotel 관련 결과 -->		
+			<div class="section-result" id="hotel_result">		 		
+			</div>
+			<div class="hotpl-result" id="hotel_hotpl"> 
 
-		</div>
-		
-	</div>
-</div>
+          		<a href="#" id="paging" style="float:right;font-size:10px;">◀이전/다음▶</a>
+        	</div>
+        	
+        	<!-- pub 관련 결과 -->		
+			<div class="section-result" id="pub_result">
+			
+			</div>
+			<div class="hotpl-result" id="pub_hotpl"> 
+
+          		<a href="#" id="paging" style="float:right;font-size:10px;">◀이전/다음▶</a>
+        	</div>
+        	
+        	<!-- tourism 관련 결과 -->			
+			<div class="section-result" id="tourism_result">
+			
+			</div>
+			
+			<div class="hotpl-result" id="tourism_hotpl"> 
+
+          		<a href="#" id="paging" style="float:right;font-size:10px;">◀이전/다음▶</a>
+        	</div>
+        	
+        	<!-- park 관련 결과 -->	
+			<div class="section-result" id="park_result">
+			
+			</div>
+			<div class="hotpl-result" id="park_hotpl"> 
+
+          		<a href="#" id="paging" style="float:right;font-size:10px;">◀이전/다음▶</a>
+        	</div>
+	</div> 
 

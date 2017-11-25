@@ -1,6 +1,7 @@
 package com.sub.DAO;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
@@ -16,6 +17,11 @@ public class SubwaySpotDAO extends SqlSessionDaoSupport {
 	}
 	public ArrayList setHotMarker() {
 		return (ArrayList) sqlSession.selectList("subwaySpot.setHotMarker");
+	}
+	public ArrayList getHotInfo(HashMap map){
+		System.out.println(map+" DAO");
+		return (ArrayList) sqlSession.selectList("subwaySpot.getHotInfo", map);
+		
 	}
 	
 }

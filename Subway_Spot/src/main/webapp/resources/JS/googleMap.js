@@ -55,7 +55,7 @@ function initMap(type, icon) {
 	     position: new google.maps.LatLng(value.xpoint, value.ypoint),
 	     icon: value.iconpath,
 	     map: map,
-	     title: value.ename,
+	     title: value.name,
 	     clickable: true, draggable: false
 	   });
 	   
@@ -84,6 +84,9 @@ function initMap(type, icon) {
 		     type: ["restaurant"]
 		   }, restaurant_callback);
 			
+			
+			
+			
 					   
 	   });
 	});	 
@@ -103,10 +106,10 @@ function initMap(type, icon) {
 	     position: new google.maps.LatLng(value.xpoint, value.ypoint),
 	     icon: 'resources/icons/line/hot.png',
 	     map: map,
-	     title: value.Name,
+	     title: value.name,
 	     clickable: true, draggable: false	     
 	   });
-	   console.log(value.Name+"   ename");
+	   
 	   
 	   g.event.addListener(marker, "click", function(){
 		   var len = markerList.length;
@@ -135,6 +138,8 @@ function initMap(type, icon) {
 		     radius: 500,
 		     type: ["restaurant"]
 		   }, restaurant_callback);
+			
+			getHotplaceInfo(value.xpoint, value.ypoint);
 	   });
 	});	
    
@@ -148,7 +153,7 @@ function initMap(type, icon) {
    
    input.style.zIndex = "100";
    
-   // Bias the SearchBox results towards current map's viewport.
+/*   // Bias the SearchBox results towards current map's viewport.
    map.addListener('bounds_changed', function() {
      searchBox.setBounds(map.getBounds());
    });	
@@ -201,13 +206,13 @@ function initMap(type, icon) {
        }
      });
      map.fitBounds(bounds);     
-   });
+   });*/
   
    
    /**
     * 길찾기 버튼
     */
-// Create the DIV to hold the control and call the CenterControl()
+//  the DIV to hold the control and call the CenterControl()
    // constructor passing in this DIV.
    var centerControlDiv = document.createElement('div');
    var centerControl = new CenterControl(centerControlDiv, map);

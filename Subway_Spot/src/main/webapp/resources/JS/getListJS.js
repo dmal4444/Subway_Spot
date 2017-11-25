@@ -18,7 +18,6 @@ function typeView(type, typeCallback) {
 	     radius: 500,
 	     type: [type]
 	   }, typeCallback);
-	   console.log(type+"  :type");
 	 
 }
 
@@ -40,7 +39,6 @@ function restaurant_callback(results, status) {
 //호텔 결과 호출
 function hotel_callback(results, status) {
 	console.log("hotel_callback 호출됨");
-	  console.log(results);
 	var icon="hotel";
 
     if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -88,7 +86,6 @@ function tourism_callback(results, status) {
 //공원 결과 호출
 function park_callback(results, status) {
 	console.log("park_callback 호출됨");
-	console.log(results);
 	var icon="park";
 
     if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -141,6 +138,7 @@ function createListMarker(place, icon) {
         				"<div class='section-result-name'>" +
         				"<a href='#' onclick='moveTo("+newlat+","+newlng+");'>"+
         					place.name+
+        					"</a>"+
         				"</div>" +
         				"<span class='section-result-rating'>" +
         					"<a class='rating'>"+place.rating+"★★★★★</a>"+
@@ -161,12 +159,11 @@ function createListMarker(place, icon) {
  	}
 	
 	function moveTo(newlat, newlng){
-		console.log("placeeddd");
 		map.setCenter({
 			lat: newlat,
 			lng: newlng
 		});
 		map.setZoom(19);
 
-	    smallwindow.open(map, this.mark);
+	    //smallwindow.open(map, this.mark);
 	}

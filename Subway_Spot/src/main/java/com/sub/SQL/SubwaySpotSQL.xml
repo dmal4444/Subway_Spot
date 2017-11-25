@@ -36,4 +36,26 @@
 	WHERE
 		si_hotplace LIKE 'Y'
 	</select>
+	
+	<!-- 핫플레이스 정보 출력을 위한 sQL -->
+	<select id="getHotInfo" resultType="hpVO" parameterType="hMap">
+	   SELECT
+	      distinct hi_stname AS station,
+	      hi_Category AS category,
+	      hi_Name AS name,
+	      hi_EName AS ename,
+	      hi_Address AS address,
+	      hi_Xpoint AS xpoint,
+	      hi_Ypoint AS ypoint,
+	      hi_info AS info,
+	      hi_image AS imagepath
+	  FROM
+	     subwayinfo i JOIN hotplaceinfo h
+	  on
+	     i.si_Name = h.hi_stname
+	  WHERE
+	     h.hi_stname = 
+	     (SELECT distinct si_name FROM subwayinfo 
+	     WHERE si_xpoint= #{lat} AND si_ypoint= #{lng})
+	</select>
 </mapper>

@@ -9,7 +9,7 @@ $(document).ready(function(){
 	  if($(this).attr("data-type") == 'restaurant') {
 		  typeView('restaurant', restaurant_callback);
 		  
-		  $("#restaurant_result").show();
+		  $("#restaurant_all").show();
 		  $("#hotel_result").hide();
 		  $("#pub_result").hide();
 		  $("#tourism_result").hide();
@@ -22,7 +22,7 @@ $(document).ready(function(){
 		  typeView('lodging', hotel_callback);
 		  
 		  $("#hotel_result").show();
-		  $("#restaurant_result").hide();
+		  $("#restaurant_all").hide();
 		  $("#pub_result").hide();
 		  $("#tourism_result").hide();
 		  $("#park_result").hide();
@@ -34,7 +34,7 @@ $(document).ready(function(){
 		  typeView('bar', pub_callback);
 
 		  $("#pub_result").show();
-		  $("#restaurant_result").hide();
+		  $("#restaurant_all").hide();
 		  $("#hotel_result").hide();
 		  $("#tourism_result").hide();
 		  $("#park_result").hide();
@@ -45,7 +45,7 @@ $(document).ready(function(){
 		  typeView('point_of_interest', tourism_callback);
 		  
 		  $("#tourism_result").show();
-		  $("#restaurant_result").hide();
+		  $("#restaurant_all").hide();
 		  $("#hotel_result").hide();
 		  $("#pub_result").hide();
 		  $("#park_result").hide();
@@ -56,7 +56,7 @@ $(document).ready(function(){
 		  typeView('park', park_callback);
 		  
 		  $("#park_result").show();
-		  $("#restaurant_result").hide();
+		  $("#restaurant_all").hide();
 		  $("#hotel_result").hide();
 		  $("#pub_result").hide();
 		  $("#tourism_result").hide();

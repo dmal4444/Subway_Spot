@@ -80,14 +80,17 @@ $(document).ready(function() {
     
     //출구정보버튼
     $(".exit").click(function(){
-    	$(location).attr("href","./Detail/Bus.sub");
+		$("#stn_frm").attr("action", "./findProc.sub").submit();
+		
     });
     //운행시간버튼
     $(".act").click(function(){
-    	$(location).attr("href","./Detail/DetailForm.sub");
+    	$("#stn_frm").attr("action", "./findProc2.sub").submit();
+		
     });
     //길찾기 버튼
 	$("#findBtn").click(function(){
+		
 		firstStn = $("#from").val();
 		lastStn = $("#to").val();
 		min = 1;
