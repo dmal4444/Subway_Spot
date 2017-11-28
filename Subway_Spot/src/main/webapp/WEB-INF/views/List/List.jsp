@@ -54,12 +54,15 @@ function closeNav2() {
 				</a>
 			</div>			
 		<hr></hr>
+		<input id="hDataLat" type="hidden" name="hDataLat" value=''>
+		<input id="hDataLng" type="hidden" name="hDataLng" value=''>
+		<input id="hDataCate" type="hidden" name="hDataCate" value=''>
+		<input id="hDataNow" type="hidden" name="hDataNow" value=''>
 		
 		<div class="section-all" id="restaurant_all" >
 			<!--restaurant 관련 결과 -->
-			<div class="hotpl-result" id="restaurant_hotpl"> 
+			<div class="hotpl-result" id="restaurant_hotpl">
 
-          		<a href="#" id="paging" style="float:right;font-size:10px;">◀이전/다음▶</a>
         	</div>
         	
         	<div class="section-result" id="restaurant_result">
@@ -68,7 +71,6 @@ function closeNav2() {
 			<!-- hotel 관련 결과 -->
 			<div class="hotpl-result" id="hotel_hotpl"> 
 
-          		<a href="#" id="paging" style="float:right;font-size:10px;">◀이전/다음▶</a>
         	</div>
         			
 			<div class="section-result" id="hotel_result">		 		
@@ -77,7 +79,6 @@ function closeNav2() {
         	<!-- pub 관련 결과 -->		
         	<div class="hotpl-result" id="pub_hotpl"> 
 
-          		<a href="#" id="paging" style="float:right;font-size:10px;">◀이전/다음▶</a>
         	</div>
         	
 			<div class="section-result" id="pub_result">
@@ -87,7 +88,6 @@ function closeNav2() {
         	<!-- tourism 관련 결과 -->
         	<div class="hotpl-result" id="tourism_hotpl"> 
 
-          		<a href="#" id="paging" style="float:right;font-size:10px;">◀이전/다음▶</a>
         	</div>
         				
 			<div class="section-result" id="tourism_result">
@@ -97,7 +97,6 @@ function closeNav2() {
         	<!-- park 관련 결과 -->
         	<div class="hotpl-result" id="park_hotpl"> 
 
-          		<a href="#" id="paging" style="float:right;font-size:10px;">◀이전/다음▶</a>
         	</div>
         		
 			<div class="section-result" id="park_result">

@@ -88,18 +88,32 @@ public class MainController {
 	
 	//핫플레이스 정보 얻어오는 함수 
 	@RequestMapping("/hotPlaceList")
-	public @ResponseBody ArrayList getHotPlaceList(HotplaceVO vo/*, @RequestParam(value="nowPage", defaultValue="1") int nowPage*/){
+	@ResponseBody
+	public HashMap getHotPlaceList(HotplaceVO vo){
 		System.out.println("List 호출");
 		//파라메터 받고
 		//DB에서 불러오고
-//		int total = mainS.getTotal(vo);
-		System.out.println("vo 호출");
-		System.out.println(vo.getStart()+" start page");
-		/*PageUtil pInfo = new PageUtil(nowPage, total);*/
+		int nowPage=vo.getNowPage();
+		int total = mainS.getTotal(vo);
 		
-		ArrayList list=mainS.getHotInfo(vo/*, pInfo, nowPage*/);
+		PageUtil pInfo = new PageUtil(nowPage, total);
+		int start=(nowPage -1)*(pInfo.listCount)+1;
+		int end=start + (pInfo.listCount-1);
+		
+		vo.setStart(start);
+		vo.setEnd(end);
 
-		return list;
+		HashMap map = new HashMap();
+
+		ArrayList list=mainS.getHotInfo(vo);
+		
+		map.put("nowPage", nowPage);
+		map.put("PINFO", pInfo);
+		map.put("LIST", list);
+		map.put("lat", vo.getLat());
+		map.put("lng", vo.getLng());
+		
+		return map;
 		
 		
 	}
@@ -108,15 +122,42 @@ public class MainController {
 	 @RequestMapping("/Hotplace")
 	   //   ★★★ResponseBody는 View를 필요로 하지 않는다.
 	   public @ResponseBody ArrayList getHotplace(double lat, double lng){
-		 System.out.println("getHotplace 호출");
 	      HashMap map = new HashMap();
 
 	      map.put("lat", lat);
 	      map.put("lng", lng);
-	      System.out.println(map);
 	      ArrayList hotlist = mainS.getHotMarker(map);
 	      
 	      return hotlist;
 	   }
+	 
+	 //길찾기 검색역 코드 받아오는 함수
+	 @RequestMapping("/findStnCode")
+	 @ResponseBody
+	 public HashMap getStnCode(@RequestParam(value=("from")) String from, @RequestParam(value=("to")) String to){
+		//파라메터 받고(vo로 받을 예정)
+		//DB에서 꺼낸다.
+		 int stnCode_from=mainS.getCode(from);
+		 int stnCode_to=mainS.getCode(to);
+
+		 HashMap map = new HashMap();
+		 map.put("FCODE", stnCode_from);
+		 map.put("TCODE", stnCode_to);
+
+		 return map;
+	 }
+	 
+	 //길찾기 역 좌표 받아오는 함수
+	 @RequestMapping("/findStnCoords")
+	 @ResponseBody
+	 public ArrayList getStnCoords(@RequestParam(value=("station")) String station, HotplaceVO vo){
+		 		 
+		 ArrayList list =mainS.getCoords(station);	 
+
+		 
+		 
+		 
+		 return list;
+	 }
 
 }

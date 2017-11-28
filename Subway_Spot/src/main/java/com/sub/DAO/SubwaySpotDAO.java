@@ -21,19 +21,27 @@ public class SubwaySpotDAO extends SqlSessionDaoSupport {
 		return (ArrayList) sqlSession.selectList("subwaySpot.setHotMarker");
 	}
 	public ArrayList getHotInfo(HotplaceVO vo){
-		System.out.println(vo.getStart()+":  DAO start");
-		System.out.println(sqlSession.selectList("subwaySpot.getHotInfo", vo)+"  :DAO hotinfo");
 		return (ArrayList) sqlSession.selectList("subwaySpot.getHotInfo", vo);
 	}
 	
 	public int getTotal(HotplaceVO vo){
-		System.out.println(sqlSession.selectOne("subwaySpot.getTotal", vo)+"  :dao getTotal");
 		return sqlSession.selectOne("subwaySpot.getTotal", vo);
 	}
 	
 	public ArrayList getHotMarker(HashMap map){
 		return (ArrayList) sqlSession.selectList("subwaySpot.getHotMarker", map);
 		
+	}
+	
+	//역코드 받아오기 실행 함수
+	public int getCode(String from){
+		return (Integer) sqlSession.selectOne("subwaySpot.getCode", from);
+	}
+	
+	//역좌표 받아오기 실행함수
+	public ArrayList getCoords(String station){
+		
+		return(ArrayList) sqlSession.selectList("subwaySpot.getCoords", station);
 	}
 	
 }

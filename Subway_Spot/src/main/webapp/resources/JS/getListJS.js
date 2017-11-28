@@ -117,6 +117,8 @@ function createListMarker(place, icon) {
       smallwindow.setContent(place.name);
       smallwindow.open(map, this);
     });   
+	
+
   }
 
 
@@ -165,5 +167,19 @@ function createListMarker(place, icon) {
 		});
 		map.setZoom(19);
 
-	    //smallwindow.open(map, this.mark);
+		google.maps.event.addListener(mark, 'click', function() {
+			
+			smallwindow.open(map,mark);
+		});
+	}
+	
+	function openDefault(){
+		$(".hotpl-result").hide();
+		$('.clickme').removeClass('btn_selected');
+		$(".clickme1").addClass('btn_selected');
+		$("#restaurant_result").show();
+		$("#hotel_result").hide();
+		$("#pub_result").hide();
+		$("#tourism_result").hide();
+		$("#park_result").hide();
 	}

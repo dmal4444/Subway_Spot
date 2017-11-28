@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -16,7 +16,15 @@
 <link rel = "stylesheet" type = "text/css" href = "./resources/CSS/myPathStyle.css" />
 <link rel = "stylesheet" type = "text/css" href = "./resources/CSS/TabWindow.css" />
 <link rel = "stylesheet" type = "text/css" href = "./resources/CSS/listStyle.css" />
-
+<style>
+	.sidenav {
+	  overflow-y:scroll;
+	}
+	
+	.sidenav::-webkit-scrollbar {
+	    display: none;
+	}
+</style>
 <body style="height:100%; width:100%">
 <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>

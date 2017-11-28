@@ -14,12 +14,20 @@ public class HotplaceVO {
    private double lat;
    private double lng;
    
+   
    //페이징 처리에 필요한 
    private int start;
    private int end;
+   private int nowPage;
    
    
-   public int getStart() {
+   public int getNowPage() {
+	return nowPage;
+}
+public void setNowPage(int nowPage) {
+	this.nowPage = nowPage;
+}
+public int getStart() {
 	return start;
 }
 public void setStart(int start) {

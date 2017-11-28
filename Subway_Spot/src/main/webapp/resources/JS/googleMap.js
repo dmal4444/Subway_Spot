@@ -15,6 +15,7 @@ var iw_content = document.getElementById("wrapper1");
 var smallwindow;
 var markerList=[];
 var myLocation;
+var hotmarkerList=[];
 
 
 //지도 연동 시작
@@ -65,6 +66,14 @@ function initMap(type, icon) {
 			   markerList[i].setMap(null);
 		   }
 		   markerList = [];
+		   
+			 var len = hotmarkerList.length;
+			   console.log(len+" :hotmarkerlen");
+			   for(i=0;i<len;i++){
+				   hotmarkerList[i].setMap(null);
+			   }
+			   hotmarkerList = [];
+			   
 		   //List 펼침
 		   document.getElementById("mySideList").style.width = "350px";
 		   
@@ -84,9 +93,8 @@ function initMap(type, icon) {
 		     type: ["restaurant"]
 		   }, restaurant_callback);
 			
-			
-			
-			
+			//리스트 처음에 클릭했을때 열리는 Div를 고정하기
+			openDefault();			
 					   
 	   });
 	});	 
@@ -117,11 +125,6 @@ function initMap(type, icon) {
 			   markerList[i].setMap(null);
 		   }
 		   markerList = [];
-		 /*  //tab 펼침
-		   getTabId();
-		   infowindow.setContent(iw_content);
-		   iw_content.style.display = "block";
-		   infowindow.open(map, this); */
 		   
 		   //List 펼침
 		   document.getElementById("mySideList").style.width = "350px";
@@ -139,9 +142,14 @@ function initMap(type, icon) {
 		     type: ["restaurant"]
 		   }, restaurant_callback);
 			getHotMarker(value.xpoint, value.ypoint);
-			var category="1";
-			getHotplaceInfo(value.xpoint, value.ypoint, category);
+			var category='1';
+			var nowPage=1;
 			
+			//추천정보 가져오기
+			getHotplaceInfo(value.xpoint, value.ypoint, category, nowPage);
+			
+			//리스트 처음에 클릭했을때 열리는 Div를 고정하기
+			openDefault();
 			
 			
 			

@@ -13,12 +13,9 @@ $(document).ready(function() {
         
 	//길찾기 내역 숨기기 버튼
 	$("#clearBtn").click(function(){
-		if($('.main_div').css("display")=="none"){
-			$('.main_div').show();	
-		}
-		else{
-			$('.main_div').hide();
-		}
+		$('#from').val('');
+		$('#to').val('');
+
 	});
 	
 	//최소거리와 최소환승 버튼	
@@ -29,7 +26,7 @@ $(document).ready(function() {
         firstStn = $("#from").val();
 		lastStn = $("#to").val();
 		min=1;
-		getData(firstStn, lastStn, min);
+		getCode(firstStn, lastStn, min);
 
     });
     $('#t_minTrans').click(function() {
@@ -38,7 +35,7 @@ $(document).ready(function() {
         firstStn = $("#from").val();
 		lastStn = $("#to").val();
         min=2;
-		getData(firstStn, lastStn, min);
+        getCode(firstStn, lastStn, min);
 
     });
     
@@ -64,7 +61,7 @@ $(document).ready(function() {
 		firstStn = $("#from").val();
 		lastStn = $("#to").val();
 		
-        getData(firstStn, lastStn, min);
+		getCode(firstStn, lastStn, min);
 
     });
 	 //요약버튼
@@ -74,7 +71,7 @@ $(document).ready(function() {
         
 		firstStn = $("#from").val();
 		lastStn = $("#to").val();
-        getData(firstStn, lastStn, min);
+		getCode(firstStn, lastStn, min);
         
     });
     
@@ -94,14 +91,14 @@ $(document).ready(function() {
 		firstStn = $("#from").val();
 		lastStn = $("#to").val();
 		min = 1;
-		getData(firstStn, lastStn, min);
+		
+		getCode(firstStn, lastStn, min)
+		
 	});
 });
-/*
-$(document).ready(function(){*/
 
 //ajax
-	function getData(firstStn, lastStn, min){	
+	function getData(firstStn, lastStn, min){
 		$.ajax({	
 				url:"https://api.odsay.com/api/subwayPath",
 				data:'apiKey=EP6opbh6Snt8fsH6J/Gb3dxsmCmTj3APxjd/oTeK8o0&CID=1000&SID='+firstStn+'&EID='+lastStn+'&Sopt='+min,
@@ -151,8 +148,9 @@ $(document).ready(function(){*/
 					$(".sbway_stn.dept").html(driveinfo.driveInfo[0].startName);
 					$(".sbway_line").html(firstLine.substr(0,1));	
 					$(".wayname").html(driveinfo.driveInfo[0].wayName);
-					changeImg2(firstLine.substr(0,1),"#startLine");
-					changeImg2(firstLine.substr(0,1),"#endLine");	
+					
+					$(".sbway_line_wrap_stn").children('span').remove();
+					$(".sbway_line_wrap_stn").append("<span class='sbway_line_img"+firstLine.substr(0,1)+" start'></span>");					
 
 					//환승역
 					//환승정보가 존재할때
@@ -178,11 +176,10 @@ $(document).ready(function(){*/
 						child.hide();
 						
 						for(count;count<indexes[0];count++){	
-							AppendDetail(count);
+							AppendDetail(count, firstLine);
 							$(".sbway_stn.detail"+count).html(stationinfo.stations[count].startName);
 							$(".sbway_stn.detail_line"+count).html(firstLine.substr(0,1));
 						}
-						changeImg(firstLine.substr(0,1));
 						
 						count++;
 													
@@ -193,7 +190,6 @@ $(document).ready(function(){*/
 							$(".fastTrain.first").html(exchange.exChangeInfo[0].fastTrain);
 							$(".fastDoor.first").html(exchange.exChangeInfo[0].fastDoor);
 							$(".exWalkTime").html(Math.round((exchange.exChangeInfo[0].exWalkTime)/60));
-							//$(".arrival_line").html(driveinfo.driveInfo[0].laneID);
 							
 							$(".ex_line").html(stringLen1.substr(0,1));						
 							$(".fastExch").show();
@@ -222,7 +218,6 @@ $(document).ready(function(){*/
 							$(".fastDoor.first.append"+0).html(exchange.exChangeInfo[0].fastDoor);
 							$(".exWalkTime.append"+0).html(Math.round((exchange.exChangeInfo[0].exWalkTime)/60));		
 								
-//								var exLen = exchange.exChangeInfo.length;
 								var stringLen1=exchange.exChangeInfo[0].laneName.slice(-3);
 
 							$(".ex_line.append"+0).html(stringLen1.substr(0,1));						
@@ -238,12 +233,11 @@ $(document).ready(function(){*/
 							for(i=1; i<exLen; i++){
 								//환승역이후 자세히보기
 								for(count;count<indexes[i];count++){	
-									AppendBetween(count);
+									AppendBetween(count, firstLine);
 									$(".sbway_detail_btw"+count).html(stationinfo.stations[count].startName);
 									$(".sbway_detail_line_btw"+count).html(firstLine.substr(0,1));	
 								
 								}
-								changeImg(firstLine.substr(0,1));
 								count++;
 								
 								AppendExchBetween(i);
@@ -284,13 +278,12 @@ $(document).ready(function(){*/
 					
 						for(count;count<stationinfo.stations.length;count++){
 
-						AppendDetailAfter(count);	
+						AppendDetailAfter(count, stringLen);	
 						
 							$(".sbway_stn_after"+count).html(stationinfo.stations[count].startName);
 							$(".sbway_stn_after_line"+count).html(stringLen.substr(0,1));
 						
 						}
-						changeImg(firstLine.substr(0,1));
 						count=1;
 					}
 						//환승정보가 존재하지 않을 때
@@ -310,7 +303,7 @@ $(document).ready(function(){*/
 						
 						}
 						
-						
+										
 						$(".fastExch").hide();
 						$(".sbway_transfer").hide();
 	
@@ -324,39 +317,20 @@ $(document).ready(function(){*/
 					//line 그림 바꾸기
 					var line= firstLine.substr(0,1); //출발역 호선
 					var line3=stringLen.substr(0,1);
-
 					
-					/*
-					if(line == "1" || line3 == "1"){
-						  $(".sbway_line_img").css("background","url(./resources/icons/line/line1.jpg) no-repeat");
-					   }
-					  else if(line == "2" || line3 == "2"){
-						  $(".sbway_line_img").css("background","url(./resources/icons/line/line2.jpg) no-repeat");
-					 }
-					  else if(line == "3" || line3 == "3"){
-						  $(".sbway_line_img").css("background","url(./resources/icons/line/line3.jpg) no-repeat");
-					 }
-					  else if(line == "4" || line3 == "4"){
-						  $(".sbway_line_img").css("background","url(./resources/icons/line/line4.jpg) no-repeat");
-					 }
-					  else if(line == "5" || line3 == "5"){
-						  $(".sbway_line_img").css("background","url(./resources/icons/line/line5.jpg) no-repeat");
-					 }
-					  else if(line == "6" || line3 == "6"){
-						  $(".sbway_line_img").css("background","url(./resources/icons/line/line6.jpg) no-repeat");
-					 }
-					  else if(line == "7" || line3 == "7"){
-						  $(".sbway_line_img").css("background","url(./resources/icons/line/line7.jpg) no-repeat");
-					 }
-					  else if(line == "8" || line3 == "8"){
-						  $(".sbway_line_img").css("background","url(./resources/icons/line/line8.jpg) no-repeat");
-					 }
-					  else if(line == "9" || line3 == "9"){
-						  $(".sbway_line_img").css("background","url(./resources/icons/line/line9.jpg) no-repeat");
-					 }
-					  */
+					$(".sbway_line_wrap_stn_arrival").children('span').remove();
+					$(".sbway_line_wrap_stn_arrival").append("<span class='sbway_line_img"+stringLen.substr(0,1)+" arrival'></span>");					
 					
 					
+					$("#myPath").on("click", "a", function(e) {
+						var station=$(this).html();
+						 moveToStation(station);						 
+					});
+					
+					$("#startLine").attr("src", "./resources/icons/linenumber/line"+firstLine.substr(0,1)+".jpg");
+					$("#endLine").attr("src", "./resources/icons/linenumber/line"+stringLen.substr(0,1)+".jpg");
+					
+										
 					
 				},
 				error:function(){
@@ -377,8 +351,8 @@ $(document).ready(function(){*/
 					"15:00" +
 				"</dt>" +
 				"<dd>" +
-					"<a href='#' class='sbway_stn exch append"+i+"' id='exchange_stn2'>사당</a>역(" +
-					"<a class='ex_line append"+i+"' id='ex_line2'>4</a>호선)" +
+					"<a href='#' class='sbway_stn exch append"+i+"' id='exchange_stn2'>땡땡</a>역(" +
+					"<a class='ex_line append"+i+"' id='ex_line2'>0</a>호선)" +
 				"</dd>" +
 				"<dd class='departure_info'>" +
 					"도보<a class='exWalkTime append"+i+"' id='exWalkTime1'>1</a>분<br>" +
@@ -390,10 +364,10 @@ $(document).ready(function(){*/
 		}
 	
 	//자세히보기 HTML 추가
-	function AppendDetail(i){
+	function AppendDetail(i, first){
 		$(".detail_list").append("<div class='append'><li class='sbway_departure'>" +
 				"<span class='sbway_line_wrap'>" +
-				"<span class='sbway_line_img'></span>" +
+				"<span class='sbway_line_img"+first.substr(0, 1)+"'></span>" +
 				"</span>" +
 					"<dl class='sbway_dl_list' id='list_departure'>" +
 					"<dt class='sbway_time' id='departure_time'>" +
@@ -409,10 +383,10 @@ $(document).ready(function(){*/
 	}
 	
 	//환승 1개이상일 때 자세히 보기 HTML 추가
-	function AppendDetailAfter(i){
+	function AppendDetailAfter(i, first){
 		$(".detail_list_after").append("<div class='append'><li class='sbway_departure_after'>" +
 				"<span class='sbway_line_wrap'>" +
-				"<span class='sbway_line_img'></span>" +
+				"<span class='sbway_line_img"+first.substr(0, 1)+"'></span>" +
 				"</span>" +
 					"<dl class='sbway_dl_list' id='list_departure'>" +
 					"<dt class='sbway_time' id='departure_time'>" +
@@ -428,10 +402,10 @@ $(document).ready(function(){*/
 	}
 	
 	//환승역 사이에 자세히 보기 HTML 추가
-	function AppendBetween(i){
+	function AppendBetween(i, first){
 		$(".detail_list_between").append("<div class='append'><li class='sbway_departure_btw'>" +
 				"<span class='sbway_line_wrap'>" +
-				"<span class='sbway_line_img'></span>" +
+				"<span class='sbway_line_img"+first.substr(0, 1)+"'></span>" +
 				"</span>" +
 					"<dl class='sbway_dl_list' id='list_departure'>" +
 					"<dt class='sbway_time' id='departure_time'>" +
@@ -469,75 +443,48 @@ $(document).ready(function(){*/
 				"</div>");
 	}
 	
-	function changeImg(line, start){
-		if(line == "1" ){
-			  $(start).css("background","url(./resources/icons/linenumber/line1.jpg) no-repeat");
-			  
-		   }
-		  else if(line == "2"){
-			  $(start).css("background","url(./resources/icons/linenumber/line2.jpg) no-repeat");
-			  
-		 }
-		  else if(line == "3"){
-			  $(start).css("background","url(./resources/icons/linenumber/line3.jpg) no-repeat");
-			  
-		 }
-		  else if(line == "4"){
-			  $(start).css("background","url(./resources/icons/linenumber/line4.jpg) no-repeat");
-			  
-		 }
-		  else if(line == "5"){
-			  $(start).css("background","url(./resources/icons/linenumber/line5.jpg) no-repeat");
-			  
-		 }
-		  else if(line == "6"){
-			  $(start).css("background","url(./resources/icons/linenumber/line6.jpg) no-repeat");
-			  
-		 }
-		  else if(line == "7"){
-			  $(start).css("background","url(./resources/icons/linenumber/line7.jpg) no-repeat");
-			  
-		 }
-		  else if(line == "8"){
-			  $(start).css("background","url(./resources/icons/linenumber/line8.jpg) no-repeat");
-			  
-		 }
-		  else if(line == "9"){
-			  $(start).css("background","url(./resources/icons/linenumber/line9.jpg) no-repeat");
-			  
-		 }
-
+	function moveToStation(station){
+		$.ajax({
+			url:'./findStnCoords.sub',
+			data:{station: station},
+			dataType:'json',
+			type:'POST',
+			success : function(data) {
+				console.log(data+": movdToStation");
+				console.log(data[0].xpoint+"xpoing");
+				console.log(data[0].ypoint+"tpoing");
+				map.setCenter({
+					lat: data[0].xpoint,
+					lng: data[0].ypoint
+				});
+				map.setZoom(19);
+			},
+			error:function(){
+				alert("FAIL!!!!");
+				
+			}
+		});
 	}
+
 	
-	function changeImg2(line, start){
-		if(line == "1" ){
-			  $(start).attr("src","./resources/icons/linenumber/line1.jpg");
-		   }
-		  else if(line == "2"){
-			  $(start).attr("src","./resources/icons/linenumber/line1.jpg");
-		 }
-		  else if(line == "3"){
-			  $(start).attr("src","./resources/icons/linenumber/line1.jpg");
-		 }
-		  else if(line == "4"){
-			  $(start).attr("src","./resources/icons/linenumber/line1.jpg");
-		 }
-		  else if(line == "5"){
-			  $(start).attr("src","./resources/icons/linenumber/line1.jpg");
-		 }
-		  else if(line == "6"){
-			  $(start).attr("src","./resources/icons/linenumber/line1.jpg");
-		 }
-		  else if(line == "7"){
-			  $(start).attr("src","./resources/icons/linenumber/line1.jpg");
-		 }
-		  else if(line == "8"){
-			  $(start).attr("src","./resources/icons/linenumber/line1.jpg");
-		 }
-		  else if(line == "9"){
-			  $(start).attr("src","./resources/icons/linenumber/line1.jpg");
-		 }
-
+	function getCode(firstStn, lastStn, min){
+		var fcode=firstStn.substring(0, firstStn.length- 1);
+		
+		var tcode=lastStn.substring(0, lastStn.length- 1);
+		
+		$.ajax({
+			url:'./findStnCode.sub',
+			data:{from: fcode, to: tcode},
+			dataType:'json',
+			type:'POST',
+			success : function(data) {
+				getData(data.FCODE, data.TCODE, min);
+			},
+			error:function(){
+				alert("FAIL!!!!");
+				
+			}
+			
+		
+		});
 	}
-
-

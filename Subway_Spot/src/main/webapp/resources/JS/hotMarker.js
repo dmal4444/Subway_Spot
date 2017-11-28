@@ -1,4 +1,4 @@
-function getHotMarker(valuelat, valuelng){
+function getHotMarker(valuelat, valuelng){	   
 	  $.ajax({
           url: "./Hotplace.sub",
           data: {lat: valuelat, lng: valuelng},
@@ -16,17 +16,15 @@ function getHotMarker(valuelat, valuelng){
                });
 
           	   g.event.addListener(marker, "click", function(){
+        		   
         		   //tab 펼침
+          		 
         		   getTabId();
         		   infowindow.setContent(iw_content);
-        		   console.log(iw_content);
         		   iw_content.style.display = "block";
         		   infowindow.open(map, this);
           	   });
              }
-             
-              console.log(data);
-            
           },
           error: function(xhr, statusText, err) {
              console.log(statusText);

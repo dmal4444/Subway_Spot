@@ -6,6 +6,7 @@
 	 그리고 mybatis에서 mapper 처리를 한다. 반드시!!
 -->
 <mapper namespace="subwaySpot">
+
 	<!-- 지하철 전체 마커 출력을 위한 SQL -->
 	<select id="setMarker" resultType="ssVO">
 	SELECT
@@ -67,7 +68,7 @@
 			     WHERE si_xpoint= #{lat} AND si_ypoint= #{lng}) 
 				ORDER BY hi_stname) T1) T2
 			WHERE 
-         	rno BETWEEN 1 AND 3;
+         	rno BETWEEN #{start} AND #{end};
          	
 	</select>
 	
@@ -116,5 +117,27 @@
 		
 	</select>
 	
+	<!-- 검색역 코드 구하기 질의 -->
+	<select id="getCode" resultType="int" parameterType="String">
+		SELECT 
+			si_ocode 
+		FROM 
+			subwayinfo 
+		WHERE 
+				si_name=#{from} 
+			AND si_ocode REGEXP '^-?[0-9]+$'
+	</select>
+	
+	<!-- 역 좌표 구하기 질의 -->
+	<select id="getCoords" resultType="hpVO" parameterType="String">
+		SELECT 
+			si_xpoint as xpoint,
+			si_ypoint as ypoint 
+		FROM 
+			subwayinfo 
+		WHERE 
+				si_name=#{station} 
+			AND si_ocode REGEXP '^-?[0-9]+$'
+	</select>
 	
 </mapper>

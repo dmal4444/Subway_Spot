@@ -1,3 +1,5 @@
+/*리스트위에 카테고리 버튼 누르면 발생하는 이벤트*/
+
 $(document).ready(function(){
 
   var clicked = false;
@@ -15,7 +17,8 @@ $(document).ready(function(){
 		  $("#tourism_result").hide();
 		  $("#park_result").hide();
 		  
-		  getHotplaceInfo(myLocation.lat, myLocation.lng, '1');
+		  
+		  getHotplaceInfo(myLocation.lat, myLocation.lng, '1', '1');
 
 		  
 		  console.log("restaurant 선택");
@@ -29,7 +32,7 @@ $(document).ready(function(){
 		  $("#tourism_result").hide();
 		  $("#park_result").hide();
 
-		  getHotplaceInfo(myLocation.lat, myLocation.lng, '2');
+		  getHotplaceInfo(myLocation.lat, myLocation.lng, '2', '1');
 		  
 		  console.log("hotel 선택");
 		  
@@ -42,7 +45,7 @@ $(document).ready(function(){
 		  $("#tourism_result").hide();
 		  $("#park_result").hide();
 
-		  getHotplaceInfo(myLocation.lat, myLocation.lng, '3');
+		  getHotplaceInfo(myLocation.lat, myLocation.lng, '3', '1');
 
 		  console.log("pub 선택");
 		  
@@ -55,7 +58,7 @@ $(document).ready(function(){
 		  $("#pub_result").hide();
 		  $("#park_result").hide();
 
-		  getHotplaceInfo(myLocation.lat, myLocation.lng, '4');
+		  getHotplaceInfo(myLocation.lat, myLocation.lng, '4', '1');
 	
 		  
 		  console.log("tourism 선택");
@@ -69,7 +72,7 @@ $(document).ready(function(){
 		  $("#pub_result").hide();
 		  $("#tourism_result").hide();
 
-		  getHotplaceInfo(myLocation.lat, myLocation.lng, '5');
+		  getHotplaceInfo(myLocation.lat, myLocation.lng, '5', '1');
 
 		  
 		  console.log("park 선택");
@@ -77,8 +80,7 @@ $(document).ready(function(){
 	  }
 	  
 	  $('.clickme').removeClass('btn_selected');
-	  $(this).addClass('btn_selected');
-//	  
+	  $(this).addClass('btn_selected');	  
 	  
   });
 	  	

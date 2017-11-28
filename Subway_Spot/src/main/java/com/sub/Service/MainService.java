@@ -28,18 +28,9 @@ public class MainService {
 	}
 	
 	//Hotplace의 info를 얻어오는함수
-	public ArrayList getHotInfo(HotplaceVO vo/*, PageUtil pInfo, int nowPage*/){
-		/*int start = (nowPage -1)*(pInfo.listCount)+1;*/
-		/*int end = start + (pInfo.listCount-1);*/
-		
-		int start = vo.getStart();
-		int end = vo.getEnd();
-		
-		start=1;
-		end=3;
+	public ArrayList getHotInfo(HotplaceVO vo){
 		
 		ArrayList list = ssDAO.getHotInfo(vo);
-		System.out.println(start+"start service");
 		return list;
 		
 	}
@@ -56,5 +47,15 @@ public class MainService {
 	public int getTotal(HotplaceVO vo){
 		
 		return  ssDAO.getTotal(vo); 
+	}
+	
+	//검색역 코드 구하기 함수
+	public int getCode(String from){
+		return ssDAO.getCode(from);
+	}
+	
+	//길찾기 역 코드 구하기 함수
+	public ArrayList getCoords(String station){
+		return (ArrayList)ssDAO.getCoords(station);
 	}
 }

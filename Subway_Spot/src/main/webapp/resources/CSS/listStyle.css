@@ -171,7 +171,7 @@ color: #ff8000; /*orange*/
 	text-align:left;
 	background-color:#e3efef;
 	width:310px;
-	height:86px;
+	height:100px;
 	margin-bottom:20px;
 	margin-top:20px;
 	
@@ -182,5 +182,9 @@ color: #ff8000; /*orange*/
 	width:15px;
 }
 
+.paging{
+	float:right;
+	font-size:10px;
+}
 
 	

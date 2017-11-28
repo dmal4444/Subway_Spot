@@ -6,6 +6,7 @@
 	font-size: 13px;
 	color: black;
 	margin-left:10px;
+	margin-bottom: 200px;
 }
 
 .main_div{
@@ -240,16 +241,7 @@ li{
 	width:300px;}
 	
 /*요약 전체 리스트 */
-/* .arrival_line{
-	position:absolute;
-	top: -2px;
-	left: 30px;
-    display: inline-block;
-    overflow: hidden;
-    background: 
-    line-height: 999px;
-    vertical-align: top
-} */
+
 
 .sbway_time {
     position: absolute;
@@ -295,7 +287,27 @@ span.sbway_line_wrap .sbway_line_img_transfer{
     text-align: center;
 }
 
-span.sbway_line_img{
+span.sbway_line_wrap_stn {
+	background-position: 0 0;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    overflow: hidden;
+    line-height: 999px;
+    vertical-align: top;
+}
+
+span.sbway_line_wrap_stn_arrival{
+	background-position: 0 0;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    overflow: hidden;
+    line-height: 999px;
+    vertical-align: top;
+}
+
+span.sbway_line_img1{
     background-position: 0 0;
     width: 14px;
     height: 14px;
@@ -305,6 +317,101 @@ span.sbway_line_img{
     line-height: 999px;
     vertical-align: top;
 	}
+span.sbway_line_img2{
+    background-position: 0 0;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    overflow: hidden;
+    background: url(../icons/linenumber/line2.jpg) no-repeat;
+    line-height: 999px;
+    vertical-align: top;
+	}
+	
+span.sbway_line_img3{
+    background-position: 0 0;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    overflow: hidden;
+    background: url(../icons/linenumber/line3.jpg) no-repeat;
+    line-height: 999px;
+    vertical-align: top;
+	}
+
+span.sbway_line_img4{
+    background-position: 0 0;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    overflow: hidden;
+    background: url(../icons/linenumber/line4.jpg) no-repeat;
+    line-height: 999px;
+    vertical-align: top;
+	}
+	
+span.sbway_line_img5{
+    background-position: 0 0;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    overflow: hidden;
+    background: url(../icons/linenumber/line5.jpg) no-repeat;
+    line-height: 999px;
+    vertical-align: top;
+	}	
+	
+span.sbway_line_img6{
+    background-position: 0 0;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    overflow: hidden;
+    background: url(../icons/linenumber/line6.jpg) no-repeat;
+    line-height: 999px;
+    vertical-align: top;
+	}	
+	
+span.sbway_line_img7{
+    background-position: 0 0;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    overflow: hidden;
+    background: url(../icons/linenumber/line7.jpg) no-repeat;
+    line-height: 999px;
+    vertical-align: top;
+	}	
+
+span.sbway_line_img8{
+    background-position: 0 0;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    overflow: hidden;
+    background: url(../icons/linenumber/line8.jpg) no-repeat;
+    line-height: 999px;
+    vertical-align: top;
+	}	
+	
+span.sbway_line_img9{
+    background-position: 0 0;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    overflow: hidden;
+    background: url(../icons/linenumber/line9.jpg) no-repeat;
+    line-height: 999px;
+    vertical-align: top;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 /*환승 그림*/
 span.sbway_line_img_transfer
 {
