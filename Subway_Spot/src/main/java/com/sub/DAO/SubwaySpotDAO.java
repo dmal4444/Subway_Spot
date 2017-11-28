@@ -44,4 +44,23 @@ public class SubwaySpotDAO extends SqlSessionDaoSupport {
 		return(ArrayList) sqlSession.selectList("subwaySpot.getCoords", station);
 	}
 	
+	//Tab 정보 받아오기 실행함수
+	public ArrayList getTabinfo(HashMap map){
+	      return (ArrayList) sqlSession.selectList("subwaySpot.getTabinfo", map);
+	      
+	}
+	
+	//댓글 집어넣기 실행함수
+	   public ArrayList insertReply(int num){
+	      return (ArrayList) sqlSession.selectList("subwaySpot.insertReply", num);
+	      
+	}
+	
+	//댓글 꺼내기 실행함수
+	public ArrayList displayReply(int num){
+	      return (ArrayList) sqlSession.selectList("subwaySpot.displayReply", num);
+	      
+	   }
+	
+	
 }

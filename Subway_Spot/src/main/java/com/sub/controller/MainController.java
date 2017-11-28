@@ -154,10 +154,25 @@ public class MainController {
 		 		 
 		 ArrayList list =mainS.getCoords(station);	 
 
-		 
-		 
-		 
 		 return list;
 	 }
+	 
+	//탭 윈도우 정보 얻어오는 함수
+	    @RequestMapping("/Tabinfo")
+	    @ResponseBody
+	      //   ★★★ResponseBody는 View를 필요로 하지 않는다.
+	      public  ArrayList getTabinfo(double lat, double lng){
+	       System.out.println("getHotplace 호출");
+	         HashMap map = new HashMap();
+
+	         map.put("lat", lat);
+	         map.put("lng", lng);
+	         System.out.println(map);
+	         ArrayList hotlist = mainS.getTabinfo(map);
+	         
+	         return hotlist;
+	      }
+	 
+	 
 
 }

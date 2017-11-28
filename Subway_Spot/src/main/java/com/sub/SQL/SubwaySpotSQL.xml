@@ -140,4 +140,46 @@
 			AND si_ocode REGEXP '^-?[0-9]+$'
 	</select>
 	
+	<!-- TabWindow에 들어갈 핫플레이스 info -->
+   <select id="getTabinfo" resultType="hpVO" parameterType="hMap">
+   SELECT
+      distinct h.hi_stname AS station,
+      c.hic_iconpath AS category,
+      h.hi_Name AS name,
+      h.hi_EName AS ename,
+      h.hi_Address AS address,
+      h.hi_info AS info,
+      h.hi_image AS imagepath
+   FROM
+      hotplaceinfo h JOIN hotplaceicon c
+   on
+      h.hi_Category = c.hic_code
+   WHERE
+      hi_xpoint= #{lat} AND hi_ypoint= Round(#{lng},6);
+   </select>
+   
+   <!-- 댓글 게시판 질의문 -->
+   <insert id="insertReply" parameterType="int">      
+      INSERT 
+      INTO 
+         hotreply
+      VALUES
+         (NULL, #{body}, #{nick}, #{pass}, Current_TIMESTAMP);         
+   </insert>
+   
+   <select id="displayReply" parameterType="int" resultType="rVO">
+      SELECT
+         distinct hr_replycode AS code,
+         hr_body AS body,
+         hr_nick   AS nick,
+         hr_pass   AS pass,
+         hr_date AS date
+      FROM
+         hotreply r JOIN hotplaceinfo i
+      ON
+         r.hr_placecode = i.hi_Code
+      ORDER BY 
+         date DESC;   
+   </select>
+	
 </mapper>

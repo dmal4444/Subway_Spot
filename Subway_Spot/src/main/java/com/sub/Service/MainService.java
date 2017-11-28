@@ -27,7 +27,12 @@ public class MainService {
 		return ssDAO.setHotMarker();		
 	}
 	
-	//Hotplace의 info를 얻어오는함수
+	/**
+	 * Hotplace의 info를 얻어오는함수
+	 * @param vo
+	 * @return
+	 */
+
 	public ArrayList getHotInfo(HotplaceVO vo){
 		
 		ArrayList list = ssDAO.getHotInfo(vo);
@@ -58,4 +63,24 @@ public class MainService {
 	public ArrayList getCoords(String station){
 		return (ArrayList)ssDAO.getCoords(station);
 	}
+	
+	//Hotplace Click시 탭 윈도우에 보여줄 정보 입력함수
+	   public ArrayList getTabinfo(HashMap map){
+	      ArrayList list = ssDAO.getTabinfo(map);
+	      
+	      return list;
+	 }   
+	   
+	   public ArrayList insertReply(int num){
+	      ArrayList list = ssDAO.insertReply(num);
+	      
+	      return list;
+	      
+	   }   
+	   public ArrayList displayReply(int num){
+	      ArrayList list = ssDAO.displayReply(num);
+	      
+	      return list;
+	      
+	   }   
 }
