@@ -52,9 +52,31 @@ public class MainService {
 		
 	}
 	
+	//Hotplace Click시 탭 윈도우에 보여줄 정보 입력함수
+	public ArrayList getTabinfo(HashMap map){
+		ArrayList list = ssDAO.getTabinfo(map);
+		
+		return list;
+		
+	}	
+	
 	//총 페이지 개수를 얻어오는 함수
 	public int getTotal(HotplaceVO vo){
 		
 		return  ssDAO.getTotal(vo); 
 	}
+	
+	public ArrayList insertReply(int num){
+		ArrayList list = ssDAO.insertReply(num);
+		
+		return list;
+		
+	}	
+	public ArrayList displayReply(int num){
+		ArrayList list = ssDAO.displayReply(num);
+		
+		return list;
+		
+	}	
+	
 }

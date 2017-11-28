@@ -35,5 +35,17 @@ public class SubwaySpotDAO extends SqlSessionDaoSupport {
 		return (ArrayList) sqlSession.selectList("subwaySpot.getHotMarker", map);
 		
 	}
+	public ArrayList getTabinfo(HashMap map){
+		return (ArrayList) sqlSession.selectList("subwaySpot.getTabinfo", map);
+		
+	}
+	public ArrayList insertReply(int num){
+		return (ArrayList) sqlSession.selectList("subwaySpot.insertReply", num);
+		
+	}	
+	public ArrayList displayReply(int num){
+		return (ArrayList) sqlSession.selectList("subwaySpot.displayReply", num);
+		
+	}
 	
 }

@@ -10,26 +10,30 @@ function TabCard(tabid, cardid){
 	 this.cardid = cardid;
 	 this.handleTabs = handleTabs;
 	 this.handleTabs(1);
-
 }
 
 function handleTabs(num){
-	var me = this;
+	  var me = this;
+	  
 	  var tabsdiv = document.getElementById(this.tabid);
-	  this.newcard = this.cardid + num;
+	  console.log("this.cardid : " + this.cardid);
+	  console.log(this);
+	  this.newcard = this.cardid + num;  
 	  if (!this.card) this.card = this.newcard;
 	  // Switch cards
+	  console.log("this.cardid : " + this.cardid + ", newcardid : " + this.newcard + ", newcardid : " + this.newcardid);
 	  document.getElementById(this.card).style.display = "none";
 	  document.getElementById(this.newcard).style.display = "block";
 
 	  // Store active card
-	  this.card = this.newcard;
+//	  this.card = this.newcard;
 
 	  // Handle tab events
 	  for (var i = 0, tab; tab = tabsdiv.getElementsByTagName("span")[i]; i++) {
 
 	    // Make clicked tab active and
 	    // unregister event listener for active tab
+		  console.log("1111 = " + tab.getAttribute("data-name"));
 	    if (tab.getAttribute("data-name")*1 == num) {
 	     tab.className = "activeTab";
 	     tab.onmouseover = null;
@@ -44,15 +48,15 @@ function handleTabs(num){
 
 	     tab.onmouseover = function() {
 	      this.className = "hoverTab";
-	     };
+	     }
 
 	     tab.onmouseout = function() {
 	      this.className = "passiveTab";
-	     };
+	     }
 
 	     tab.onclick = function() {
 	      // 'this' refers to the tab here
-	      var tabnum = this.getAttribute("data-name")*1;
+	      var tabnum = this.getAttribute("data-name");
 	      var label = this.firstChild.nodeValue;
 	      me.handleTabs(tabnum);
 	      // Displays street view in tab #2 
@@ -73,7 +77,7 @@ function handleTabs(num){
 	        //else if (player) player.pauseVideo();
 	      }
 	      return false;
-	     };
+	     }
 	    }
 	  }
 }

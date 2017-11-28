@@ -24,7 +24,6 @@
 	var hvoList = ${HLIST};
 </script>
 
-<script type="text/javascript" src="http://www.html5andcss3.org/js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="./resources/JS/mainJS.js"></script>
 <script type="text/javascript" src="./resources/JS/pathBtn.js"></script>
 <script type="text/javascript" src="./resources/JS/googleMap.js"></script>

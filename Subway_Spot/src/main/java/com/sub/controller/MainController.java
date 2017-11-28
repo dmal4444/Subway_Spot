@@ -106,8 +106,9 @@ public class MainController {
 	
 	//핫플레이스 마커 얻어오는 함수
 	 @RequestMapping("/Hotplace")
+	 @ResponseBody
 	   //   ★★★ResponseBody는 View를 필요로 하지 않는다.
-	   public @ResponseBody ArrayList getHotplace(double lat, double lng){
+	   public  ArrayList getHotplace(double lat, double lng){
 		 System.out.println("getHotplace 호출");
 	      HashMap map = new HashMap();
 
@@ -115,6 +116,22 @@ public class MainController {
 	      map.put("lng", lng);
 	      System.out.println(map);
 	      ArrayList hotlist = mainS.getHotMarker(map);
+	      
+	      return hotlist;
+	   }
+	 
+		//탭 윈도우 정보 얻어오는 함수
+	 @RequestMapping("/Tabinfo")
+	 @ResponseBody
+	   //   ★★★ResponseBody는 View를 필요로 하지 않는다.
+	   public  ArrayList getTabinfo(double lat, double lng){
+		 System.out.println("getHotplace 호출");
+	      HashMap map = new HashMap();
+
+	      map.put("lat", lat);
+	      map.put("lng", lng);
+	      System.out.println(map);
+	      ArrayList hotlist = mainS.getTabinfo(map);
 	      
 	      return hotlist;
 	   }
