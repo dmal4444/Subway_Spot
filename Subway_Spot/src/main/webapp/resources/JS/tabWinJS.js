@@ -19,7 +19,8 @@ function handleTabs(num){
 	  this.newcard = this.cardid + num;
 	  if (!this.card) this.card = this.newcard;
 	  // Switch cards
-	  document.getElementById(this.card).style.display = "none";
+	  var hi=document.getElementById(this.card).style.display = "none";
+	  console.log(hi+":  handleTabs");
 	  document.getElementById(this.newcard).style.display = "block";
 
 	  // Store active card
@@ -57,8 +58,30 @@ function handleTabs(num){
 	      me.handleTabs(tabnum);
 	      // Displays street view in tab #2 
 	      if (tabnum == 2) {
-	    	  //viewStreet(me.card, me.point);
-	      // Display either mini map or video in tab #3
+	    	  $.ajax({
+	                 url: "ReplyList.sub",
+	                 data: {num : hotplacecode.value},
+	                 type: "POST",
+	                 dataType: "json",
+	                 success: function(data) {
+	                        $(".hotinfoimage").show();
+	                    var replylist = data;
+	                        var replycard = document.getElementById('replycard');
+	                        $(replycard).empty();
+	                        replylist.forEach(function(value, index){ 
+	                        $(replycard).append(                               
+	                           "<div class='replycard'>" +
+	                           "<p class='nick'><b>&nbsp;&nbsp;"+value.nick+"</b></p>" +
+	                           "<p class='body'>&nbsp;&nbsp;&nbsp;"+value.body+"</p>" +
+	                           "<p class='date'><i><b>"+value.date+",</b> "+value.time+"&nbsp;&nbsp;&nbsp;&nbsp;</i></p>" +
+	                           "</div>" 
+	                        )   
+	                        });
+	                    },
+	                 error(xhr, statusText, error){
+	                    console.log(statusText);
+	                 }
+	             });
 	      }
 	      else if (label == "Mini Map"){
 	         //seeMiniMap(me.card, me.point);

@@ -17,9 +17,15 @@
 		<typeAlias alias="String"	type="java.lang.String" />
 		<typeAlias alias="hMap"		type="java.util.HashMap" />
 		<typeAlias alias="rVO"      type="com.sub.VO.ReplyVO" />
+		<typeAlias alias="aVO"      type="com.sub.VO.AdsVO" />
+		<typeAlias alias="sVO"      type="com.sub.VO.StationVO" />
+		
 		
 	</typeAliases>
 	<mappers>
-		<mapper resource="/com/sub/SQL/SubwaySpotSQL.xml"/>	  		
+		<mapper resource="/com/sub/SQL/SubwaySpotSQL.xml"/>
+		<mapper resource="/com/sub/SQL/AdsSQL.xml"/>	  		
+			  		
 	</mappers>
+	
 </configuration>

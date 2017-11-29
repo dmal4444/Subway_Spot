@@ -1,9 +1,9 @@
  <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
- 
+
   <div id="myPath" style="width:250px;">
   	<img src="resources/icons/train.png">&nbsp&nbsp<a style="color:darkgrey; font-weight:bold; font-size:28px;">SUBWAY SPOT</a>
   	<p></p>
-  	<form method="POST" id="stn_frm" action="">
+  	<form method="POST" id="stn_frm" action="">  		
 		<div id="from_to">
 	 		<!--  출발역 -->
 			FROM <br>
@@ -449,6 +449,9 @@
 		</div>
 		</div>
 	</div>
+	</div>
+	<div>
+		<a href="./ads/adsList.sub" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>광고 요청 게시판</a>
 	</div>
 </div>
 

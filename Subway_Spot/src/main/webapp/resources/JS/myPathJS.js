@@ -92,7 +92,14 @@ $(document).ready(function() {
 		lastStn = $("#to").val();
 		min = 1;
 		
-		getCode(firstStn, lastStn, min)
+		getCode(firstStn, lastStn, min);
+		map.setCenter({
+			lat: 37.5608381,
+			lng: 126.9859019
+		});
+		map.setZoom(14);
+		
+		createMarkers();
 		
 	});
 });
@@ -101,11 +108,12 @@ $(document).ready(function() {
 	function getData(firstStn, lastStn, min){
 		$.ajax({	
 				url:"https://api.odsay.com/api/subwayPath",
-				data:'apiKey=EP6opbh6Snt8fsH6J/Gb3dxsmCmTj3APxjd/oTeK8o0&CID=1000&SID='+firstStn+'&EID='+lastStn+'&Sopt='+min,
+				data:'apiKey=EP6opbh6Snt8fsH6J/Gb3dxsmCmTj3APxjd/oTeK8o0&lang=0&CID=1000&SID='+firstStn+'&EID='+lastStn+'&Sopt='+min,
                 contentType: "application/x-www-form-urlencoded; charset=UTF-8",  
                 dataType:'json',
 				type:'POST',
 				success:function(data){
+										
 													
 					$('.main_div').show();	
 					if($('.main_div').css("display")=="none"){
@@ -176,6 +184,7 @@ $(document).ready(function() {
 						child.hide();
 						
 						for(count;count<indexes[0];count++){	
+							console.log(firstLine+" :firstLine");
 							AppendDetail(count, firstLine);
 							$(".sbway_stn.detail"+count).html(stationinfo.stations[count].startName);
 							$(".sbway_stn.detail_line"+count).html(firstLine.substr(0,1));
@@ -295,7 +304,7 @@ $(document).ready(function() {
 							
 						for(i=1; i<stationinfo.stations.length;i++){
 							
-							AppendDetail(i);
+							AppendDetail(i, firstLine);
 							
 
 							$(".sbway_stn.detail"+i).html(stationinfo.stations[i].startName);
@@ -365,6 +374,7 @@ $(document).ready(function() {
 	
 	//자세히보기 HTML 추가
 	function AppendDetail(i, first){
+		console.log(first+" :first");
 		$(".detail_list").append("<div class='append'><li class='sbway_departure'>" +
 				"<span class='sbway_line_wrap'>" +
 				"<span class='sbway_line_img"+first.substr(0, 1)+"'></span>" +
@@ -450,9 +460,6 @@ $(document).ready(function() {
 			dataType:'json',
 			type:'POST',
 			success : function(data) {
-				console.log(data+": movdToStation");
-				console.log(data[0].xpoint+"xpoing");
-				console.log(data[0].ypoint+"tpoing");
 				map.setCenter({
 					lat: data[0].xpoint,
 					lng: data[0].ypoint
@@ -468,8 +475,7 @@ $(document).ready(function() {
 
 	
 	function getCode(firstStn, lastStn, min){
-		var fcode=firstStn.substring(0, firstStn.length- 1);
-		
+		var fcode=firstStn.substring(0, firstStn.length- 1);		
 		var tcode=lastStn.substring(0, lastStn.length- 1);
 		
 		$.ajax({
@@ -478,7 +484,15 @@ $(document).ready(function() {
 			dataType:'json',
 			type:'POST',
 			success : function(data) {
-				getData(data.FCODE, data.TCODE, min);
+				getData(data.FCODE, data.TCODE, min);				
+				var fxpoint=data.FXPOINT;
+				var fypoint=data.FYPOINT;
+				var txpoint=data.TXPOINT;
+				var typoint=data.TYPOINT;
+								
+				createMarkers(fxpoint, fypoint, txpoint, typoint, fcode, tcode);
+				
+				
 			},
 			error:function(){
 				alert("FAIL!!!!");
@@ -487,4 +501,28 @@ $(document).ready(function() {
 			
 		
 		});
+	}
+	
+	function createMarkers(fxpoint, fypoint, txpoint, typoint, fname, tname){
+		var len = markerList.length;
+		   for(i=0;i<len;i++){
+			   markerList[i].setMap(null);
+		   }
+		   markerList = [];
+
+		var marker1 = new google.maps.Marker({   
+            position: new google.maps.LatLng(fxpoint, fypoint),
+            icon: './resources/icons/category/pub_list_icon.png',
+            map: map,
+            clickable: true, draggable: false,
+            title: fname+'역'
+           });
+		
+		var marker2 = new google.maps.Marker({   
+            position: new google.maps.LatLng(txpoint, typoint),
+            icon: './resources/icons/category/hotel_list_icon.png',
+            map: map,
+            clickable: true, draggable: false,
+            title: tname+'역'
+           });
 	}

@@ -158,8 +158,6 @@ function getHotplaceInfo2(valuelat, valuelng, category, nowPage){
 					appendHotPlaces(hotPlaces, info);
 				}
 			}
-			
-			//nowPage++; // 나중에 삭제 예정인 변수
 		},
 		error:function(xhr, status, error) {
 			 console.log(xhr.responseText);
@@ -167,6 +165,3 @@ function getHotplaceInfo2(valuelat, valuelng, category, nowPage){
 		}
 	});
 }
-
-//이전/다음 단추는 그냥 만들어 놓은채 클릭하면 
-//컨트롤러에서 단추를 눌러서 nowPage가 1이면 아무것도 실행안하고 1이 아니면 실행되게 

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AdsSQL">
+
+	<sql id="selectField">
+		NUMBER AS oriNo,
+		TITLE AS title,
+		BODY AS body,
+		FILEPATH AS saveName,
+		PW AS pw
+	</sql>
+
+
+	<!-- 목록 보여주기 질의 -->
+	<select id="getAdsList" resultType="aVO" parameterType="hMap">
+	
+		SELECT 
+        	T2.* 
+      	FROM
+			(SELECT
+				@rownum:=@rownum+1 AS rno,
+				T1.*
+			FROM (SELECT @rownum:= 0) R,
+			    (SELECT
+					<include refid="selectField" />
+				FROM
+					ADSTABLE
+				) T1
+				ORDER BY T1.ORINO DESC) T2
+			WHERE 
+         		rno BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 글쓰기 실행 질의 -->
+	<insert id="getAdsWrite" parameterType="aVO">
+		INSERT
+		INTO
+			ADSTABLE
+		VALUES
+			(null, #{title}, #{body}, #{saveName}, #{pw})
+			
+	</insert>
+	
+	<!-- 상세보기 질의/수정하기폼 질의 -->
+	<select id="getAdsDetail" parameterType="int" resultType="aVO">
+		SELECT
+			<include refid="selectField" />
+		FROM
+			ADSTABLE
+		WHERE
+			NUMBER = #{oriNo}
+	</select>
+	
+	<!-- 전체 개수 구하기 질의 -->
+	<select id="getTotal" resultType="int">
+		SELECT
+			COUNT(*) AS count
+		FROM
+			ADSTABLE
+	</select>
+	
+	<!-- 수정하기 실행 질의 -->
+	<update id="getAdsModify" parameterType="aVO">
+		UPDATE 
+			ADSTABLE
+		SET
+			TITLE=#{title},
+			BODY=#{body},
+			FILEPATH=#{saveName}
+		WHERE
+				PW=#{pw}
+			AND NUMBER=#{oriNo}
+		
+	</update>
+	
+	<!-- 삭제하기 실행 질의 -->
+	<delete id="deleteAds" parameterType="hMap">
+		DELETE 
+		FROM
+			ADSTABLE
+		WHERE
+				PW=#{pw}
+			AND NUMBER=#{oriNo}
+			
+	</delete>
+	
+
+
+	
+</mapper>

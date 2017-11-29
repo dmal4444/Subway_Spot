@@ -167,10 +167,8 @@ function createListMarker(place, icon) {
 		});
 		map.setZoom(19);
 
-		google.maps.event.addListener(mark, 'click', function() {
-			
-			smallwindow.open(map,mark);
-		});
+		smallwindow.open(map,mark);
+
 	}
 	
 	function openDefault(){

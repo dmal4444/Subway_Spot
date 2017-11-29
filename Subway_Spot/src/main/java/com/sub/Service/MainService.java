@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.sub.DAO.SubwaySpotDAO;
 import com.sub.UTIL.PageUtil;
 import com.sub.VO.HotplaceVO;
+import com.sub.VO.ReplyVO;
+import com.sub.VO.StationVO;
 
 public class MainService {
 
@@ -55,8 +57,8 @@ public class MainService {
 	}
 	
 	//검색역 코드 구하기 함수
-	public int getCode(String from){
-		return ssDAO.getCode(from);
+	public StationVO getCode(String from){
+		return (StationVO) ssDAO.getCode(from);
 	}
 	
 	//길찾기 역 코드 구하기 함수
@@ -65,22 +67,23 @@ public class MainService {
 	}
 	
 	//Hotplace Click시 탭 윈도우에 보여줄 정보 입력함수
-	   public ArrayList getTabinfo(HashMap map){
+	 public ArrayList getTabinfo(HashMap map){
 	      ArrayList list = ssDAO.getTabinfo(map);
 	      
 	      return list;
-	 }   
+	 }
+	      
+	 public void insertReply(ReplyVO vo){
+	     ssDAO.insertReply(vo);        
+	       }   
+	       
+	       public ArrayList displayReply(int num){
+	          ArrayList list = ssDAO.displayReply(num);
+	          
+	          return list;
+	          
+	       }      
 	   
-	   public ArrayList insertReply(int num){
-	      ArrayList list = ssDAO.insertReply(num);
-	      
-	      return list;
-	      
-	   }   
-	   public ArrayList displayReply(int num){
-	      ArrayList list = ssDAO.displayReply(num);
-	      
-	      return list;
-	      
-	   }   
+	
+	  
 }

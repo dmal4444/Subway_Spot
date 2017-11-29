@@ -8,6 +8,8 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sub.VO.HotplaceVO;
+import com.sub.VO.ReplyVO;
+import com.sub.VO.StationVO;
 
 public class SubwaySpotDAO extends SqlSessionDaoSupport {
 	//	세션(컨넥션) 처리를 위해서 이미 <bean> 처리된 SqlSession을 자동 주입 시키자.
@@ -34,8 +36,8 @@ public class SubwaySpotDAO extends SqlSessionDaoSupport {
 	}
 	
 	//역코드 받아오기 실행 함수
-	public int getCode(String from){
-		return (Integer) sqlSession.selectOne("subwaySpot.getCode", from);
+	public StationVO getCode(String from){
+		return (StationVO) sqlSession.selectOne("subwaySpot.getCode", from);
 	}
 	
 	//역좌표 받아오기 실행함수
@@ -51,16 +53,15 @@ public class SubwaySpotDAO extends SqlSessionDaoSupport {
 	}
 	
 	//댓글 집어넣기 실행함수
-	   public ArrayList insertReply(int num){
-	      return (ArrayList) sqlSession.selectList("subwaySpot.insertReply", num);
-	      
-	}
-	
-	//댓글 꺼내기 실행함수
-	public ArrayList displayReply(int num){
-	      return (ArrayList) sqlSession.selectList("subwaySpot.displayReply", num);
-	      
-	   }
+    public void insertReply(ReplyVO vo){
+       sqlSession.insert ("subwaySpot.insertReply", vo);         
+ }
+ 
+    //댓글 꺼내기 실행함수
+    public ArrayList displayReply(int num){
+       return (ArrayList) sqlSession.selectList("subwaySpot.displayReply", num);
+       
+    }
 	
 	
 }

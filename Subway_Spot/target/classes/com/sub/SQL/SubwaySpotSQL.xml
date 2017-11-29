@@ -118,9 +118,11 @@
 	</select>
 	
 	<!-- 검색역 코드 구하기 질의 -->
-	<select id="getCode" resultType="int" parameterType="String">
+	<select id="getCode" resultType="sVO" parameterType="String">
 		SELECT 
-			si_ocode 
+			si_ocode as code,
+			si_xpoint as xpoint,
+			si_ypoint as ypoint 
 		FROM 
 			subwayinfo 
 		WHERE 
@@ -158,26 +160,27 @@
       hi_xpoint= #{lat} AND hi_ypoint= Round(#{lng},6);
    </select>
    
-   <!-- 댓글 게시판 질의문 -->
-   <insert id="insertReply" parameterType="int">      
+  <!-- 댓글 게시판 질의문 -->
+   <insert id="insertReply" parameterType="rVO">      
       INSERT 
       INTO 
          hotreply
       VALUES
-         (NULL, #{body}, #{nick}, #{pass}, Current_TIMESTAMP);         
+         (NULL, #{hotplacecode}, #{body}, #{nick}, #{pw}, Current_TIMESTAMP);         
    </insert>
    
    <select id="displayReply" parameterType="int" resultType="rVO">
       SELECT
          distinct hr_replycode AS code,
-         hr_body AS body,
-         hr_nick   AS nick,
-         hr_pass   AS pass,
-         hr_date AS date
+         hr_body   AS body,
+         hr_nick     AS nick,
+         hr_pass     AS pass,
+         hr_date    AS date,
+         hr_date   AS time
       FROM
          hotreply r JOIN hotplaceinfo i
       ON
-         r.hr_placecode = i.hi_Code
+         r.hr_placecode = #{hotplacecode}
       ORDER BY 
          date DESC;   
    </select>

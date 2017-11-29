@@ -26,10 +26,6 @@ function initMap(type, icon) {
        mapTypeId: 'roadmap',
        disableDefaultUI: true //지도 스타일변경 버튼 안만들기
    });
-   //tab기능 실행
-  
-   infowindow = new google.maps.InfoWindow();
-   var tabs = new TabCard("firstTabs", "firstCard");
 
    var styles = {
    default: null,
@@ -65,7 +61,7 @@ function initMap(type, icon) {
 		   for(i=0;i<len;i++){
 			   markerList[i].setMap(null);
 		   }
-		   markerList = [];
+		 //  markerList = [];
 		   
 			 var len = hotmarkerList.length;
 			   console.log(len+" :hotmarkerlen");

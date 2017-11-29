@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sub.Service.MainService;
 import com.sub.UTIL.PageUtil;
 import com.sub.VO.HotplaceVO;
+import com.sub.VO.ReplyVO;
 import com.sub.VO.StationVO;
 import com.sub.VO.SubwaySpotVO;
 
@@ -90,7 +91,6 @@ public class MainController {
 	@RequestMapping("/hotPlaceList")
 	@ResponseBody
 	public HashMap getHotPlaceList(HotplaceVO vo){
-		System.out.println("List 호출");
 		//파라메터 받고
 		//DB에서 불러오고
 		int nowPage=vo.getNowPage();
@@ -137,12 +137,16 @@ public class MainController {
 	 public HashMap getStnCode(@RequestParam(value=("from")) String from, @RequestParam(value=("to")) String to){
 		//파라메터 받고(vo로 받을 예정)
 		//DB에서 꺼낸다.
-		 int stnCode_from=mainS.getCode(from);
-		 int stnCode_to=mainS.getCode(to);
+		 StationVO Fvo=mainS.getCode(from);
+		 StationVO Tvo=mainS.getCode(to);
 
 		 HashMap map = new HashMap();
-		 map.put("FCODE", stnCode_from);
-		 map.put("TCODE", stnCode_to);
+		 map.put("FCODE", Fvo.getCode());
+		 map.put("TCODE", Tvo.getCode());
+		 map.put("FXPOINT", Fvo.getXpoint());
+		 map.put("FYPOINT", Fvo.getYpoint());
+		 map.put("TXPOINT", Tvo.getXpoint());
+		 map.put("TYPOINT", Tvo.getYpoint());
 
 		 return map;
 	 }
@@ -162,17 +166,33 @@ public class MainController {
 	    @ResponseBody
 	      //   ★★★ResponseBody는 View를 필요로 하지 않는다.
 	      public  ArrayList getTabinfo(double lat, double lng){
-	       System.out.println("getHotplace 호출");
 	         HashMap map = new HashMap();
 
 	         map.put("lat", lat);
 	         map.put("lng", lng);
-	         System.out.println(map);
 	         ArrayList hotlist = mainS.getTabinfo(map);
 	         
 	         return hotlist;
 	      }
 	 
-	 
+	   // reply 등록 함수
+	   @RequestMapping("/ReplyProc")
+	   @ResponseBody
+	   public String replyProc(ReplyVO rVO) {
+	      mainS.insertReply(rVO);	
+	      
+	      
+	      return "({result: 1})";
+	   }
+	   
+	
+	   @RequestMapping("/ReplyList")
+	   @ResponseBody
+	   public ArrayList displayReply(int num) {
+	      System.out.println("displayReply = " + num);
+	      ArrayList replylist = mainS.displayReply(num);
+	      return  replylist ;
+	   }
+	    
 
 }
