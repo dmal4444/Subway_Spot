@@ -12,6 +12,11 @@
    height:310px;
    margin: 6px;
    display: none;
+   overflow-y:scroll;
+ }
+ 
+ div.wrapper::-webkit-scrollbar {
+ 	display : none;
  }
 
  div.tabs { /* Tabs container */
@@ -84,9 +89,13 @@ iframe#myvideo {
    width:317px;
    height:310px;
    padding: 4px 5px 0 0;
-   overflow-y:auto;
+   overflow-y:scroll;
    display:none;
 }
+
+ div.cardContent::-webkit-scrollbar {
+ 	display : none;
+ }
 
  b { /* Use !important to overwrite API injections in infowindows */
   font-weight:bold !important;

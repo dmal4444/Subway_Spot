@@ -146,6 +146,7 @@
    <select id="getTabinfo" resultType="hpVO" parameterType="hMap">
    SELECT
       distinct h.hi_stname AS station,
+      h.hi_code as code,
       c.hic_iconpath AS category,
       h.hi_Name AS name,
       h.hi_EName AS ename,

@@ -2,6 +2,7 @@ package com.sub.VO;
 
 public class HotplaceVO {
    
+	private int code;
    private String station;
    private String category;
    private String name;
@@ -21,7 +22,15 @@ public class HotplaceVO {
    private int nowPage;
    
    
-   public int getNowPage() {
+   
+   
+   public int getCode() {
+	return code;
+}
+public void setCode(int code) {
+	this.code = code;
+}
+public int getNowPage() {
 	return nowPage;
 }
 public void setNowPage(int nowPage) {

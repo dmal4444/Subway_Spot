@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel = "stylesheet" type = "text/css" href = "./resources/CSS/TabWindow.css" />
 <style>
 .replycard {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -29,13 +30,16 @@ $(document).ready(function(){
    $(document).on("click", "#sBtn", function(){
       //e.preventDefault();
       var params = $("#wfrm").serialize();
-      console.log("params : " + params)
+      var hotplacecode=$("#hotplacecode").val();
       $.ajax({
          url:"ReplyProc.sub",
          type: "post",
          data: params,
          success: function(result, statusText, xhr) {
-            location.href = 'ReplyList.sub'
+        	 getReply();
+        	 $("#nick").val('');
+        	 $("#pw").val('');
+        	 $("#body").val('');
          },
          error: function(xhr, statusText, error) {
             console.log(statusText);
@@ -48,8 +52,8 @@ $(document).ready(function(){
 <!-- Tabs of first marker -->
    <div id="wrapper1" class="wrapper">
    <div id="firstTabs" class="tabs">   
-      <span data-name="1">HotSpot Information</span>
-      <span data-name="2">Reply</span>
+      <span id="hotinfotab" class="activeTab" data-name="1">HotSpot Information</span>
+      <span id="hotreplytab" class="passiveTab" data-name="2">Reply</span>
    </div>
    <div id="firstCard1" class="cardContent">
       <div class="sethotinfo" id="sethotinfo"> 

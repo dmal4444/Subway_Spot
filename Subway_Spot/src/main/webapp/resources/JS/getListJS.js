@@ -23,7 +23,6 @@ function typeView(type, typeCallback) {
 
 //레스토랑 결과 호출
 function restaurant_callback(results, status) {	
-	console.log("restaurant_callback 호출됨");
 	var icon="restaurant";
 	if (status === google.maps.places.PlacesServiceStatus.OK) {
     	
@@ -31,14 +30,15 @@ function restaurant_callback(results, status) {
     	$(".section").remove();	
       for (var i = 0; i < results.length; i++) {
         createListMarker(results[i], icon);
-        appendPlacesList(placesList, results[i]);
+        appendPlacesList(placesList, results[i], i);
+	    
+
       }
     }
  }
 
 //호텔 결과 호출
 function hotel_callback(results, status) {
-	console.log("hotel_callback 호출됨");
 	var icon="hotel";
 
     if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -47,14 +47,13 @@ function hotel_callback(results, status) {
     	$(".section").remove();	
       for (var i = 0; i < results.length; i++) {
         createListMarker(results[i], icon);
-        appendPlacesList(placesList, results[i]);
+        appendPlacesList(placesList, results[i], i);
       }
     }
  }
 
 //펍 결과 호출
 function pub_callback(results, status) {
-	console.log("pub_callback 호출됨");
 	var icon="pub";
     if (status === google.maps.places.PlacesServiceStatus.OK) {
     	
@@ -62,14 +61,13 @@ function pub_callback(results, status) {
     	$(".section").remove();	
       for (var i = 0; i < results.length; i++) {
         createListMarker(results[i], icon);
-        appendPlacesList(placesList, results[i]);
+        appendPlacesList(placesList, results[i], i);
       }
     }
  }
 
 //투어리즘 결과 호출
 function tourism_callback(results, status) {
-	console.log("tourism_callback 호출됨");
 	var icon="tourism";
 
     if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -78,14 +76,13 @@ function tourism_callback(results, status) {
     	$(".section").remove();	
       for (var i = 0; i < results.length; i++) {
         createListMarker(results[i], icon);
-        appendPlacesList(placesList, results[i]);
+        appendPlacesList(placesList, results[i], i);
       }
     }
  }
 
 //공원 결과 호출
 function park_callback(results, status) {
-	console.log("park_callback 호출됨");
 	var icon="park";
 
     if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -94,7 +91,7 @@ function park_callback(results, status) {
     	$(".section").remove();	
       for (var i = 0; i < results.length; i++) {
         createListMarker(results[i], icon);
-        appendPlacesList(placesList, results[i]);
+        appendPlacesList(placesList, results[i], markerList[i]);
       }
     }
  }
@@ -103,26 +100,23 @@ var mark;
 
 function createListMarker(place, icon) {
      placeLoc = place.geometry.location;
-    //var placesList=document.getElementById('restaurant_result');
 	
     mark =markerList.push(new google.maps.Marker({
     	map: map,
     	position: place.geometry.location,
     	title:place.name,
     	icon:'./resources/icons/category/'+icon+'_marker_icon.png'
-	  //icon:photos[0].getUrl({'maxWidth':35, 'maxHeight':35})
     }));
 
     google.maps.event.addListener(markerList[markerList.length-1], 'click', function() {
       smallwindow.setContent(place.name);
       smallwindow.open(map, this);
-    });   
-	
+    });	
 
   }
 
 
-	function appendPlacesList(placesList, place){
+	function appendPlacesList(placesList, place, marker){
 		var i=0;
 		var photos = place.photos;
 		if(!photos){
@@ -156,8 +150,12 @@ function createListMarker(place, icon) {
         			"</div>"+
         		"</div>"+
         		"<span><hr></span>" +
-        	"</div>"   	
-        		;
+        	"</div>";
+			
+		google.maps.event.trigger(mark[1], 'click');
+			
+		
+        		
  	}
 	
 	function moveTo(newlat, newlng){
@@ -167,8 +165,19 @@ function createListMarker(place, icon) {
 		});
 		map.setZoom(19);
 
-		smallwindow.open(map,mark);
 
+	}
+	
+	function openSmall(){
+		
+		var mark=markerList[markerList.length-1];
+		
+		google.maps.event.addListener(mark, 'click', function() {
+			   smallwindow.open(map,mark);
+			});
+
+			smallwindow.open(map,mark);
+		
 	}
 	
 	function openDefault(){

@@ -1,63 +1,303 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link href="<c:url value="../resources/detail/bus.css" />" rel="stylesheet">
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<link href="<c:url value="/resources/detail/exit.css" />" rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+	#exitinfo td{
+		min-width:100px;
+		padding-left:20px;
+		border: 1px solid #ddd;
+    	text-align: left;
+				
+	}
+	
+	#gateNo {
+		border: 1px solid #ddd;
+    	text-align: left;
+		padding: 15px;
+		font-weight: bold;
+	}
+</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-var to=${to};
+	good=${code};
 	$.ajax({
 		url:"https://api.odsay.com/api/subwayStationInfo",
-		data:'apiKey=EP6opbh6Snt8fsH6J/Gb3dxsmCmTj3APxjd/oTeK8o0&lang=0&stationID='+to,
+		data:'apiKey=EP6opbh6Snt8fsH6J/Gb3dxsmCmTj3APxjd/oTeK8o0&lang=0&stationID='+good,
 		dataType:'json',
 		type:'POST',
 		success:function(data){
-			console.log(data);
-			var exit = [];
-			var info1 = [];
-			var i = 0;
-			var e = 0;
-			exit=data.result.exitInfo.gate;
-			
-			for(i; i<exit.length; i++){
-				//$(".exit").append("<tr><td><span>"+data.result.exitInfo.gate[i].gateNo+"</span>&nbsp;�� �ⱸ</td></tr>");		
-				$(".exit").append("<tr><td><span>"+data.result.exitInfo.gate[i].gateNo+"<span>&nbsp;�� �ⱸ</td></tr>");
-				info1 = data.result.exitInfo.gate[i].gateLink;
-				$(".info").append("<tr><td>");
-				for(e; e<info1.length; e++){
-					$(".info").append(data.result.exitInfo.gate[i].gateLink[e]+"&nbsp;&nbsp;&nbsp;");
-					
+			if(data.result.nextOBJ.station == null){
+					var exit = [];
+					var info1 = [];
+					var i = 0;
+					var e = 0;
+					var pre = [];
+					var precode = [];
+					var station;
+					var stationcode;
+					pre=data.result.prevOBJ.station[0].stationName;
+					precode=data.result.prevOBJ.station[0].stationID;
+					station=data.result.stationName;
+					stationcode=data.result.stationID;
+					exit=data.result.exitInfo.gate;
+					$(".previous").html(pre);
+					$("#preinfo").val(precode);
+					$(".station").html(station);
+						for(i; i<exit.length; i++){
+							$("#exitinfo").append("<tr><td id='gateNo'><span>"+data.result.exitInfo.gate[i].gateNo+"<span>&nbsp;번 출구</td><td style='min-width:850px;'>"+data.result.exitInfo.gate[i].gateLink+"</td></tr>");
+						}
 				}
-				e=0;
-				$(".info").append("</td></tr>");
-			}
+				else if(data.result.prevOBJ.station == null){
+					var exit = [];
+					var info1 = [];
+					var i = 0;
+					var e = 0;
+					var next = [];
+					var nextcode = [];
+					var station;
+					var stationcode;
+					next=data.result.nextOBJ.station[0].stationName;
+					nextcode=data.result.nextOBJ.station[0].stationID;
+					station=data.result.stationName;
+					stationcode=data.result.stationID;
+					exit=data.result.exitInfo.gate;
+					$(".next").html(next);
+					$("#nextinfo").val(nextcode);
+					$(".station").html(station);
+						for(i; i<exit.length; i++){
+							$("#exitinfo").append("<tr><td id='gateNo'><span>"+data.result.exitInfo.gate[i].gateNo+"<span>&nbsp;번 출구</td><td style='min-width:850px;'>"+data.result.exitInfo.gate[i].gateLink+"</td></tr>");
+						}
+				}
+				else{
+					var exit = [];
+					var info1 = [];
+					var i = 0;
+					var e = 0;
+					var pre = [];
+					var precode = [];
+					var next = [];
+					var nextcode = [];
+					var station;
+					var stationcode;
+					pre=data.result.prevOBJ.station[0].stationName;
+					precode=data.result.prevOBJ.station[0].stationID;
+					next=data.result.nextOBJ.station[0].stationName;
+					nextcode=data.result.nextOBJ.station[0].stationID;
+					station=data.result.stationName;
+					stationcode=data.result.stationID;
+					exit=data.result.exitInfo.gate;
+					$(".previous").html(pre);
+					$("#preinfo").val(precode);
+					$(".next").html(next);
+					$("#nextinfo").val(nextcode);
+					$(".station").html(station);
+						for(i; i<exit.length; i++){
+							$("#exitinfo").append("<tr><td id='gateNo'><span>"+data.result.exitInfo.gate[i].gateNo+"<span>&nbsp;번 출구</td><td style='min-width:850px;'>"+data.result.exitInfo.gate[i].gateLink+"</td></tr>");
+						}
+				}
 		},
 		error : function(){
 			alert("???");
 		}
 	});
+	
+	$(document).ready(function(){
+		
+		// 시간 정보(클릭)
+		$("a.timep").click(function(event){
+			event.preventDefault();
+			location.href="../Detail/timep.sub?code="+good;
+		});
+		
+		// 이전 정보
+		$("a.previous").click(function(event){
+			event.preventDefault();
+			var preinfo = $("#preinfo").val();
+			$("#good").val(preinfo);
+			good = $("#good").val();
+			$.ajax({
+				url:"https://api.odsay.com/api/subwayStationInfo",
+				data:'apiKey=EP6opbh6Snt8fsH6J/Gb3dxsmCmTj3APxjd/oTeK8o0&lang=0&stationID='+preinfo,
+				dataType:'json',
+				type:'POST',
+				success:function(data){
+					if(data.result.prevOBJ.station == null){
+						$("#exitinfo").find("tr").remove();
+						$(".previous").text("");
+						var exit = [];
+						var info1 = [];
+						var i = 0;
+						var e = 0;
+						var next = [];
+						var nextcode = [];
+						var station;
+						var stationcode;
+						next=data.result.nextOBJ.station[0].stationName;
+						nextcode=data.result.nextOBJ.station[0].stationID;
+						station=data.result.stationName;
+						stationcode=data.result.stationID;
+						exit=data.result.exitInfo.gate;
+						$(".next").html(next);
+						$("#nextinfo").val(nextcode);
+						$(".station").html(station);
+							for(i; i<exit.length; i++){
+								$("#exitinfo").append("<tr><td id='gateNo'><span>"+data.result.exitInfo.gate[i].gateNo+"<span>&nbsp;번 출구</td><td style='min-width:850px;'>"+data.result.exitInfo.gate[i].gateLink+"</td></tr>");
+							}
+					}
+					else{
+					$("#exitinfo").find("tr").remove();				
+					var exit = [];
+					var info1 = [];
+					var i = 0;
+					var e = 0;
+					var pre = [];
+					var precode = [];
+					var next = [];
+					var nextcode = [];
+					var station;
+					var stationcode;
+					pre=data.result.prevOBJ.station[0].stationName;
+					precode=data.result.prevOBJ.station[0].stationID;
+					next=data.result.nextOBJ.station[0].stationName;
+					nextcode=data.result.nextOBJ.station[0].stationID;
+					station=data.result.stationName;
+					exit=data.result.exitInfo.gate;					
+					$(".previous").html(pre);
+					$("#preinfo").val(precode);
+					$(".next").html(next);
+					$("#nextinfo").val(nextcode);
+					$(".station").html(station);
+					for(i; i<exit.length; i++){
+						$("#exitinfo").append("<tr><td id='gateNo'><span>"+data.result.exitInfo.gate[i].gateNo+"<span>&nbsp;번 출구</td><td style='min-width:850px;'>"+data.result.exitInfo.gate[i].gateLink+"</td></tr>");
+					}
+					}
+				},
+			});
+		});
+		
+		// 이후 정보
+		$("a.next").click(function(event){
+			event.preventDefault();
+			var nextinfo = $("#nextinfo").val();
+			$("#good").val(nextinfo);
+			good = $("#good").val();
+			$.ajax({
+				url:"https://api.odsay.com/api/subwayStationInfo",
+				data:'apiKey=EP6opbh6Snt8fsH6J/Gb3dxsmCmTj3APxjd/oTeK8o0&lang=0&stationID='+nextinfo,
+				dataType:'json',
+				type:'POST',
+				success:function(data){
+					if(data.result.nextOBJ.station == null){
+						$("#exitinfo").find("tr").remove();
+						$(".next").text("");
+						var exit = [];
+						var info1 = [];
+						var i = 0;
+						var e = 0;
+						var pre = [];
+						var precode = [];
+						var station;
+						var stationcode;
+						pre=data.result.prevOBJ.station[0].stationName;
+						precode=data.result.prevOBJ.station[0].stationID;
+						station=data.result.stationName;
+						exit=data.result.exitInfo.gate;
+						$(".previous").html(pre);
+						$("#preinfo").val(precode);
+						$(".station").html(station);
+							for(i; i<exit.length; i++){
+								$("#exitinfo").append("<tr><td id='gateNo'><span>"+data.result.exitInfo.gate[i].gateNo+"<span>&nbsp;번 출구</td><td style='min-width:850px;'>"+data.result.exitInfo.gate[i].gateLink+"</td></tr>");
+							}
+					}
+					else{
+					$("#exitinfo").find("tr").remove();
+					var exit = [];
+					var info1 = [];
+					var i = 0;
+					var e = 0;
+					var pre = [];
+					var precode = [];
+					var next = [];
+					var nextcode = [];
+					var station;
+					var stationcode;
+					pre=data.result.prevOBJ.station[0].stationName;
+					precode=data.result.prevOBJ.station[0].stationID;
+					next=data.result.nextOBJ.station[0].stationName;
+					nextcode=data.result.nextOBJ.station[0].stationID;
+					station=data.result.stationName;
+					exit=data.result.exitInfo.gate;
+					$(".previous").html(pre);
+					$("#preinfo").val(precode);
+					$(".next").html(next);
+					$("#nextinfo").val(nextcode);
+					$(".station").html(station);
+					for(i; i<exit.length; i++){
+						$("#exitinfo").append("<tr><td id='gateNo'><span>"+data.result.exitInfo.gate[i].gateNo+"<span>&nbsp;번 출구</td><td style='min-width:850px;'>"+data.result.exitInfo.gate[i].gateLink+"</td></tr>");
+					}
+					}					
+				},
+			});
+		});
+	});
 </script>
 
 <body>
-<!--Ÿ��Ʋ-->
+<!--타이틀-->
 <div class="subway_detail">
 	<div class="Title">
-			<a href="#" target="_balnk">����</a>
-			<img src="../images/sway-Title.png" alt="subway_title">
-			<a href="#" target="_balnk">�ϻ�</a>
-		<div class="local_tab">
-			<img src="../images/local_tab.png">	
+		<div id="st_container" style="background-image:url('../images/sway-Title1.png');">
+		 <table id="test">
+		 <tbody id="ttest">				
+				<tr id="rtest1">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr id="rtest2">
+					<td id="dtest1"></td>
+					<td id="dtest2">
+						<a href="" class="previous" id="pre"></a>
+					</td>
+					<td id="dtest3" class="station"></td>
+					<td id="dtest4" >
+						<a href="" class="next" id="next" style="float:center;right: 260px;"></a>
+					</td>
+					<td id="dtest5"></td>
+				</tr>
+				<tr id="rtest3"> 
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>				
+			</tbody>
+			</table>
+			
+			<div id="method"></div>
+				<div id="content">
+				</div>
+			</div>		
 		</div>
-		<div class="bus_bt">
-			<img src="../images/bus_button.png" alt="bus_bt">
-		</div>
-		<div class="time_bt">
-			<img src="../images/time_button.png" alt="time_bt">
-		</div>  
+			<table id="tinfo">
+				<tr>
+					<td>
+						<a href="" class="timep">시간 정보</a>
+					</td>
+					<td>
+						<a href="" class="exitp">출구 정보</a>
+					</td>
+				</tr>
+			</table>
 		<div id="map" style="width:1000px;height:400px;"></div>
     		<script>
     		var map;
@@ -71,22 +311,23 @@ var to=${to};
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLVQpMRYv7v9vUImMzhCRrcW-MJ3gPJb4&callback=initMap" async defer></script>
 		</div>
 </div>
-<!--//Ÿ��Ʋ-->
+<!--타이틀-->
 	
-<!--ù��/�����ð� ���̺�-->
+<!--첫차/막차시간 테이블-->
 <div class="article">
 	<div class="section_sway_time_tb">
 		<div class="article">
-	
+			
 			<div class="section_sway_exitbus_tb">
-				<table cellspacing="0" cellpadding="0" class="tbs3">
-					<tbody>
-						<tr>
-							<td class="exit"></td>
-							<td class="info"></td>
-						</tr>
+			<form method="POST" id="information" action="">
+				<input type="hidden" id="preinfo" name="preinfo">
+				<input type="hidden" id="nextinfo" name="nextinfo">
+				<input type="hidden" id="good" name="good">
+				<table cellspacing="0" cellpadding="0" class="tbs3" style="border-collapse: collapse;width: 100%;">
+					<tbody id="exitinfo">
 					</tbody>
 				</table>
+			</form>
 			</div>
 		</div>
 	</div>

@@ -16,13 +16,13 @@ import com.sub.VO.StationVO;
 public class Detail {
 		
 	@RequestMapping("/Exit")
-	public ModelAndView Bus(StationVO vo){
+	public ModelAndView Bus(int fcode){
 		
 		//할일 파라메터 받기(vo로 받기로결정)
 		ModelAndView mv=new ModelAndView();
 		//모델로 만들고
-		mv.addObject("from", vo.getFrom());
-		mv.addObject("to", vo.getTo());
+		
+		mv.addObject("code", fcode);
 		//뷰를 호출
 		mv.setViewName("/Detail/Exit");
 		return mv;
@@ -44,17 +44,56 @@ public class Detail {
 	}
 	
 	@RequestMapping("/DetailForm")
-	public ModelAndView goodproc(HttpServletRequest req, HttpSession session, StationVO vo){
+	public ModelAndView goodproc(HttpServletRequest req, HttpSession session, int tcode){
 		
 		//할일 파라메터 받기(vo로 받기로결정)
 		ModelAndView mv=new ModelAndView();
 		//모델로 만들고
-		mv.addObject("from", vo.getFrom());
-		mv.addObject("to", vo.getTo());
+		mv.addObject("code", tcode);
 		//뷰를 호출
 		mv.setViewName("/Detail/DetailForm");
 		return mv;
 		
 		
+	}
+	
+	@RequestMapping("/GoodProc")
+	public ModelAndView goodproc(HttpServletRequest req, HttpSession session){
+		String good = req.getParameter("good");
+		session.setAttribute("GOOD", good);
+		
+		ModelAndView mv=new ModelAndView();
+		RedirectView rv=new RedirectView("../Detail/DetailForm.sub");
+		mv.setView(rv);
+		return mv;
+	}
+	
+	@RequestMapping("/Good1Proc")
+	public ModelAndView good1proc(HttpServletRequest req, HttpSession session){
+		String good1 = req.getParameter("good1");
+		session.setAttribute("GOOD1", good1);
+		
+		ModelAndView mv=new ModelAndView();
+		RedirectView rv=new RedirectView("../Detail/Exit.sub");
+		mv.setView(rv);
+		return mv;
+	}
+	
+	@RequestMapping("/exitp")
+	public ModelAndView exitp(int code){
+		
+		ModelAndView mv=new ModelAndView();
+		mv.addObject("code", code);
+		mv.setViewName("Detail/Exit");
+		return mv;
+	}
+	
+	@RequestMapping("/timep")
+	public ModelAndView timep(int code){
+		
+		ModelAndView mv=new ModelAndView();
+		mv.addObject("code", code);
+		mv.setViewName("Detail/DetailForm");
+		return mv;
 	}
 }

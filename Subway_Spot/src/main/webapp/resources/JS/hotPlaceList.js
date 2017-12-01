@@ -5,27 +5,16 @@ function getHotplaceInfo(valuelat, valuelng, category, nowPage){
 	$.ajax({	
 		url:'./hotPlaceList.sub',
 		data: reqData,
-       /* contentType: "application/json; charset=UTF-8", */ 
         dataType:'json',
 		type:'get',
 		success:function(data){
-			var data1=$('#hDataLat').val(reqData.lat);
-			var data2=$('#hDataLng').val(reqData.lng);
-			var data3=$('#hDataCate').val(reqData.category);
-			var data4=$('#hDataNow').val(reqData.nowPage);
-			
-			console.log($("#hDataLat").val()+":   hDataLat 넣을 때");
-			
-		
 			if (data.LIST.length==0){
-				console.log("no data");
 				$(".hotple").remove();
 				$('.hotpl-result').hide();
 				
 				
 			}else{
 				
-				console.log(data.LIST.length+"  :length");
 				$('#restaurant_hotpl').show();
 				$('.hotple').remove();
 				$('.paging').remove();
@@ -39,6 +28,10 @@ function getHotplaceInfo(valuelat, valuelng, category, nowPage){
 					appendHotPlaces(hotPlaces, info);
 				}
 			}
+			var data1=$('#hDataLat').val(reqData.lat);
+			var data2=$('#hDataLng').val(reqData.lng);
+			var data3=$('#hDataCate').val(reqData.category);
+			var data4=$('#hDataNow').val(reqData.nowPage);	
 			
 		},
 		error:function(xhr, status, error) {
@@ -77,8 +70,7 @@ function appendHotPlaces(hotPlaces, info){
 			+	"<span id='hotPrev' class='hotPrev'>◀이전</span> / " 	
 			+ 	"<span id='hotNext' class='hotNext'>다음▶</span>" 	
 			+"</div>";
-		console.log(data.nowPage+": data.nowPage");	
-		console.log(".page-length : " + $(".paging").length);
+
 		
 	}
 	
@@ -94,12 +86,10 @@ $(document).ready(function(){
 		//var curPage=hNow;
 		if(curPage <= 1) {
 			alert("맨 앞 페이지 입니다.");
-			console.log(curPage+" :맨 앞에서");
 			return false; 
 		}
 		curPage -= 1;
 		$(this).parent().attr("data-page", curPage);
-		console.log("curPage: "+curPage);			
 		getHotplaceInfo2(hLat, hLng, hCate, curPage);
 			
 	});
@@ -118,12 +108,10 @@ $(document).ready(function(){
 		curPage += 1;
 		if(curPage > lastPage) {
 			alert("마지막 페이지 입니다.");	
-			console.log(curPage+" :맨 뒤에서");
 			curPage--;
 			return false;
 		}		
 		$(this).parent().attr("data-page", curPage);
-		console.log("curPage: "+curPage);
 		
 		getHotplaceInfo2(hLat, hLng, hCate, curPage);		
 	});
@@ -140,14 +128,12 @@ function getHotplaceInfo2(valuelat, valuelng, category, nowPage){
 		success:function(data){
 			
 			if (data.LIST.length==0){
-				console.log("no data");
 				$(".hotple").remove();
 				$('.hotpl-result').hide();
 				
 				
 			}else{
 				
-				console.log(data.LIST.length+"  :length");
 				$('#restaurant_hotpl').show();
 				$('.hotple').remove();
 				

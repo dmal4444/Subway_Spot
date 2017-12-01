@@ -3,7 +3,10 @@
   <div id="myPath" style="width:250px;">
   	<img src="resources/icons/train.png">&nbsp&nbsp<a style="color:darkgrey; font-weight:bold; font-size:28px;">SUBWAY SPOT</a>
   	<p></p>
-  	<form method="POST" id="stn_frm" action="">  		
+  	<form method="POST" id="stn_frm" action="">
+  	  	<input type='hidden' id="fcode" name="fcode" value=''>
+  		<input type='hidden' id="tcode" name="tcode" value=''>
+  	  		
 		<div id="from_to">
 	 		<!--  출발역 -->
 			FROM <br>

@@ -25,11 +25,20 @@ public class MainController {
 	@Autowired
 	private MainService mainS;
 	
+	/**
+	 * 길찾기 부분 불러오는 함수
+	 * @return
+	 */
 	@RequestMapping("/PathFinder")
 	public String getFinder(){
 		return "PathFinder";
 	}
 	
+	/**
+	 * 메인화면 호출하는 함수
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/main")	
 	public ModelAndView getMain() throws Exception {	
 		//	set Marker
@@ -48,45 +57,55 @@ public class MainController {
 		return mv;		
 	}
 	
+	/**
+	 * Tab화면 호출하는 함수
+	 * @return
+	 */
 	@RequestMapping("/TabWindow")
 	public String getTab(){
 		return "List/TabWindow";
 	}
 	
+	/**
+	 * 리스트 정보를 호출하는 함수
+	 * @return
+	 */
 	@RequestMapping("/List")
 	public String getList(){
 		return "List/List";
 	}
 
-	
-	//운행시간 버튼
+
+/*	//운행시간 버튼
 	@RequestMapping("/findProc2")
-	public ModelAndView findProc(StationVO vo){
+	public ModelAndView findProc(int code){
 		//파라메터 받고(vo로 받을 예정)
 		//모델을 만든다.
+		System.out.println("시간표 호출"+code);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("from",vo.getFrom());
-		mv.addObject("to", vo.getTo());
-		
-		RedirectView rv = new RedirectView("./Detail/DetailForm.sub");
-		mv.setView(rv);
+		mv.addObject("from",code);
+		mv.setViewName("/Detail/DetailForm");
 		return mv;
 	}
 	
 	//출구 상세보기 버튼
 	@RequestMapping("/findProc")
-	public ModelAndView findProc2(StationVO vo){
+	public ModelAndView findProc2(int code){
 		//파라메터 받고(vo로 받을 예정)
 		//모델을 만든다.
+		System.out.println("출구 호출"+code);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("from",vo.getFrom());
-		mv.addObject("to", vo.getTo());
-		
-		RedirectView rv = new RedirectView("./Detail/Exit.sub");
-		mv.setView(rv);
-		return mv;
-	}
+		mv.addObject("to", code);
 	
+		mv.setViewName("/Detail/Exit");
+		return mv;
+	}*/
+	
+	/**
+	 * 핫플레이스 정보 얻어오는 함수
+	 * @param vo
+	 * @return
+	 */
 	//핫플레이스 정보 얻어오는 함수 
 	@RequestMapping("/hotPlaceList")
 	@ResponseBody
@@ -170,6 +189,7 @@ public class MainController {
 
 	         map.put("lat", lat);
 	         map.put("lng", lng);
+	         
 	         ArrayList hotlist = mainS.getTabinfo(map);
 	         
 	         return hotlist;
@@ -178,18 +198,14 @@ public class MainController {
 	   // reply 등록 함수
 	   @RequestMapping("/ReplyProc")
 	   @ResponseBody
-	   public String replyProc(ReplyVO rVO) {
+	   public void replyProc(ReplyVO rVO) {
 	      mainS.insertReply(rVO);	
-	      
-	      
-	      return "({result: 1})";
-	   }
+	     }
 	   
 	
 	   @RequestMapping("/ReplyList")
 	   @ResponseBody
 	   public ArrayList displayReply(int num) {
-	      System.out.println("displayReply = " + num);
 	      ArrayList replylist = mainS.displayReply(num);
 	      return  replylist ;
 	   }

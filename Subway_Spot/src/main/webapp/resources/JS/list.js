@@ -20,9 +20,6 @@ $(document).ready(function(){
 		  
 		  getHotplaceInfo(myLocation.lat, myLocation.lng, '1', '1');
 
-		  
-		  console.log("restaurant 선택");
-		  
 	  } else if($(this).attr("data-type") == 'hotel') {
 		  typeView('lodging', hotel_callback);
 		  
@@ -33,9 +30,7 @@ $(document).ready(function(){
 		  $("#park_result").hide();
 
 		  getHotplaceInfo(myLocation.lat, myLocation.lng, '2', '1');
-		  
-		  console.log("hotel 선택");
-		  
+	  
 	  } else if($(this).attr("data-type") == 'pub'){
 		  typeView('bar', pub_callback);
 
@@ -47,8 +42,6 @@ $(document).ready(function(){
 
 		  getHotplaceInfo(myLocation.lat, myLocation.lng, '3', '1');
 
-		  console.log("pub 선택");
-		  
 	  } else if($(this).attr("data-type") == 'tourism'){
 		  typeView('museum', tourism_callback);
 		  
@@ -59,10 +52,7 @@ $(document).ready(function(){
 		  $("#park_result").hide();
 
 		  getHotplaceInfo(myLocation.lat, myLocation.lng, '4', '1');
-	
-		  
-		  console.log("tourism 선택");
-		  
+ 
 	  } else if($(this).attr("data-type") == 'park'){
 		  typeView('park', park_callback);
 		  
@@ -73,10 +63,6 @@ $(document).ready(function(){
 		  $("#tourism_result").hide();
 
 		  getHotplaceInfo(myLocation.lat, myLocation.lng, '5', '1');
-
-		  
-		  console.log("park 선택");
-
 	  }
 	  
 	  $('.clickme').removeClass('btn_selected');

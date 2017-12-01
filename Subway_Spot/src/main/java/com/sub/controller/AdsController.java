@@ -30,14 +30,13 @@ public class AdsController {
 	 * @since 11.28.17
 	 */
 	@RequestMapping("/ads/adsList")
-	public ModelAndView getAdsList(@RequestParam(value="nowPage", defaultValue="1") int nowPage){
-		//파라메터 받고
-		//DB에서 받아오고
-				
+	public ModelAndView getAdsList(
+			@RequestParam(value="nowPage", defaultValue="1") int nowPage){
+
 		int total = aService.getTotal();
 		PageUtil pInfo = new PageUtil(nowPage, total, 6);
 		ArrayList list = aService.getAdsList(nowPage, pInfo); 
-		//모델을 만들고
+
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("LIST", list);
 		mv.addObject("PINFO", pInfo);
@@ -55,9 +54,7 @@ public class AdsController {
 	 */
 	@RequestMapping("/ads/adsWrite")
 	public ModelAndView getAdsWrite(){
-		//파라메터 받고(없음)
-		//DB에서 받아오고(없음)
-		//뷰를 호출
+
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/ads/adsWrite");
 		return mv;
@@ -74,16 +71,13 @@ public class AdsController {
 	@RequestMapping("/ads/adsWriteProc")
 	public ModelAndView getAdsWriteProc(AdsVO vo, HttpSession session){
 		
-		//파라메터 받고(vo로 받고)
 		String path=session.getServletContext().getRealPath("imgupload");
 		
 		String fileName = vo.getPath().getOriginalFilename();
 		String saveName = FileUtil.upload(vo.getPath(), fileName, path);
 		
 		vo.setSaveName(saveName);
-		//DB로 넣어주고
 		aService.getAdsWrite(vo);
-		//뷰를 호출한다.
 		ModelAndView mv = new ModelAndView();
 		RedirectView rv = new RedirectView("./adsList.sub");
 		mv.setView(rv);
@@ -93,15 +87,14 @@ public class AdsController {
 	
 	//상세보기 폼 요청 처리 함수
 	@RequestMapping("/ads/adsDetail")
-	public ModelAndView getAdsDetail(@RequestParam(value="oriNo") int oriNo, @RequestParam(value="nowPage") int nowPage){
-		//파라메터 받고
+	public ModelAndView getAdsDetail(
+			@RequestParam(value="oriNo") int oriNo, 
+			@RequestParam(value="nowPage") int nowPage){
 		HashMap map = new HashMap();
 		map.put("oriNo", oriNo);
 		map.put("nowPage", nowPage);
 		
-		//DB처리하고
 		AdsVO vo = aService.getAdsDetail(oriNo);
-		//모델만들고
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("LIST", vo);
 		mv.addObject("INFO", map);

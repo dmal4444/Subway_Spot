@@ -75,11 +75,11 @@ public class MainService {
 	      
 	 public void insertReply(ReplyVO vo){
 	     ssDAO.insertReply(vo);        
-	       }   
+	 }   
 	       
-	       public ArrayList displayReply(int num){
-	          ArrayList list = ssDAO.displayReply(num);
-	          
+	 public ArrayList displayReply(int num){
+		 ArrayList list = ssDAO.displayReply(num);
+	     
 	          return list;
 	          
 	       }      

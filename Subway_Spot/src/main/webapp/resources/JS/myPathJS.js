@@ -1,5 +1,6 @@
 /*길찾기 JavaScript*/
- 
+var pathMarker =[]; 
+var wayMarker= [];
 $(document).ready(function() {
 	var firstStn = $("#from").val();
 	var lastStn = $("#to").val();
@@ -77,12 +78,14 @@ $(document).ready(function() {
     
     //출구정보버튼
     $(".exit").click(function(){
-		$("#stn_frm").attr("action", "./findProc.sub").submit();
+    	var data1=$('#tcode').val();
+		$("#stn_frm").attr("action", "./Detail/Exit.sub?fcode="+data1).submit();
 		
     });
     //운행시간버튼
     $(".act").click(function(){
-    	$("#stn_frm").attr("action", "./findProc2.sub").submit();
+    	var data1=$("#fcode").val();
+    	$("#stn_frm").attr("action", "./Detail/DetailForm.sub?tcode="+data1).submit();
 		
     });
     //길찾기 버튼
@@ -93,12 +96,8 @@ $(document).ready(function() {
 		min = 1;
 		
 		getCode(firstStn, lastStn, min);
-		map.setCenter({
-			lat: 37.5608381,
-			lng: 126.9859019
-		});
-		map.setZoom(14);
-		
+		var fcode=firstStn.substring(0, firstStn.length- 1);
+		moveToStation(fcode, 13);
 		createMarkers();
 		
 	});
@@ -184,7 +183,6 @@ $(document).ready(function() {
 						child.hide();
 						
 						for(count;count<indexes[0];count++){	
-							console.log(firstLine+" :firstLine");
 							AppendDetail(count, firstLine);
 							$(".sbway_stn.detail"+count).html(stationinfo.stations[count].startName);
 							$(".sbway_stn.detail_line"+count).html(firstLine.substr(0,1));
@@ -317,7 +315,6 @@ $(document).ready(function() {
 						$(".sbway_transfer").hide();
 	
 					}
-					console.log(data);
 					
 					//도착역 정보
 					$(".sbway_stn.arrival").html(info.globalEndName);
@@ -333,14 +330,17 @@ $(document).ready(function() {
 					
 					$("#myPath").on("click", "a", function(e) {
 						var station=$(this).html();
-						 moveToStation(station);						 
+						 moveToStation(station, 19);						 
 					});
 					
 					$("#startLine").attr("src", "./resources/icons/linenumber/line"+firstLine.substr(0,1)+".jpg");
 					$("#endLine").attr("src", "./resources/icons/linenumber/line"+stringLen.substr(0,1)+".jpg");
 					
-										
-					
+					console.log(data.result.stationSet.stations.length+" :length");
+					for(var i=1; i<data.result.stationSet.stations.length; i++){
+						onthewayMakrer(data.result.stationSet.stations[i].startName);
+											
+					}
 				},
 				error:function(){
 					alert("FAIL!!!!!");
@@ -374,7 +374,6 @@ $(document).ready(function() {
 	
 	//자세히보기 HTML 추가
 	function AppendDetail(i, first){
-		console.log(first+" :first");
 		$(".detail_list").append("<div class='append'><li class='sbway_departure'>" +
 				"<span class='sbway_line_wrap'>" +
 				"<span class='sbway_line_img"+first.substr(0, 1)+"'></span>" +
@@ -453,7 +452,7 @@ $(document).ready(function() {
 				"</div>");
 	}
 	
-	function moveToStation(station){
+	function moveToStation(station, number){
 		$.ajax({
 			url:'./findStnCoords.sub',
 			data:{station: station},
@@ -464,7 +463,7 @@ $(document).ready(function() {
 					lat: data[0].xpoint,
 					lng: data[0].ypoint
 				});
-				map.setZoom(19);
+				map.setZoom(number);
 			},
 			error:function(){
 				alert("FAIL!!!!");
@@ -489,6 +488,9 @@ $(document).ready(function() {
 				var fypoint=data.FYPOINT;
 				var txpoint=data.TXPOINT;
 				var typoint=data.TYPOINT;
+				
+				var data1=$("#tcode").val(data.TCODE);
+				var data2=$("#fcode").val(data.FCODE);
 								
 				createMarkers(fxpoint, fypoint, txpoint, typoint, fcode, tcode);
 				
@@ -504,25 +506,66 @@ $(document).ready(function() {
 	}
 	
 	function createMarkers(fxpoint, fypoint, txpoint, typoint, fname, tname){
-		var len = markerList.length;
-		   for(i=0;i<len;i++){
-			   markerList[i].setMap(null);
-		   }
-		   markerList = [];
-
-		var marker1 = new google.maps.Marker({   
-            position: new google.maps.LatLng(fxpoint, fypoint),
-            icon: './resources/icons/category/pub_list_icon.png',
-            map: map,
-            clickable: true, draggable: false,
-            title: fname+'역'
-           });
 		
-		var marker2 = new google.maps.Marker({   
-            position: new google.maps.LatLng(txpoint, typoint),
-            icon: './resources/icons/category/hotel_list_icon.png',
+		var len = pathMarker.length;
+		   for(i=0;i<len;i++){
+			   pathMarker[i].setMap(null);
+		   }
+		   pathMarker = [];
+
+		var sMarker = pathMarker.push(new google.maps.Marker({   
+            position: new google.maps.LatLng(fxpoint, fypoint),
+            icon: './resources/icons/arrow_red.png',
             map: map,
             clickable: true, draggable: false,
-            title: tname+'역'
-           });
+            title: fname+'역',
+            optimized: false,
+            zIndex:999
+           }));
+		
+		var eMarker = pathMarker.push(new google.maps.Marker({   
+            position: new google.maps.LatLng(txpoint, typoint),
+            icon: './resources/icons/arrow_yellow.png',
+            map: map,
+            clickable: true, draggable: false,
+            title: tname+'역',
+            optimized: false,
+            zIndex:999
+           }));
+		
+
+	}
+	
+	function onthewayMakrer(station){
+		var len = wayMarker.length;
+		   for(i=0;i<len;i++){
+			   wayMarker[i].setMap(null);
+		   }
+		   wayMarker = [];
+		
+		$.ajax({
+			url:'./findStnCoords.sub',
+			data:{station: station},
+			dataType:'json',
+			type:'POST',
+			success : function(data) {
+				var marker = wayMarker.push(new google.maps.Marker({   
+		            position: new google.maps.LatLng(data[0].xpoint, data[0].ypoint),
+		            icon: './resources/icons/checked_flag2.png',
+		            map: map,
+		            clickable: true, draggable: false,
+		            title: station+'역',
+		            optimized: false,
+		            zIndex:999
+		           }));
+			},
+			error:function(){
+				alert("FAIL!!!!");
+				
+			}
+		});
+		
+		
+		
+		
 	}

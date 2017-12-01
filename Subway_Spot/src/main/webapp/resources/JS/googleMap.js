@@ -8,8 +8,10 @@ var hlist = hvoList; //핫플레이스 마커 변수
 var map;
 
 //tab Window를 위한 변수들
-var infowindow, player;
+var infowindow
+var player;
 var iw_content = document.getElementById("wrapper1");
+var tabs;
 
 //List를 위한 변수
 var smallwindow;
@@ -17,6 +19,10 @@ var markerList=[];
 var myLocation;
 var hotmarkerList=[];
 
+//전체 마커 변수
+var rMarkerList = [];
+var hMarkerList = [];
+var hotMarkerList = [];
 
 //지도 연동 시작
 function initMap(type, icon) {
@@ -26,7 +32,9 @@ function initMap(type, icon) {
        mapTypeId: 'roadmap',
        disableDefaultUI: true //지도 스타일변경 버튼 안만들기
    });
-
+	 infowindow = new google.maps.InfoWindow();
+     tabs = new TabCard("firstTabs", "firstCard");
+     
    var styles = {
    default: null,
    hide: [
@@ -48,15 +56,16 @@ function initMap(type, icon) {
       */
    
    list.forEach(function(value, index) {
-	   var marker = new google.maps.Marker({
+	   var marker = rMarkerList.push(new google.maps.Marker({
 	     position: new google.maps.LatLng(value.xpoint, value.ypoint),
 	     icon: value.iconpath,
 	     map: map,
 	     title: value.name,
 	     clickable: true, draggable: false
-	   });
+	   }));
 	   
-	   google.maps.event.addListener(marker, "click", function(){
+	   google.maps.event.addListener(rMarkerList[rMarkerList.length-1], "click", function(){
+		   
 		   var len = markerList.length;
 		   for(i=0;i<len;i++){
 			   markerList[i].setMap(null);
@@ -64,7 +73,6 @@ function initMap(type, icon) {
 		 //  markerList = [];
 		   
 			 var len = hotmarkerList.length;
-			   console.log(len+" :hotmarkerlen");
 			   for(i=0;i<len;i++){
 				   hotmarkerList[i].setMap(null);
 			   }
@@ -95,6 +103,8 @@ function initMap(type, icon) {
 	   });
 	});	 
    
+   
+   
    /**
     * 핫플레이스 마커 생성
     * 
@@ -106,16 +116,16 @@ function initMap(type, icon) {
     	var iw_content = document.getElementById("wrapper1");
 
        var g = google.maps;
-	   var marker = new google.maps.Marker({		 
+	   var marker = hMarkerList.push(new google.maps.Marker({		 
 	     position: new google.maps.LatLng(value.xpoint, value.ypoint),
 	     icon: 'resources/icons/line/hot.png',
 	     map: map,
 	     title: value.name,
 	     clickable: true, draggable: false	     
-	   });
+	   }));
 	   
 	   
-	   g.event.addListener(marker, "click", function(){
+	   g.event.addListener(hMarkerList[hMarkerList.length-1], "click", function(){
 		   var len = markerList.length;
 		   for(i=0;i<len;i++){
 			   markerList[i].setMap(null);
@@ -152,6 +162,7 @@ function initMap(type, icon) {
 			
 	   });
 	});	
+
    
    /**
     * SerachBox
@@ -163,7 +174,7 @@ function initMap(type, icon) {
    
    input.style.zIndex = "100";
    
-/*   // Bias the SearchBox results towards current map's viewport.
+   // Bias the SearchBox results towards current map's viewport.
    map.addListener('bounds_changed', function() {
      searchBox.setBounds(map.getBounds());
    });	
@@ -198,7 +209,7 @@ function initMap(type, icon) {
          size: new google.maps.Size(10, 10),
          scaledSize: new google.maps.Size(25, 25)
        };
-       thisStateMarker.setIcon(icon)
+       //thisStateMarker.setIcon(icon)
        
        // Create a marker for each place.
        markers.push(new google.maps.Marker({
@@ -216,7 +227,7 @@ function initMap(type, icon) {
        }
      });
      map.fitBounds(bounds);     
-   });*/
+   });
   
    
    /**

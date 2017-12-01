@@ -13,14 +13,13 @@ function TabCard(tabid, cardid){
 
 }
 
-function handleTabs(num){
+function handleTabs(num){	
 	var me = this;
 	  var tabsdiv = document.getElementById(this.tabid);
 	  this.newcard = this.cardid + num;
 	  if (!this.card) this.card = this.newcard;
 	  // Switch cards
-	  var hi=document.getElementById(this.card).style.display = "none";
-	  console.log(hi+":  handleTabs");
+	  document.getElementById(this.card).style.display = "none";
 	  document.getElementById(this.newcard).style.display = "block";
 
 	  // Store active card
@@ -28,9 +27,10 @@ function handleTabs(num){
 
 	  // Handle tab events
 	  for (var i = 0, tab; tab = tabsdiv.getElementsByTagName("span")[i]; i++) {
-
+		 
 	    // Make clicked tab active and
 	    // unregister event listener for active tab
+		
 	    if (tab.getAttribute("data-name")*1 == num) {
 	     tab.className = "activeTab";
 	     tab.onmouseover = null;
@@ -51,49 +51,24 @@ function handleTabs(num){
 	      this.className = "passiveTab";
 	     };
 
-	     tab.onclick = function() {
+	     tab.onclick = function(value, index) {
 	      // 'this' refers to the tab here
 	      var tabnum = this.getAttribute("data-name")*1;
 	      var label = this.firstChild.nodeValue;
 	      me.handleTabs(tabnum);
+	      
+	      var code=hotplacecode;
 	      // Displays street view in tab #2 
 	      if (tabnum == 2) {
-	    	  $.ajax({
-	                 url: "ReplyList.sub",
-	                 data: {num : hotplacecode.value},
-	                 type: "POST",
-	                 dataType: "json",
-	                 success: function(data) {
-	                        $(".hotinfoimage").show();
-	                    var replylist = data;
-	                        var replycard = document.getElementById('replycard');
-	                        $(replycard).empty();
-	                        replylist.forEach(function(value, index){ 
-	                        $(replycard).append(                               
-	                           "<div class='replycard'>" +
-	                           "<p class='nick'><b>&nbsp;&nbsp;"+value.nick+"</b></p>" +
-	                           "<p class='body'>&nbsp;&nbsp;&nbsp;"+value.body+"</p>" +
-	                           "<p class='date'><i><b>"+value.date+",</b> "+value.time+"&nbsp;&nbsp;&nbsp;&nbsp;</i></p>" +
-	                           "</div>" 
-	                        )   
-	                        });
-	                    },
-	                 error(xhr, statusText, error){
-	                    console.log(statusText);
-	                 }
-	             });
+	    	  getReply();
 	      }
 	      else if (label == "Mini Map"){
-	         //seeMiniMap(me.card, me.point);
 	      }
 	      else if (label == "Video"){ 
-	        // showVideo(me.card);
 	      }
 
-	      // Stop possibly running video
 	      if (tabnum != 3) {
-	        //if (msie) removeVideo();
-	        //else if (player) player.pauseVideo();
+
 	      }
 	      return false;
 	     };
@@ -101,29 +76,32 @@ function handleTabs(num){
 	  }
 }
 
-
-function viewStreet(div, point) {
-
-  /*var g = google.maps;
-  var pano = new g.StreetViewPanorama(document.getElementById(div), {
-    position: point });
-//  map.setStreetView(pano);
- pano.setVisible(true);*/
-}
-
-
-function seeMiniMap(div, point) {
-
-/*  var g = google.maps;
-  var mini = new g.Map(document.getElementById(div), {
-    center: point,
-    zoom: 18,
-    streetViewControl: false,
-    mapTypeId: "hybrid",
-    mapTypeControlOptions: {
-     style: g.MapTypeControlStyle.DROPDOWN_MENU
-    }
-  });*/
+function getReply(){
+	 $.ajax({
+         url: "ReplyList.sub",
+         data: {num : hotplacecode.value},
+         type: "POST",
+         dataType: "json",
+         success: function(data) {
+                $(".hotinfoimage").show();
+                var replylist = data;
+                var replycard = document.getElementById('replycard');
+                $(replycard).empty();
+                replylist.forEach(function(value, index){ 
+                	
+                    $(replycard).append(                               
+                       "<div class='replycard'>" +
+                       "<p class='nick'><b>&nbsp;&nbsp;"+value.nick+"</b></p>" +
+                       "<p class='body'>&nbsp;&nbsp;&nbsp;"+value.body+"</p>" +
+                       "<p class='date'><i><b>"+value.date+",</b> "+value.time+"&nbsp;&nbsp;&nbsp;&nbsp;</i></p>" +
+                       "</div>" 
+                    )   
+                });
+            },
+         error(xhr, statusText, error){
+            console.log(statusText);
+         }
+     });
 }
 
 function getTabId(){

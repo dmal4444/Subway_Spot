@@ -24,6 +24,14 @@
 	.sidenav::-webkit-scrollbar {
 	    display: none;
 	}
+	
+	#mySideList {
+	  overflow-y:scroll;
+	}
+	
+	#mySideList::-webkit-scrollbar {
+	    display: none;
+	}
 </style>
 <body style="height:100%; width:100%">
 <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -47,7 +55,7 @@
 
 
 <!-- side bar(길찾기) -->
-<div id="mySidenav" class="sidenav" style="background-color:white;">
+<div id="mySidenav" class="sidenav" style="background-color:white;z-index:100;">
 	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 	<jsp:include page="PathFinder.jsp"/>
 	
@@ -68,6 +76,7 @@
 	<jsp:include page="List/TabWindow.jsp"/>
 </div>
 
+<!-- List -->
 <div class="List" id="list">
 	<jsp:include page="List/List.jsp"/>
 </div>
